@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/AuditReport.css">
+   <link rel="stylesheet" href="css/StationNotice.css">
+    <style>
+        .fileInp-opacity{
+            background-image:url("images/peiyoufabu_03.png") ;
+            background-repeat:no-repeat ;
+        }
+        .top-two a{
+            position: relative;
+            display: inline-block;
+            top: 30px;
+        }
+    </style>
+    <script src="js/lodash.min.js"></script>
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+     <script type="text/tpl" id="tpl">
+       <% for(var i=0;i<list.length;i++){%>
+       <div class="situation-box">
+                          <div class="situation-box-item" data-id="<%= list[i].id%>" >
+                              <div>
+                                  <a href="#pageNoticeDetails">
+                                      <h3><%= list[i].title%></h3>
+                                      <p><%= list[i].content%></p>
+                                  </a>
+                              </div>
+                          </div>
+      </div> 
+       <%}%>
+     </script>
+     <script type="text/tpl" id="tpl2">
+       
+         <div class="title_content">
+                        <h3><%= list.title%></h3>
+                        <h5><%= list.createtime%></h5>
+                </div>
+                <div class="jszc_content">
+                          <% for(var i=0;i<list.c_context.length;i++){%>
+
+                          <p><img src="<%= list.c_image[i] %>" height="150px;"></p>
+                          <p class="p_words"><%= list.c_context[i]%></p>
+                          <%}%>
+                </div>
+
+     </script>
+  </head>
+<body>
+<div class="page-group">
+    
+      <!--主界面-->
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav bar_color">
+             <h1 class="title">站内通知</h1>
+             <a class="icon home-icon  pull-left external" href="WebmasterHomepage.html" >
+               <img src="images/dhl_btn_home.png">
+             </a>
+             <a class="button button-link button-nav pull-right" href="infofabu.html" data-transition='slide-out' id="suceeesss" style="color:#fff!important;">
+             <span class="icon pull-right" id="mainSend"></span>
+             发送
+             </a>
+      </header>
+    <div class="content">
+    <div class="buttons-row buttons-row_content">
+        <a href="#" class="tab-link active button" id="jubao">接收通知</a>
+        <a href="#" class="tab-link button" id="shenhe">发送通知</a>
+    </div>
+    </div>
+      <div class="content" style="margin-top: 50px">
+         <div class="sct-bd">
+                      
+                      </div>
+              </div>
+      </div>  
+</div> 
+
+
+
+<!-- 站内通知详情 -->
+<div class="page " id="pageNoticeDetails">
+      <header class="bar bar-nav">
+            <h1 class="title">站内通知</h1>
+            <a class="icon icon-left pull-left" href="StationNotice.html"></a>
+      </header>
+     <div class="content"> 
+             
+               
+     </div>
+</div> 
+
+
+
+<!-- 发送消息 -->
+<!--<div class="page" id="pageSendMessage">-->
+      <!--<header class="bar bar-nav">-->
+          <!--<h1 class="title">发送消息</h1>-->
+          <!--<a class="icon icon-left pull-left" href="StationNotice.html"></a>-->
+      <!--</header>-->
+       <!--<div class="content">-->
+          <!---->
+             <!--<div class="list-block media-list mar-list">-->
+                  <!--<ul>-->
+                       <!--<li class="detail-li">-->
+                        <!--<div class="item-content ">-->
+                            <!--<div class="item-inner">-->
+                                <!--<div class="item-text text-content">-->
+                                    <!--<div class="row" >-->
+                                        <!--<div class="col-40">-->
+                                            <!--选择收件人*-->
+                                        <!--</div> -->
+                                    <!--</div>-->
+                                    <!--<div class="row textaera-row">-->
+                                         <!--<div class="item-input textarea-content-title">-->
+                                             <!--<textarea class="inp-text" placeholder="一句话简明描述您的需求" id="Addressee"></textarea>-->
+                                          <!--</div>-->
+                                      <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                      <!--<li class="detail-li">-->
+                        <!--<div class="item-content ">-->
+                            <!--<div class="item-inner">-->
+                                <!--<div class="item-text text-content">-->
+                                    <!--<div class="row" >-->
+                                        <!--<div class="col-40">-->
+                                            <!--标题-->
+                                        <!--</div> -->
+                                    <!--</div>-->
+                                    <!--<div class="row textaera-row">-->
+                                         <!--<div class="item-input textarea-content-title">-->
+                                             <!--<textarea class="inp-text" placeholder="一句话简明描述您的需求" id="mainTitle"></textarea>-->
+                                          <!--</div>-->
+                                      <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+
+                       <!--<li class="detail-li">-->
+                        <!--&lt;!&ndash;<div class="item-content ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="item-inner item-contact">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="item-text text-content">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="col-40">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;活动&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div> &ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="row textaera-row">&ndash;&gt;-->
+                                         <!--&lt;!&ndash;<div class="item-input textarea-content">&ndash;&gt;-->
+                                             <!--&lt;!&ndash;<textarea class="inp-text" placeholder="一句话简明描述您的需求"></textarea>&ndash;&gt;-->
+                                          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                           <!--<ul id="addit">-->
+                               <!--<li class="detail-li  item">-->
+                                   <!--<div class="row">-->
+                                       <!--<div class="col-33">-->
+                                           <!--<div id="pubScenic_c_image"  class="inp-cert">-->
+                                               <!--<div class="cert-upload"></div>-->
+                                               <!--<input type="file" class="cert-upload fileInp-opacity filesss"  multiple accept="image/*"  onchange="doUpload2(this)" value="">-->
+                                           <!--</div>-->
+                                       <!--</div>-->
+                                       <!--<div class="col-50">-->
+                                           <!--<textarea id="pubScenic_c_context" eleType="input"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明"></textarea>-->
+                                       <!--</div>-->
+                                   <!--</div>-->
+                                   <!--<a href="" id="www"></a>-->
+                               <!--</li>-->
+                           <!--</ul>-->
+                           <!--<div class="item-content ">-->
+                               <!--<div class="item-inner">-->
+                                   <!--<div class="item-text text-content">-->
+                                       <!--<div class="row">-->
+                                           <!--<div class="content-block content-block1">-->
+                                               <!--<a href="#" class="button button-fill button-warning" id="additem">+创建图片</a>-->
+                                           <!--</div>-->
+                                       <!--</div>-->
+                                   <!--</div>-->
+                               <!--</div>-->
+                           <!--</div>-->
+                    <!--</li>-->
+
+                  <!--</ul>   -->
+            <!--</div>        -->
+            <!--<div class="content-block">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-50 baocun"><a href="#" class="button button-big button-fill button-danger">取消</a></div>-->
+                        <!--<div class="col-50 fabu" ><a href="#" class="button button-big button-fill button-success">发送</a></div>-->
+                   <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+</div>
+    <script type='text/javascript' src='js/zepto.js' ></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/position.js"></script>
+
+    <script type="text/javascript" src="js/StationNotice.js"></script>
+   <script type='text/javascript' src='js/select-district.js'></script>
+  <script>
+
+
+
+
+</script>
+</body>
+</html>

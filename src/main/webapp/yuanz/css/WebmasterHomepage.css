@@ -1,0 +1,203 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+    font-size:.7em;
+
+}
+
+ul {
+  list-style:none;
+}
+img {
+  border:none;
+}
+a:link,a:visited, a:hover,a:active{
+  color:#000;
+  text-decoration:none;
+}
+.clear{clear:both;}
+
+.position_bar .pull-right span{
+    width: 50%;
+}
+
+.page{
+  background-color: #fafafa;
+}
+.position_bar{
+  background-color: #f96f0c;
+}
+.position_bar span{
+   font-size: .75rem;
+  color: #fff;
+}
+.position_bar span img{
+  width: 100%;
+}
+
+.position_bar .tongzhi-icon img {
+  width:1.5rem;
+}
+.position_bar .yonghu-icon img{
+width:1.5rem;
+}
+.tab-item img{
+  width: 100%;
+}
+ .bar-tab .tab-item:active{
+  color: #f96f0c;
+}
+
+.membernum-padded {
+   background-color: #fff;
+   margin-top: 1rem;
+   padding:1rem .5rem;
+   position: relative;
+
+}
+.membernum_title .pull-left{
+  position: absolute;
+  top: -.5rem;
+  left: 0;
+  width: 20%;
+
+  text-align: center;
+  background-color: #999;
+     padding-top: .1rem;
+  color: #fff;
+  border-bottom-right-radius: .2rem;
+  border-top-right-radius: .2rem;
+}
+.membernum_title .pull-right{
+    position: absolute;
+    top: -.5rem;
+  right: 0;
+  background-color: #999; 
+  width: 10%;
+
+   text-align: center;
+   padding-top: .1rem;
+   color: #fff;
+    border-bottom-left-radius: .2rem;
+  border-top-left-radius: .2rem;
+
+}
+.membernum-padded  .time_row .button{
+     padding: 0; font-size: .6rem;
+}
+.membernum-padded .time_row .active {
+    border:none;
+    color: #fff!important;
+    background-color:  #f96f0c;
+}
+.choosetime_button{
+  border-color: #f96f0c;
+  color: #f96f0c!important;
+}
+.areanum_row .button{
+  border:none;
+  background-color: #d3771d;
+  color: #fff;
+}
+.area_left{
+    float: left;
+}
+.area_right{
+    float: right;
+}
+.usernum_row{
+     width: 50%;
+     font-size: .6rem;
+}
+.usernum_row .button{
+    border:none;
+  background-color: #7c60b4;
+  color: #fff;
+}
+.volume_row .button{
+    border:none;
+  background-color: #dd1313;
+  color: #fff;
+}
+.advnum_row .button{
+   border:none;
+  background-color: #7a86b2;
+  color: #fff;
+}
+.kong-right{
+  height: 1.1rem; 
+}
+.types_row{
+   text-align: center;
+margin-bottom: .5rem;
+
+}
+.types_row span{
+  font-size: .6rem;
+  float: left;
+  margin-left: 2%;
+}
+.yanse{
+   width: 2rem;
+   height: 2rem;
+   float: left;
+   border-radius: .3rem;
+}
+.canying{
+   background-color: yellow; 
+}
+
+.nonglin{
+  background-color: #7F007F;
+}
+.bianmin{
+  background-color:rgb(0, 153, 198);
+}
+.mengdian{
+  background-color:#c00; 
+}
+.zhusu{
+  background-color: rgb(255, 153, 0);
+}
+.zhushou{
+  background-color:rgb(16, 150, 24);
+}
+.fuwu{
+  background-color: rgb(221, 68, 119);
+}
+
+.aixin{
+  background-color: rgb(102, 170, 0);
+}
+.zhenghun{
+  background-color: rgb(184, 46, 46); 
+}
+.ershou{
+  background-color: rgb(49, 99, 149);
+}
+.xunjia{
+  background-color: rgb(153, 68, 153);
+}
+.qiye{
+  background-color: rgb(34, 170, 153); 
+}
+.jinrong{
+  background-color:rgb(170, 170, 17);
+}
+.techan{
+  background-color: rgb(102, 51, 204);
+}
+.yule{
+  background-color: rgb(230, 115, 0);
+}
+.zhineng{
+  background-color: rgb(139, 7, 7);
+}
+
+.noborder{border: none;
+width: 3.3rem}
+

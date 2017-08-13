@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+     <link rel="stylesheet" href="css/fabu.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+<script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+<style type="text/css">
+  li{list-style:none;}
+  .row{margin-left:0;}
+    .selectHide{display: none}
+  .selectShow{display: block}
+    .zhanshi img{
+        width: 120px;
+        height: 120px;
+    }
+    .addDelete{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 30px;
+        height: 30px;
+        float: right;
+        background-image: url("images/tuichu.png");
+        background-size: 20px ;
+        background-repeat:no-repeat ;
+    }
+    .addXXX{
+        margin-top: -27px;
+        position: relative;
+        right: 15px;
+        top: 30px;
+        width: 30px;
+        height: 30px;
+        float: right;
+        background-image: url("images/tuichu.png");
+        background-size: 20px;
+        background-repeat: no-repeat;
+    }
+    .adDelete0{
+        width: 0.8rem;
+        height:0.8rem;
+        background-image: url("images/tuichu.png");
+        background-size: 0.8rem;
+        float: right;
+        position: absolute;
+    }
+</style>
+    <script type="tpl/text" id="tpl">
+    <% for(var i=0;i<list.length;i++){%>
+         <div class="col-50">
+              <div class="zhanshi">
+                   <a href="#" id="XXX" class="addXXX"></a>
+                   <img style="width:120px;height:120px" src="<%= list[i].img%>" />
+                   <div class="col-100 judge selectShow">选择</div>
+                   <div class="col-100 judge selectHide ">取消</div>
+                   <div class="clear"></div>
+              </div>
+         </div>
+         <%}%>
+    </script>
+    <script type="tpl/text" id="tpl2">
+          <div class="col-50">
+              <div class="zhanshi">
+                   <img src="<%= list.data%>" />
+                   <div class="col-100 judge selectShow">选择</div>
+                   <div class="col-100 judge  selectHide">取消</div>
+                   <div class="clear"></div>
+              </div>
+         </div>
+    </script>
+  </head>
+<body>
+   <div class="page-group">
+    <!--  首页发布 -->
+    <div class="page page-current" id="pageIndex">
+      <div class="bar bar-nav">
+      <div class="dingwei"><span id="cityPos" onclick="transCityID(this)"><img src="images/tong_banner_dw.png" height="14" style="margin:.7rem 0 0 0; vertical-align:center;"><a style="color:#fff;" href="#" class="open-popup" data-popup=".popup-about">地区</a></span></div>
+  <div class="searchbar back_color">
+  
+    <div class="search-input length">
+        <a href="#pagesearch"><label class="icon icon-search" for="search"></label>
+      <input type="search" id='search' placeholder='输入类别或关键词'/></a>
+    </div>
+  </div>
+  <div class="erweima">
+    <img src="images/homr_btn_sm.png" />
+  </div>
+</div>
+           <nav class="bar bar-tab">
+          <a class="tab-item external active" href="homepage.html">
+            <div class="icon icon2"></div>
+          </a>
+          <a class="tab-item external" href="#">
+             <div class="icon icon4"></div>
+          </a>
+          <a class="tab-item external" href="fabu.html">
+            <div class="icon icon5"></div>
+          </a>
+          <a class="tab-item external" href="#">
+            <div class="icon icon8"></div>
+          </a>
+          <a class="tab-item external" href="Center.html">
+           <div class="icon icon10"></div>
+          </a>
+          </nav>
+                <div class="content">
+                 <div class="menu_list">
+           <ul>
+            <a class="external" href="#"><li>
+              <div>
+                <img src="images/home_btn_cy.png" />餐饮
+             </div>
+            </li></a>
+         <a class="external" href="#"><li><div>
+          <img src="images/home_btn_zs.png" />住宿
+        </div></li> </a>
+          <a class="external" href="#"><li><div>
+          <img src="images/home_btn_md.png" />门店
+          </div></li></a>
+         <a class="external" href="#"><li> <div>
+          <img src="images/home_btn_fwzs.png" />房屋租售
+         </div></li></a> 
+         <a class="external" href="#"><li><div>
+         <img src="images/home_btn_dssc.png" />的士顺车
+         </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_shzs.png" />生活助手
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_bmfw.png" />便民服务
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_zntx.png" />智能通信
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_zpzh.png" />招聘征婚
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_es.png" />二手
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_bmtz.png" />便民通知
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_xj.png" />询价
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_nlmy.png" />农林牧渔
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_ax.png" />爱心众筹
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_bdqy.png" />本地企业
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_jrbx.png" />金融保险
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_bdtc.png" />本地特产
+           </div></li></a>
+           <a class="external" href="#"><li><div>
+          <img src="images/home_btn_lyyl.png" />旅游娱乐
+           </div></li></a>
+           <a class="" href="#pageadmanage" id="addpush"><li><div>
+          <img src="images/home_btn_gg.png" />广告投放
+           </div></li></a>
+           </ul>
+        </div>
+      </div> 
+    </div>
+
+
+<!--广告发布-->
+    <div class="page" id="pageadmanage">
+       <header class="bar bar-nav">
+          <h1 class="title">发布管理</h1>
+          <a class="icon icon-left pull-left back" href="fabu.html"></a>
+          <a class="button button-link button-nav pull-right external" href="adadmin.html" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+      </header>
+
+
+      <div class="content">
+                 <div class="menu_list" id="admnue">
+           <ul>
+            <a class="external" href="#" data="1"><li>
+              <div>
+                <img src="images/home_btn_cy.png" />餐饮
+             </div>
+            </li></a>
+         <a class="external" href="#" data="2"><li><div>
+          <img src="images/home_btn_zs.png" />住宿
+        </div></li> </a>
+          <a class="external" href="#" data="3"><li><div>
+          <img src="images/home_btn_md.png" />门店
+          </div></li></a>
+         <a class="external" href="#" data="4"><li> <div>
+          <img src="images/home_btn_fwzs.png" />房屋租售
+         </div></li></a> 
+         <a class="external" href="#" data="5"><li><div>
+         <img src="images/home_btn_dssc.png" />的士顺车
+         </div></li></a>
+           <a class="external" href="#" data="6"><li><div>
+          <img src="images/home_btn_shzs.png" />生活助手
+           </div></li></a>
+           <a class="external" href="#" data="7"><li><div>
+          <img src="images/home_btn_bmfw.png" />便民服务
+           </div></li></a>
+           <a class="external" href="#" data="8"><li><div>
+          <img src="images/home_btn_zntx.png" />智能通信
+           </div></li></a>
+           <a class="external" href="#"  data="9"><li><div>
+          <img src="images/home_btn_zpzh.png" />招聘征婚
+           </div></li></a>
+           <a class="external" href="#" data="10"><li><div>
+          <img src="images/home_btn_es.png" />二手
+           </div></li></a>
+           <a class="external" href="#" data="11"><li><div>
+          <img src="images/home_btn_bmtz.png" />便民通知
+           </div></li></a>
+           <a class="external" href="#" data="12" ><li><div>
+          <img src="images/home_btn_xj.png" />询价
+           </div></li></a>
+           <a class="external" href="#" data="13"><li><div>
+          <img src="images/home_btn_nlmy.png" />农林牧渔
+           </div></li></a>
+           <a class="external" href="#" data="14"><li><div>
+          <img src="images/home_btn_ax.png" />爱心众筹
+           </div></li></a>
+           <a class="external" href="#" data="15"><li><div>
+          <img src="images/home_btn_bdqy.png" />本地企业
+           </div></li></a>
+           <a class="external" href="#" data="16"><li><div>
+          <img src="images/home_btn_jrbx.png" />金融保险
+           </div></li></a>
+           <a class="external" href="#" data="17"><li><div>
+          <img src="images/home_btn_bdtc.png" />本地特产
+           </div></li></a>
+           <a class="external" href="#" data="18"><li><div>
+          <img src="images/home_btn_lyyl.png" />旅游娱乐
+           </div></li></a> 
+             <a class="external" href="#" data="01"><li><div>
+          <img src="images/home_btn_bdtc.png" />主页-1
+           </div></li></a>
+           <a class="external" href="#" data="02"><li><div>
+          <img src="images/home_btn_lyyl.png" />主页-2
+           </div></li></a>
+            <a class="" href="#pageadpush"><li><div>
+          <img src="images/home_btn_qt.png" />其他
+           </div></li></a>
+           </ul>
+        </div>
+      </div> 
+    </div>  
+
+
+
+    <!-- 搜索 -->
+  <div class="page" id="pagesearch">
+  <div class="bar bar-nav">
+     <a class="icon icon-left pull-left back" href="fabu.html"></a>
+  <div class="searchbar back_color1">
+  
+    <div class="search-input length1">
+      <label class="icon icon-search" for="search"></label>
+      <input type="search" id='search' placeholder='输入类别或关键词'/>
+    </div>
+  </div>
+ 
+</div>
+ <div class="content">
+  <div class="list-block media-list list-block1">
+    <ul>
+
+      <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">标题</div>
+              <div class="item-after ptimg"><img src="images/tong_btn_dwtz.png"/></div>
+            </div>
+            
+            <div class="item-text">此处是文本内容...此处是文本内容...此处是文本内容...此处是文本内容...此处是文本内容...</div>
+          </div>
+           </a>
+   
+      </li>
+
+      <li>
+        <a href="#" class="item-link item-content">
+          
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">标题</div>
+              <div class="item-after ptimg"><img src="images/tong_btn_dwtz.png"/></div>
+            </div>
+            
+            <div class="item-text">此处是文本内容...此处是文本内容...此处是文本内容...此处是文本内容...此处是文本内容...</div>
+          </div>
+           </a>
+        
+      </li>
+
+       <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+             <div class="tab2_content">
+                                       <div>
+                                      <div class="col-20">李丹</div>
+                                      <div class="col-20">女</div>
+                                      <div class="col-20">22</div>
+                                    </div>
+                                         <div>
+                                      <div class="col-60">200.00/天</div>
+                                      <div class="col-60">9小时</div>
+                                    
+                                    </div>
+                                    <span>了解违法未访问认为覅偶和维护过工业管嘎嘎个哥哥个个个体发给他台风台风日反弹台风特烦特反弹而非v而非v</span>  
+                                    </div>
+
+                                    <div class="you_status">
+                                      空闲
+                                    </div>
+                                    <div class="addcar">
+                                      车+导
+                                    </div>
+          </div>
+        </a>
+      
+      </li>
+
+      <li>
+        <a href="#" class="item-link item-content">
+        
+           <div class="item-inner">
+             <div class="tab2_content">
+                                       <div>
+                                      <div class="col-20">李丹</div>
+                                      <div class="col-20">女</div>
+                                      <div class="col-20">22</div>
+                                    </div>
+                                         <div>
+                                      <div class="col-60">200.00/天</div>
+                                      <div class="col-60">9小时</div>
+                                    
+                                    </div>
+                                    <span>了解违法未访问认为覅偶和维护过工业管嘎嘎个哥哥个个个体发给他台风台风日反弹台风特烦特反弹而非v而非v</span>  
+                                    </div>
+
+                                    <div class="you_status2">
+                                      忙碌
+                                    </div>
+                                    <div class="addcar">
+                                      车+导
+                                    </div>
+          </div>
+        </a>
+       
+      </li>
+
+      <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+        
+            </div>
+            
+        
+              <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+            
+          </div>
+           </a>
+     
+      </li>
+
+     <li>
+        <a href="#" class="item-link item-content">
+
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+   
+            </div>
+            <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+          </div>
+           </a>
+       
+      </li>
+
+            <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+        
+            </div>
+           <div class="n_num_1">
+                <div>需报<span>10</span>人/已报<span>8</span>人</div>
+              <img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+            <div class="item-title wei_text">结束时间: <time>13:06</time></div>
+          </div>
+           </a>
+     
+      </li>
+
+     <li>
+        <a href="#" class="item-link item-content">
+
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+   
+            </div>
+          
+            <div class="n_num_1">
+                <div>需报<span>10</span>人/已报<span>8</span>人</div>
+                 <img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+            <div class="item-title wei_text">结束时间: <time>13:06</time></div>
+          </div>
+           </a>
+     
+      </li>
+
+      <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+        
+            </div>
+            
+        
+              <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+             </div>
+          <div class="settled">已解决</div>
+           </a>
+    
+      </li>
+
+     <li>
+        <a href="#" class="item-link item-content">
+
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+   
+            </div>
+            <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+          </div>
+             <div class="settled">已解决</div>
+           </a>
+      
+      </li>
+
+    <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+        
+            </div>
+            
+        
+              <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+             </div>
+           </a>
+           <div class="pinglun">
+                      <dl>
+                        <dt style="border:none"><div class="true">真的</div><div class="true_num">99999</div></dt>
+                        <dt><div class="false">假的</div><div class="false_num">99999</div></dt>
+                        <dt><div class="fair">不好说</div><div class="fair_num">99999</div></dt>
+                     </dl> 
+            </div>
+        <div class="clear"></div>
+      
+      </li>
+
+     <li>
+        <a href="#" class="item-link item-content">
+
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+   
+            </div>
+            <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+          </div>
+            
+           </a>
+            <div class="pinglun">
+            <dl>
+            <dt style="border:none"><div class="true">真的</div><div class="true_num">99999</div></dt>
+            <dt><div class="false">假的</div><div class="false_num">99999</div></dt>
+            <dt><div class="fair">不好说</div><div class="fair_num">99999</div></dt>
+            </dl> 
+            </div>
+        <div class="clear"></div>
+   
+      </li>
+
+    <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+        
+            </div>
+            
+        
+              <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+             </div>
+           </a>
+        <div class="zantong">
+                  <dl>
+                    <dt style="border:none"><div class="true">赞同</div><div class="true_num">99999</div></dt>
+                    <dt><div class="false">不赞同</div><div class="false_num">99999</div></dt>
+                 </dl> 
+          </div>
+        <div class="clear"></div>
+  
+      </li>
+
+     <li>
+        <a href="#" class="item-link item-content">
+
+           <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+   
+            </div>
+            <div class="n_num_1"><img src="images/bmtz_lll.png" 
+                      width="17"  /><span>3453</span></div>
+            <div class="item-title wei_text">发布时间: <time>13:06</time></div>
+          </div>
+            
+           </a>
+        <div class="zantong">
+                  <dl>
+                    <dt style="border:none"><div class="true">赞同</div><div class="true_num">99999</div></dt>
+                    <dt><div class="false">不赞同</div><div class="false_num">99999</div></dt>
+                 </dl> 
+          </div>
+        <div class="clear"></div>
+       
+      </li>
+
+
+      <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-media"><img src="images/u72.png" style='width: 4rem;'></div>
+           <div class="item-inner">
+            <div class="item-title-row">
+                       <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+              <div class="item-after ptimg"><img src="images/tong_btn_dwtz.png"/></div>
+            </div>
+            
+              <div class="n_num_1">
+                <div><span>12元/平米</span></div>
+               </div>
+            <div class="item-title wei_text"><time>13:06</time></div>
+          </div>
+           </a>
+    
+      </li>
+
+      <li>
+        <a href="#" class="item-link item-content">
+          
+           <div class="item-inner">
+            <div class="item-title-row">
+                       <div class="item-text wei_title">标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内标题此处是文本内</div>
+              <div class="item-after ptimg"><img src="images/tong_btn_dwtz.png"/></div>
+            </div>
+            
+              <div class="n_num_1">
+                <div><span>12元/平米</span></div>
+               </div>
+            <div class="item-title wei_text"><time>13:06</time></div>
+          </div>
+           </a>
+
+      </li>
+     
+         <li>
+          <a href="#" class="item-link item-content">
+            <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+            <div class="item-inner">
+              <div class="item-title-row">
+                <div class="item-title">标题</div>
+              
+              </div>
+             
+              <div class="item-text">此处是文本内容...</div>
+            </div>
+          </a>
+          <div class="ptimg1"><img src="images/tong_btn_dwtz.png"></div>
+           <div class="pinglun1">
+                  <dl>
+                    <dt style="border:none"><div class="true1">筹款:</div><div class="true_num1">999万元</div></dt>
+                    <dt><div class="true1">已筹:</div><div class="true_num1">9999元</div></dt>
+                    <dt><div class="true1">支持:</div><div class="true_num1">9999人</div></dt>
+                    <dt><div class="true1">剩余:</div><div class="true_num1">999天</div></dt>
+                      <div class="clear"></div>
+                 </dl> 
+                  
+          </div>
+            <div class="clear"></div>
+       
+  
+        </li>
+
+       <li>
+          <a href="#" class="item-link item-content">
+            <div class="item-inner">
+              <div class="item-title-row">
+                <div class="item-title">标题</div>
+              
+              </div>
+             
+              <div class="item-text">此处是文本内容...</div>
+            </div>
+          </a>
+          <div class="ptimg1"><img src="images/tong_btn_dwtz.png"></div>
+                <div class="pinglun1">
+                  <dl>
+                    <dt style="border:none"><div class="true1">筹款:</div><div class="true_num1">999万元</div></dt>
+                    <dt><div class="true1">已筹:</div><div class="true_num1">9999元</div></dt>
+                    <dt><div class="true1">支持:</div><div class="true_num1">9999人</div></dt>
+                    <dt><div class="true1">剩余:</div><div class="true_num1">999天</div></dt>
+                      <div class="clear"></div>
+                 </dl> 
+                  
+              </div>
+            <div class="clear"></div>
+        
+  
+        </li>
+         <li> 
+            <a href="#" class="item-link item-content list_supply">
+
+                <div class="item-media">
+                      <img src="images/u72.png" style='width: 4rem;'>
+                </div>
+                <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title">出售水产 平均八斤大的龙虾，味道鲜美品质优越</div>
+                        </div>
+                         <div class="item-title-row">
+                              <div class="item-title item_fontstyle">内蒙古锡林郭勒盟正蓝旗</div>
+                              <div class="item-after item-after_price">5555元/kg</div>
+                          </div>
+                          <div class="item-title-row">
+                              <div class="position_icon"> 
+                                   <img src="images/tong_btn_dwtz.png">
+                              </div>
+                              <div class="item-after item_fontstyle ">2016-04-25 13:06</div>
+                          </div>
+                </div> 
+            </a>
+                         <div class="clear"></div>
+        
+        </li>
+        <li> 
+            <a href="#" class="item-link item-content list_supply">
+
+                
+                <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title">出售水产 平均八斤大的龙虾，味道鲜美品质优越</div>
+                        </div>
+                         <div class="item-title-row">
+                              <div class="item-title item_fontstyle">内蒙古锡林郭勒盟正蓝旗</div>
+                              <div class="item-after item-after_price">面议</div>
+                          </div>
+                          <div class="item-title-row">
+                              <div class="position_icon"> 
+                                   <img src="images/tong_btn_dwtz.png">
+                              </div>
+                              <div class="item-after item_fontstyle ">2016-04-25 13:06</div>
+                          </div>
+                </div> 
+                </a>
+             <div class="clear"></div>
+      
+        </li>
+
+       
+          
+        <li>
+                 <div class="sct-bd ">
+          <div class="situation-box-item" >
+                      <a class="click-point"  href="#">
+                          <img src="images/f.png" style="display: inline-block;">
+                      </a>
+                      <div class="ituation-box-item_content">
+                          <a href="#">
+                              <h5>多年安装工求职</h5>
+                              <div class="linestyle">
+                                   <em>15000元以上</em>
+                                   <strong>本科</strong>
+                              </div>
+                              <span>正蓝旗</span>
+                          </a>
+                      </div>
+                  </div>
+                   </div>
+                   <div class="clear"></div>
+     
+              
+           </li> 
+           <li>     
+            <div class="sct-bd ">
+                  <div class="situation-box-item situation-box-itemstyle" >
+                      <div>
+                          <a href="#">
+                              <h5>招募机械操作人员</h5>
+                              <div class="linestyle">
+                                   <span>正蓝旗</span>
+                                   <em>3000-5000元</em>
+                                   <strong>本科</strong>
+                              </div>  
+                          </a>
+                      </div>
+                  </div>
+                  </div>
+           <div class="clear"></div>
+       
+          </li>
+           <li>
+               <div class="sct-bd ">
+                <div class="situation-box-item situation-box-objecitem " >
+          <a class="click-point"  href="#">
+              <img class="round_pic" src="images/u17.png" style="display: inline-block;">
+          </a>
+          <div class="ituation-box-item_content">
+              <a href="# ">
+                  <h5>刘丹丹
+                         <img src="images/zdx_img_sfz.png">
+                          <img src="images/zdx_img_sj.png">
+                          <img src="images/zdx_img_wz.png">
+                          200m
+                  </h5>
+                  <div class="linestyle_content">
+                       <em>25岁</em>
+                       <em>175cm</em>
+                       <em>本科</em>
+                       <em>3000-4000元</em>
+                  </div>
+                  <span>这里是个性签名，这里是个性签名,这里是个性签名</span>
+                   
+              </a>
+              <div class="row picture_row">
+                       <img  src="images/zdx_btn_fxx.png">
+               </div>  
+          </div>
+      </div>
+      </div>
+           <div class="clear"></div>
+   
+    </li>         
+    </ul>
+    </div>
+</div>
+</div>
+
+<!-- 广告投放 -->
+    <div class="page" id="pageadpush">
+       <header class="bar bar-nav">
+          <h1 class="title">广告投放</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+          <a class="button button-link button-nav pull-right external" href="adadmin.html" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+      </header>
+      <div class="content">
+      <div class="list-block media-list mar-list ">
+       <ul>
+               <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-50">
+                                            选择投放区域*
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+              <li class="detail-li">
+
+                                           <div class="row ">
+                                               <div class="col-33">
+                                                   <select  name="province"  class="banner-text1 dqxz" id="select_province" eleType='text' ></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_city" eleType='text'></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_area" eleType='text'></select>
+                                               </div>
+                                                <div style="clear:both"></div>
+                                           </div>
+                                       
+
+                    </li>
+
+                   <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-50">
+                                            选择轮播页*
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+   <li class="ping">
+    <div class="on" data="1" >
+      第一屏 
+     </div> 
+     <div class="" data="2">
+      第二屏 
+     </div> 
+     <div class="" data="3">
+      第三屏 
+     </div> 
+     <div class="" data="4">
+      第四屏 
+     </div> 
+   </li>                    
+<div class="clear"></div>
+<div class="row" style="margin-top:10px;padding-top:10px">
+  <div class="col-25 border">
+<select id="ag">
+  <option value="2016">2016</option>
+  </select>
+</div>
+ <div class="col-25 border">
+   <select id="mon">
+   <option value="01">一月</option>
+   <option value="02">二月</option>
+   <option value="03">三月</option>
+   <option value="04">四月</option>
+   <option value="05">五月</option>
+   <option value="06">六月</option>
+   <option value="07">七月</option>
+   <option value="08">八月</option>
+   <option value="09">九月</option>
+   <option value="10">十月</option>
+   <option value="11">十一月</option>
+   <option value="12">十二月</option>
+  </select>
+  </div>
+<div class="col-25 up_month">上月</div>
+<div class="col-25 down_month">下月</div>
+</div>
+<div class="course">
+
+    <div class="table">
+       <div id="w0">
+        <div>周日</div>
+      </div>
+   
+      <div id="w1">
+        <div>周一</div>
+
+      </div>
+
+      <div  id="w2">
+        <div>周二</div>
+  
+      </div>
+
+      <div  id="w3">
+        <div>周三</div>
+
+      </div>
+
+      <div  id="w4">
+        <div>周四</div>
+
+      </div>
+
+      <div  id="w5">
+        <div>周五</div>
+
+      </div>
+
+      <div  id="w6">
+        <div>周六</div>
+      </div> 
+  
+    </div>
+        
+
+  </div>
+
+  <div class="clear"></div>
+
+   <div class="bottom_dt">
+    <div>
+    <div class="xuan1">
+    </div>已过期
+   </div>
+   <div>
+    <div class="xuan2">
+    </div>已投放
+    </div>
+    <div>
+    <div class="xuan3">
+    </div>未投放
+    </div>
+    <div>
+     <div class="xuan4">
+      <img src="images/home_fbgg_gx.png" width="23"  />
+     </div>选中
+     </div>
+   </div>
+      </ul>
+       </div>
+       <div class="clear"></div>
+       <div class="tou_time">
+        <p id="tou">已选择投放时间</p>
+
+       </div>
+       <div class="zhifu">
+          <p>应支付金额</p>
+          <span id="fabuMoney"></span>
+       </div>
+
+      <a href="#pagebianji"><div class="next_bu">
+        <p class="fabuNext">下一步</p></a>
+      </div>
+      </div>
+
+    </div>  
+
+    <!-- 广告投放编辑 -->
+   <div class="page" id="pagebianji">
+       <header class="bar bar-nav">
+           <h1 class="title">广告发布</h1>
+           <a class="icon icon-left pull-left back" href="#"></a>
+           <a class="button button-link button-nav pull-right external" href="adadmin.html" data-transition='slide-out'>
+               <span class="icon pull-right"></span>
+               管理
+           </a>
+       </header>
+       <div class="content">
+           <div class="list-block media-list mar-list ">
+               <ul>
+                   <li class="detail-li">
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           活动人数＊
+                                       </div>
+                                       <div class="col-33">
+
+                                           <input  id="page_comein" class="inp-text1" name="ad" value="1" type="radio" checked="true">
+                                           直接进入
+                                       </div>
+                                       <div class="col-33">
+
+                                           <input id="page_details" class="inp-text1" name="ad" value="2" type="radio">
+                                           进页详情
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="detail-li">
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-50">
+                                           选择店铺＊
+                                       </div>
+                                       <div class="col-33 dianpu">
+                                           <select>
+                                               <option>
+                                                   -- 请选择 --
+                                               </option>
+                                           </select>
+                                       </div>
+
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+
+
+                   <li class="detail-li" id="enterDetail" style="display:none;">
+                      <div class="item-content ">
+                           <div class="item-inner item-tel">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           广告位展示＊
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                           <ul>
+                               <li class="detail-li  item">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           <div id="pubScenic_c_image"  class="inp-cert">
+                                               <div class="cert-upload"></div>
+                                               <input type="file" class="cert-upload fileInp-opacity imglod "  multiple accept="image/*"  onchange="doUpload2(this)" value="">
+                                           </div>
+                                       </div>
+                                       <div class="col-50">
+                                           <textarea id="pubScenic_c_context" eleType="input"  class="inp-text textlod col-100" placeholder="请添加图片说明"></textarea>
+                                       </div>
+                                   </div>
+
+                               </li>
+                           </ul>
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           标题＊
+                                       </div>
+                                   </div>
+                                   <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                           <textarea class="inp-text" placeholder="请用30字内简述你的广告" id="textareaTitle"></textarea>
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                       <div class="tuwenbiji" >
+                       <div class="item-content ">
+                           <div class="item-inner item-tel">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           详情＊
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                           <ul id="addit">
+                               <li class="detail-li  item">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           <div id="pubScenic_c_image"  class="inp-cert">
+                                               <div class="cert-upload"></div>
+                                               <input type="file" class="cert-upload fileInp-opacity filesss"  multiple accept="image/*"  onchange="doUpload2(this)" value="">
+                                           </div>
+                                       </div>
+                                       <div class="col-50">
+                                           <textarea eleType="input"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明"></textarea>
+                                       </div>
+                                   </div>
+                                   <a href="" id="www"></a>
+                               </li>
+                           </ul>
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="content-block content-block1">
+                                           <a href="#" class="button button-fill button-warning" id="additem">+创建图片</a>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+
+
+
+                   <li class="detail-li" id="ad_content" style="display:block">
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row" id="addTemplate">
+
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+
+
+               </ul>
+
+               <div class=" row  coll-50">
+                   <input type="file" name="upload" id="imgla"   onchange="doUpload(this)" style="display:none">
+                   <img src="images/shangchuangtupian.png" id="directEnter"/>
+               </div>
+
+           </div>
+           <div class="content-block">
+               <div class="row">
+                   <div class="col-50 baocun"><a href="#" class="button button-big button-fill button-danger">保存</a></div>
+                   <div class="col-50 fabu" ><a href="#" class="button button-big button-fill button-success">支付</a></div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+
+   <script type='text/javascript' src='js/address.js' ></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src='js/lodash.min.js'></script>
+<script type="text/javascript" src="js/ad.js"></script>
+   <script src="js/fabu.js"></script>
+
+
+<script>
+    region_init("select_province","select_city","select_area");
+</script>
+
+ </body>
+
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+    <!---->
+
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+     <link rel="stylesheet" href="css/zhuce.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+
+  </head>
+<body>
+   <div class="page-group">
+    <!--登录页面-->
+      <div class="page page-current" id="pageIndex" >
+           <div class="linear">
+           <div class="content">
+         <div class='logo'>
+         <img src="images/logo.png" />
+        </div>
+           <div class="">
+      <ul>
+             <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                         <input id="username" eleType="input" class="inp-text back_border" type="number" placeholder="手机号">
+                       </div>
+                      </div>
+                </li>
+
+               <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                        <input id="password" eleType="input" class="inp-text back_border" type="password" placeholder="密码">
+                       </div>
+                      </div>
+                </li>
+                            
+      </ul>
+       </div>
+
+       <div class="choose_tab">
+         <ul>
+          <a href="#" class="open-popup" data-popup=".popup-about"><li>忘记密码</li></a>
+          <a  href="#" class="open-services" data-popup=".popup-services" ><li class="right">注册</li></a>
+         </ul>  
+       </div>
+       <br />
+       <div class="zhu_btn" id="btnLogin" >
+        登录
+       </div>
+
+
+       <!--<div class="zhong" >-->
+         <!--&-->
+       <!--</div>-->
+
+        <!--<div class="three_fang" >-->
+           <!--<ul>-->
+         <!--<a><li><div><img src="images/dlzc_btn_wb.png" /></div></li></a>-->
+         <!--<a><li><div><img src="images/dlzc_btn_qq.png" /></div></li></a>-->
+         <!--<a href="https://open.weixin.qq.com/connect/qrconnect?appid=wx954684e540166676&redirect_uri=http%3A%2F%2Fysyisu.cn%2Fservice%2Fzhuce.html&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect"><li><div><img src="images/dlzc_btn_wx.png" /></div></li></a>-->
+           <!--</ul>-->
+        <!--</div>-->
+
+
+           </div>
+     </div>
+
+      </div>
+   <!--注册页面-->
+      <div class="page popup popup-services" id="pageReg">
+            <header class="bar bar-nav orange">
+     <a  class="icon icon-left pull-left close-popup back" href=""></a>
+          </header> 
+      <div class="linear">
+           <div class="content">
+         <div class='logo'>
+         <img src="images/logo.png" />
+        </div>
+           <div class="">
+      <ul>
+             <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                         <input id="username_zhu" eleType="input" class="inp-text back_border" type="number" placeholder="手机号">
+                       </div>
+                      </div>
+                </li>
+               <li class="">
+                     <div class="row">
+                       <div class="col-80">
+                         <input  eleType="input" id="yanzhengma" class="inp-text back_border1" type="number" placeholder="验证码">
+                       </div>
+                      <div class="col-30 blue">
+                  
+                       <button class="btn btn-small" onclick="getCode1(this)" id="huo_btn">获取验证码</button>
+                       <button class="btn btn-small " id="J_resetCode1" style="display:none;"><span id="J_second1">60</span>秒后重发</button>
+                       </div>                  
+                      </div>
+                </li>
+               <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                        <input id="password_zhu" eleType="input" class="inp-text back_border" type="password" placeholder="设置密码">
+                       </div>
+                      </div>
+                </li>
+                  <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                        <input id="passwordCheck"  eleType="input" class="inp-text back_border" type="password" placeholder="再次输入密码">
+                       </div>
+                      </div>
+                </li>                             
+      </ul>
+       </div>
+
+       <div class="zhu_btn" id="btnRegs">
+        注册
+       </div>
+
+
+       <!--<div class="zhong" >-->
+         <!--&-->
+       <!--</div>-->
+
+        <!--<div class="three_fang" >-->
+           <!--<ul>-->
+         <!--<a><li><div><img src="images/dlzc_btn_wb.png" /></div></li></a>-->
+         <!--<a><li><div><img src="images/dlzc_btn_qq.png" /></div></li></a>-->
+         <!--<a><li><div><img src="images/dlzc_btn_wx.png" /></div></li></a>-->
+           <!--</ul>-->
+        <!--</div>-->
+
+
+           </div>
+     </div>
+
+    </div> 
+
+   <!--忘记密码页面-->
+
+   <div class="page popup popup-about" id="pageIn" >
+    <header class="bar bar-nav orange">
+     <a  class="icon icon-left pull-left close-popup" href=""></a>
+          </header> 
+      <div class="linear">
+           <div class="content">
+         <div class='logo'>
+         <img src="images/logo.png" />
+        </div>
+           <div class="">
+      <ul>
+             <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                         <input eleType="input" id="username_wang" class="inp-text back_border" type="number" placeholder="手机号">
+                       </div>
+                      </div>
+                </li>
+               <li class="">
+                     <div class="row">
+                       <div class="col-80">
+                         <input eleType="input" id="yanzhengma_wang" class="inp-text back_border1" type="number" placeholder="验证码">
+                       </div>
+
+                      <div class="col-30 blue">
+                         <button class="btn btn-small" onclick="getCode(this)" id="huo_btn_wang">获取验证码</button>
+                       <button class="btn btn-small " id="J_resetCode" style="display:none;"><span id="J_second">60</span>秒后重发</button>
+                       </div>                  
+                      </div>
+                </li>
+               <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                        <input eleType="input" id="password_wang" class="inp-text back_border" type="password" placeholder="设置密码">
+                       </div>
+                      </div>
+                </li>
+                  <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                        <input eleType="input" id="passwordCheck_wang"  class="inp-text back_border" type="password" placeholder="再次输入密码">
+                       </div>
+                      </div>
+                </li>                             
+      </ul>
+       </div>
+
+       <div class="zhu_btn" id="wangji_deng">
+        修改
+       </div>
+
+
+       <!--<div class="zhong" >-->
+         <!--&-->
+       <!--</div>-->
+
+        <!--<div class="three_fang" >-->
+           <!--<ul>-->
+         <!--<a><li><div><img src="images/dlzc_btn_wb.png" /></div></li></a>-->
+         <!--<a><li><div><img src="images/dlzc_btn_qq.png" /></div></li></a>-->
+         <!--<a><li><div><img src="images/dlzc_btn_wx.png" /></div></li></a>-->
+           <!--</ul>-->
+        <!--</div>-->
+
+
+           </div>
+     </div>
+
+    </div> 
+
+
+
+  </div>   
+<script type='text/javascript' src='js/zepto.js' ></script> 
+<script type='text/javascript' src='js/zhuce.js'></script>
+
+<script type='text/javascript' src='js/sm.min.js' ></script>
+   <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+   <script>
+
+
+   </script>
+
+
+
+
+<script>
+
+
+
+
+
+
+   $(function(){
+            zhanzhang.login.init();
+        });
+  $(function(){
+            zhanzhang.reg.init();
+        });
+  $(function(){
+            zhanzhang.wang.init();
+        });
+
+
+
+</script>
+ </body>
+
+</html>

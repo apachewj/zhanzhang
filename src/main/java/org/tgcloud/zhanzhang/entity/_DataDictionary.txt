@@ -1,0 +1,1026 @@
+Table: region
+---------------------+--------------+------+-----+---------+---------
+ Field               | Type         | Null | Key | Default | Remarks 
+---------------------+--------------+------+-----+---------+---------
+ REGION_ID           | int(10)      | NO   | PRI |         |         
+ REGION_CODE         | varchar(100) | YES  |     |         |         
+ REGION_NAME         | varchar(100) | YES  |     |         |         
+ PARENT_ID           | int(10)      | YES  |     |         |         
+ REGION_LEVEL        | smallint(5)  | YES  |     |         |         
+ REGION_ORDER        | smallint(5)  | YES  |     |         |         
+ REGION_NAME_EN      | varchar(100) | YES  |     |         |         
+ REGION_SHORTNAME_EN | varchar(10)  | YES  |     |         |         
+---------------------+--------------+------+-----+---------+---------
+
+Table: SUMiddleSet
+----------+------------------+------+-----+---------+---------
+ Field    | Type             | Null | Key | Default | Remarks 
+----------+------------------+------+-----+---------+---------
+ Id       | int identity(10) | NO   |     |         |         
+ User_Id  | int(10)          | NO   |     |         |         
+ Store_Id | int(10)          | NO   |     |         |         
+----------+------------------+------+-----+---------+---------
+
+Table: z_ad
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ startday    | datetime(23,3)   | YES  |     |             |         
+ endday      | datetime(23,3)   | YES  |     |             |         
+ first       | money(19,4)      | YES  |     |             |         
+ second      | money(19,4)      | YES  |     |             |         
+ third       | money(19,4)      | YES  |     |             |         
+ fourth      | money(19,4)      | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ type        | smallint(5)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_ad_apply
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ type        | smallint(5)      | YES  |     |             |         
+ img         | varchar(200)     | YES  |     |             |         
+ imgcontext  | varchar(400)     | YES  |     |             |         
+ title       | varchar(100)     | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     | ((2))       |         
+ store_id    | int(10)          | YES  |     |             |         
+ location    | varchar(50)      | YES  |     |             |         
+ province_id | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ showtype    | smallint(5)      | YES  |     |             |         
+ pass        | smallint(5)      | YES  |     | ((0))       |         
+ payType     | int(10)          | YES  |     |             |         
+ money       | money(19,4)      | YES  |     |             |         
+ order_id    | varchar(50)      | YES  |     |             |         
+ third_id    | varchar(50)      | YES  |     |             |         
+ finish_time | datetime(23,3)   | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_ad_apply_days
+-------------+------------------+------+-----+---------+---------
+ Field       | Type             | Null | Key | Default | Remarks 
+-------------+------------------+------+-----+---------+---------
+ id          | int identity(10) | NO   | PRI |         |         
+ ad_apply_id | int(10)          | YES  |     |         |         
+ day         | datetime(23,3)   | YES  |     |         |         
+-------------+------------------+------+-----+---------+---------
+
+Table: z_agriculture
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ classify      | varchar(50)      | YES  |     |             |         
+ city_id       | int(10)          | YES  |     |             |         
+ county_id     | int(10)          | YES  |     |             |         
+ location_x    | varchar(20)      | YES  |     |             |         
+ location_y    | varchar(20)      | YES  |     |             |         
+ type          | varchar(50)      | YES  |     |             |         
+ price         | varchar(20)      | YES  |     |             |         
+ pricetype     | smallint(5)      | YES  |     |             |         
+ priceunit     | varchar(10)      | YES  |     |             |         
+ startnum      | int(10)          | YES  |     |             |         
+ havenum       | int(10)          | YES  |     |             |         
+ title         | varchar(200)     | YES  |     |             |         
+ content       | varchar(200)     | YES  |     |             |         
+ merits        | varchar(20)      | YES  |     |             |         
+ linkman       | varchar(20)      | YES  |     |             |         
+ tel           | varchar(50)      | YES  |     |             |         
+ imgs          | varchar(800)     | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status        | smallint(5)      | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+ maintype      | smallint(5)      | YES  |     |             |         
+ tradetimetype | smallint(5)      | YES  |     |             |         
+ tradetime     | varchar(20)      | YES  |     |             |         
+ tradetimeunit | varchar(10)      | YES  |     |             |         
+ areatype      | smallint(5)      | YES  |     |             |         
+ area          | varchar(20)      | YES  |     |             |         
+ areaunit      | varchar(10)      | YES  |     |             |         
+ sheshi        | varchar(20)      | YES  |     |             |         
+ dipingzheng   | varchar(20)      | YES  |     |             |         
+ peitaojiju    | varchar(20)      | YES  |     |             |         
+ gaosu         | varchar(20)      | YES  |     |             |         
+ gangkou       | varchar(20)      | YES  |     |             |         
+ guodao        | varchar(20)      | YES  |     |             |         
+ tielu         | varchar(20)      | YES  |     |             |         
+ gaotie        | varchar(20)      | YES  |     |             |         
+ jichang       | varchar(20)      | YES  |     |             |         
+ isneed        | smallint(5)      | YES  |     |             |         
+ startnumtype  | smallint(5)      | YES  |     |             |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: z_cards
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ card_id     | varchar(200)     | YES  |     |             |         
+ bank        | varchar(100)     | YES  |     |             |         
+ ownername   | varchar(50)      | YES  |     |             |         
+ province_id | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ bankname    | varchar(200)     | YES  |     |             |         
+ isdefault   | smallint(5)      | YES  |     | ((0))       |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ createtime  | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id     | int(10)          | YES  |     |             |         
+ cardtype    | varchar(50)      | YES  |     |             |         
+ cardstatus  | varchar(50)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_click_info
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ info_type   | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ nums        | int(10)          | YES  |     | ((0))       |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_company
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ com_name    | varchar(50)      | YES  |     |             |         
+ message     | varchar(200)     | YES  |     |             |         
+ main_img    | varchar(800)     | YES  |     |             |         
+ id_img      | varchar(800)     | YES  |     |             |         
+ paper_img   | varchar(800)     | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ pass        | int(10)          | YES  |     | ((0))       |         
+ location_x  | varchar(50)      | YES  |     |             |         
+ location_y  | varchar(50)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_company_contact
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ email         | varchar(50)      | YES  |     |             |         
+ address       | varchar(100)     | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+ com_id        | int(10)          | YES  |     |             |         
+ status        | smallint(5)      | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ iswork        | smallint(5)      | YES  |     |             |         
+ holiworkstart | varchar(50)      | YES  |     |             |         
+ holiworkend   | varchar(50)      | YES  |     |             |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: z_company_goods
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ title       | varchar(50)      | YES  |     |             |         
+ etitle      | varchar(50)      | YES  |     |             |         
+ content     | varchar(300)     | YES  |     |             |         
+ status      | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id     | int(10)          | YES  |     |             |         
+ com_id      | int(10)          | YES  |     |             |         
+ imgs        | varchar(500)     | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_company_link
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ contact_id  | int(10)          | YES  |     |             |         
+ nikname     | varchar(20)      | YES  |     |             |         
+ tel         | varchar(50)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_company_news
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ title       | varchar(50)      | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ com_id      | int(10)          | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+ nums        | int(10)          | YES  |     | ((0))       |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_company_support
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ com_id      | int(10)          | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_company_work
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ startday    | varchar(50)      | YES  |     |             |         
+ endday      | varchar(50)      | YES  |     |             |         
+ starttime   | varchar(50)      | YES  |     |             |         
+ endtime     | varchar(50)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ contact_id  | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_context_path
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ img_path    | varchar(300)     | YES  |     |             |         
+ content     | varchar(300)     | YES  |     |             |         
+ info_id     | int(10)          | YES  |     |             |         
+ info_type   | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_crowd
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ main_img      | varchar(800)     | YES  |     |             |         
+ title         | varchar(100)     | YES  |     |             |         
+ money         | money(19,4)      | YES  |     |             |         
+ endtime       | datetime(23,3)   | YES  |     |             |         
+ location_x    | varchar(50)      | YES  |     |             |         
+ location_y    | varchar(50)      | YES  |     |             |         
+ province_id   | int(10)          | YES  |     |             |         
+ city_id       | int(10)          | YES  |     |             |         
+ county_id     | int(10)          | YES  |     |             |         
+ name          | varchar(50)      | YES  |     |             |         
+ tel           | varchar(50)      | YES  |     |             |         
+ showtel       | smallint(5)      | YES  |     |             |         
+ showcontact   | smallint(5)      | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status        | smallint(5)      | YES  |     | ((1))       |         
+ showincontent | smallint(5)      | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+ type          | varchar(50)      | YES  |     |             |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: z_crowd_donate
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ crowd_id    | int(10)          | YES  |     |             |         
+ money       | money(19,4)      | YES  |     |             |         
+ content     | varchar(500)     | YES  |     |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ address     | varchar(200)     | YES  |     |             |         
+ tel         | varchar(50)      | YES  |     |             |         
+ payType     | int(10)          | YES  |     |             |         
+ order_id    | varchar(50)      | YES  |     |             |         
+ third_id    | varchar(50)      | YES  |     |             |         
+ finish_time | datetime(23,3)   | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ status      | smallint(5)      | YES  |     | ((2))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ username    | varchar(50)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_crowd_hongshizi
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ pass        | smallint(5)      | YES  |     | ((0))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ imgs        | varchar(800)     | YES  |     |             |         
+ crowd_id    | int(10)          | YES  |     |             |         
+ link_name   | varchar(50)      | YES  |     |             |         
+ link_tel    | varchar(50)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: Z_crowd_reply
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ donate_id   | int(10)          | YES  |     |             |         
+ content     | varchar(300)     | YES  |     |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_crowd_shenfen
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ truename    | varchar(50)      | YES  |     |             |         
+ idnumber    | varchar(50)      | YES  |     |             |         
+ pass        | smallint(5)      | YES  |     | ((0))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ imgs        | varchar(800)     | YES  |     |             |         
+ crowd_id    | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_crowd_yiyuan
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ pass        | smallint(5)      | YES  |     | ((0))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ imgs        | varchar(800)     | YES  |     |             |         
+ crowd_id    | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_crowd_zhanghao
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ pass        | smallint(5)      | YES  |     | ((0))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ owner       | varchar(50)      | YES  |     |             |         
+ cardnum     | varchar(200)     | YES  |     |             |         
+ bank        | varchar(100)     | YES  |     |             |         
+ bindtel     | varchar(50)      | YES  |     |             |         
+ crowd_id    | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_findwork
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ title       | varchar(50)      | YES  |     |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ sex         | smallint(5)      | YES  |     |             |         
+ age         | int(10)          | YES  |     |             |         
+ worktime    | varchar(50)      | YES  |     |             |         
+ degrees     | varchar(50)      | YES  |     |             |         
+ trade       | varchar(50)      | YES  |     |             |         
+ job         | varchar(50)      | YES  |     |             |         
+ income      | varchar(50)      | YES  |     |             |         
+ introduce   | varchar(500)     | YES  |     |             |         
+ choice      | varchar(400)     | YES  |     |             |         
+ linkman     | varchar(50)      | YES  |     |             |         
+ tel         | varchar(50)      | YES  |     |             |         
+ showtel     | smallint(5)      | YES  |     |             |         
+ showcontact | smallint(5)      | YES  |     |             |         
+ createtime  | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+ img         | varchar(500)     | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_findwork_place
+-------------+------------------+------+-----+---------+---------
+ Field       | Type             | Null | Key | Default | Remarks 
+-------------+------------------+------+-----+---------+---------
+ id          | int identity(10) | NO   | PRI |         |         
+ f_id        | int(10)          | YES  |     |         |         
+ province_id | int(10)          | YES  |     |         |         
+ city_id     | int(10)          | YES  |     |         |         
+ county_id   | int(10)          | YES  |     |         |         
+-------------+------------------+------+-----+---------+---------
+
+Table: z_findworker
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ title       | varchar(50)      | YES  |     |             |         
+ province_id | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ sex         | smallint(5)      | YES  |     |             |         
+ age         | varchar(50)      | YES  |     |             |         
+ income      | varchar(50)      | YES  |     |             |         
+ choice      | varchar(500)     | YES  |     |             |         
+ restday     | varchar(50)      | YES  |     |             |         
+ worktime    | varchar(50)      | YES  |     |             |         
+ degrees     | varchar(50)      | YES  |     |             |         
+ remarks     | varchar(800)     | YES  |     |             |         
+ imgs        | varchar(800)     | YES  |     |             |         
+ linkman     | varchar(50)      | YES  |     |             |         
+ tel         | varchar(50)      | YES  |     |             |         
+ showtel     | smallint(5)      | YES  |     |             |         
+ showcontact | smallint(5)      | YES  |     |             |         
+ createtime  | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ companyname | varchar(100)     | YES  |     |             |         
+ trade       | varchar(50)      | YES  |     |             |         
+ introduce   | varchar(500)     | YES  |     |             |         
+ nums        | varchar(50)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_img_path
+-------------+------------------+------+-----+---------+---------
+ Field       | Type             | Null | Key | Default | Remarks 
+-------------+------------------+------+-----+---------+---------
+ id          | int identity(10) | NO   | PRI |         |         
+ info_id     | int(10)          | YES  |     |         |         
+ info_type   | int(10)          | YES  |     |         |         
+ img_path    | varchar(100)     | YES  |     |         |         
+ create_time | datetime(23,3)   | YES  |     |         |         
+ status      | smallint(5)      | YES  |     |         |         
+-------------+------------------+------+-----+---------+---------
+
+Table: z_info_url
+-----------+------------------+------+-----+---------+---------
+ Field     | Type             | Null | Key | Default | Remarks 
+-----------+------------------+------+-----+---------+---------
+ id        | int identity(10) | NO   | PRI |         |         
+ info_id   | int(10)          | YES  |     |         |         
+ info_type | smallint(5)      | YES  |     |         |         
+ url       | varchar(100)     | YES  |     |         |         
+ content   | varchar(40)      | YES  |     |         |         
+-----------+------------------+------+-----+---------+---------
+
+Table: z_local
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ imgs        | varchar(800)     | YES  |     |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ introduce   | varchar(1000)    | YES  |     |             |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id     | int(10)          | YES  |     |             |         
+ province_id | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_manager
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ tel         | varchar(50)      | YES  |     |             |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id     | int(10)          | YES  |     |             |         
+ password    | varchar(50)      | YES  |     | ((123456))  |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_marry
+--------------+------------------+------+-----+-------------+---------
+ Field        | Type             | Null | Key | Default     | Remarks 
+--------------+------------------+------+-----+-------------+---------
+ id           | int identity(10) | NO   | PRI |             |         
+ nickname     | varchar(20)      | YES  |     |             |         
+ hunyingguan  | varchar(50)      | YES  |     |             |         
+ sex          | smallint(5)      | YES  |     |             |         
+ age          | int(10)          | YES  |     |             |         
+ high         | int(10)          | YES  |     |             |         
+ weight       | int(10)          | YES  |     |             |         
+ degrees      | varchar(50)      | YES  |     |             |         
+ faith        | varchar(30)      | YES  |     |             |         
+ job          | varchar(50)      | YES  |     |             |         
+ position     | varchar(30)      | YES  |     |             |         
+ ismarried    | smallint(5)      | YES  |     |             |         
+ address      | varchar(100)     | YES  |     |             |         
+ income       | int(10)          | YES  |     |             |         
+ house        | smallint(5)      | YES  |     |             |         
+ car          | smallint(5)      | YES  |     |             |         
+ smoke        | smallint(5)      | YES  |     |             |         
+ drink        | smallint(5)      | YES  |     |             |         
+ hoppy        | varchar(50)      | YES  |     |             |         
+ requirements | varchar(100)     | YES  |     |             |         
+ sign         | varchar(100)     | YES  |     |             |         
+ createtime   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status       | smallint(5)      | YES  |     |             |         
+ user_id      | int(10)          | YES  |     |             |         
+ backimg      | varchar(200)     | YES  |     |             |         
+ imgs         | varchar(900)     | YES  |     |             |         
+ city_id      | int(10)          | YES  |     |             |         
+ county_id    | int(10)          | YES  |     |             |         
+ location_x   | varchar(50)      | YES  |     |             |         
+ location_y   | varchar(50)      | YES  |     |             |         
+ pass         | smallint(5)      | YES  |     | ((0))       |         
+ truename     | varchar(50)      | YES  |     |             |         
+ birthaddress | varchar(200)     | YES  |     |             |         
+ stayaddress  | varchar(200)     | YES  |     |             |         
+ idcard       | varchar(200)     | YES  |     |             |         
+ idimgs       | varchar(800)     | YES  |     |             |         
+ tel          | varchar(50)      | YES  |     |             |         
+--------------+------------------+------+-----+-------------+---------
+
+Table: z_master
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ province_id | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ idcard      | varchar(100)     | YES  |     |             |         
+ id_imgs     | varchar(800)     | YES  |     |             |         
+ sign_imgs   | varchar(500)     | YES  |     |             |         
+ tel         | varchar(50)      | YES  |     |             |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id     | int(10)          | YES  |     |             |         
+ password    | varchar(50)      | YES  |     | ((123456))  |         
+ type        | smallint(5)      | YES  |     | ((2))       |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_master_notice
+------------+------------------+------+-----+-------------+---------
+ Field      | Type             | Null | Key | Default     | Remarks 
+------------+------------------+------+-----+-------------+---------
+ id         | int identity(10) | NO   | PRI |             |         
+ recive     | varchar(300)     | YES  |     |             |         
+ title      | varchar(100)     | YES  |     |             |         
+ status     | smallint(5)      | YES  |     | ((1))       |         
+ createtime | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id    | int(10)          | YES  |     |             |         
+------------+------------------+------+-----+-------------+---------
+
+Table: z_master_p
+-----------+------------------+------+-----+---------+---------
+ Field     | Type             | Null | Key | Default | Remarks 
+-----------+------------------+------+-----+---------+---------
+ id        | int identity(10) | NO   | PRI |         |         
+ master_id | int(10)          | YES  |     |         |         
+ money     | smallint(5)      | YES  |     |         |         
+ ad        | smallint(5)      | YES  |     |         |         
+ report    | smallint(5)      | YES  |     |         |         
+ message   | smallint(5)      | YES  |     |         |         
+ master    | smallint(5)      | YES  |     |         |         
+-----------+------------------+------+-----+---------+---------
+
+Table: z_master_scope
+-------------+------------------+------+-----+---------+---------
+ Field       | Type             | Null | Key | Default | Remarks 
+-------------+------------------+------+-----+---------+---------
+ id          | int identity(10) | NO   | PRI |         |         
+ user_id     | int(10)          | YES  |     |         |         
+ scope       | smallint(5)      | YES  |     |         |         
+ province    | smallint(5)      | YES  |     |         |         
+ city        | smallint(5)      | YES  |     |         |         
+ county      | smallint(5)      | YES  |     |         |         
+ status      | smallint(5)      | YES  |     |         |         
+ create_time | datetime(23,3)   | YES  |     |         |         
+-------------+------------------+------+-----+---------+---------
+
+Table: z_money_out
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ card_id     | varchar(200)     | YES  |     |             |         
+ bank        | varchar(100)     | YES  |     |             |         
+ ownername   | varchar(50)      | YES  |     |             |         
+ province_id | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ bankname    | varchar(200)     | YES  |     |             |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+ createtime  | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id     | int(10)          | YES  |     |             |         
+ cardtype    | varchar(50)      | YES  |     |             |         
+ money       | money(19,4)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_notice_baoming
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ main_img      | varchar(800)     | YES  |     |             |         
+ showincontent | smallint(5)      | YES  |     |             |         
+ province_id   | int(10)          | YES  |     |             |         
+ city_id       | int(10)          | YES  |     |             |         
+ county_id     | int(10)          | YES  |     |             |         
+ title         | varchar(300)     | YES  |     |             |         
+ getbaoming    | smallint(5)      | YES  |     | ((0))       |         
+ getjingfei    | smallint(5)      | YES  |     | ((0))       |         
+ baomingfei    | money(19,4)      | YES  |     |             |         
+ jingfei       | money(19,4)      | YES  |     |             |         
+ b_starttime   | datetime(23,3)   | YES  |     |             |         
+ b_endtime     | datetime(23,3)   | YES  |     |             |         
+ starttime     | datetime(23,3)   | YES  |     |             |         
+ endtime       | datetime(23,3)   | YES  |     |             |         
+ issex         | smallint(5)      | YES  |     | ((0))       |         
+ nums          | int(10)          | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status        | smallint(5)      | YES  |     |             |         
+ location_x    | varchar(50)      | YES  |     |             |         
+ location_y    | varchar(50)      | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+ mannums       | int(10)          | YES  |     |             |         
+ womanums      | int(10)          | YES  |     |             |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: z_notice_baoming_apply
+-------------+------------------+------+-----+---------+---------
+ Field       | Type             | Null | Key | Default | Remarks 
+-------------+------------------+------+-----+---------+---------
+ id          | int identity(10) | NO   | PRI |         |         
+ name        | varchar(50)      | YES  |     |         |         
+ sex         | smallint(5)      | YES  |     |         |         
+ age         | int(10)          | YES  |     |         |         
+ tel         | varchar(50)      | YES  |     |         |         
+ content     | varchar(300)     | YES  |     |         |         
+ status      | smallint(5)      | YES  |     |         |         
+ create_time | datetime(23,3)   | YES  |     |         |         
+ user_id     | int(10)          | YES  |     |         |         
+ pass        | smallint(5)      | YES  |     | ((0))   |         
+ baoming_id  | int(10)          | YES  |     |         |         
+-------------+------------------+------+-----+---------+---------
+
+Table: z_notice_fankui
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ main_img      | varchar(800)     | YES  |     |             |         
+ shownickname  | smallint(5)      | YES  |     |             |         
+ province_id   | int(10)          | YES  |     |             |         
+ city_id       | int(10)          | YES  |     |             |         
+ county_id     | int(10)          | YES  |     |             |         
+ title         | varchar(300)     | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status        | smallint(5)      | YES  |     |             |         
+ location_x    | varchar(50)      | YES  |     |             |         
+ location_y    | varchar(50)      | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+ showincontent | smallint(5)      | YES  |     |             |         
+ pass          | int(10)          | YES  |     | ((0))       |         
+ praisenum     | int(10)          | YES  |     | ((0))       |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: Z_notice_pinglun
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ notice_id   | int(10)          | YES  |     |             |         
+ content     | varchar(300)     | YES  |     |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ type        | smallint(5)      | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_notice_praise
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ info_id     | int(10)          | YES  |     |             |         
+ info_type   | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_notice_qiuzheng
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ main_img      | varchar(800)     | YES  |     |             |         
+ showincontent | smallint(5)      | YES  |     |             |         
+ province_id   | int(10)          | YES  |     |             |         
+ city_id       | int(10)          | YES  |     |             |         
+ county_id     | int(10)          | YES  |     |             |         
+ title         | varchar(300)     | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status        | smallint(5)      | YES  |     |             |         
+ truenum       | int(10)          | YES  |     | ((0))       |         
+ falsenum      | int(10)          | YES  |     | ((0))       |         
+ notsurenum    | int(10)          | YES  |     | ((0))       |         
+ location_x    | varchar(50)      | YES  |     |             |         
+ location_y    | varchar(50)      | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: Z_notice_reply
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ pinglun_id  | int(10)          | YES  |     |             |         
+ content     | varchar(300)     | YES  |     |             |         
+ name        | varchar(50)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ type        | smallint(5)      | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_notice_tongzhi
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ main_img      | varchar(800)     | YES  |     |             |         
+ showincontent | smallint(5)      | YES  |     |             |         
+ province_id   | int(10)          | YES  |     |             |         
+ city_id       | int(10)          | YES  |     |             |         
+ county_id     | int(10)          | YES  |     |             |         
+ title         | varchar(300)     | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status        | smallint(5)      | YES  |     |             |         
+ location_x    | varchar(50)      | YES  |     |             |         
+ location_y    | varchar(50)      | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: z_notice_zhengqiu
+---------------+------------------+------+-----+-------------+---------
+ Field         | Type             | Null | Key | Default     | Remarks 
+---------------+------------------+------+-----+-------------+---------
+ id            | int identity(10) | NO   | PRI |             |         
+ main_img      | varchar(800)     | YES  |     |             |         
+ showincontent | smallint(5)      | YES  |     |             |         
+ province_id   | int(10)          | YES  |     |             |         
+ city_id       | int(10)          | YES  |     |             |         
+ county_id     | int(10)          | YES  |     |             |         
+ title         | varchar(300)     | YES  |     |             |         
+ create_time   | datetime(23,3)   | YES  |     | (getdate()) |         
+ status        | smallint(5)      | YES  |     |             |         
+ truenum       | int(10)          | YES  |     | ((0))       |         
+ falsenum      | int(10)          | YES  |     | ((0))       |         
+ location_x    | varchar(50)      | YES  |     |             |         
+ location_y    | varchar(50)      | YES  |     |             |         
+ user_id       | int(10)          | YES  |     |             |         
+---------------+------------------+------+-----+-------------+---------
+
+Table: z_pay
+-------------+------------------+------+-----+------------------+---------
+ Field       | Type             | Null | Key | Default          | Remarks 
+-------------+------------------+------+-----+------------------+---------
+ id          | int identity(10) | NO   | PRI |                  |         
+ payType     | int(10)          | YES  |     |                  |         
+ money       | money(19,4)      | YES  |     |                  |         
+ order_id    | varchar(500)     | YES  |     |                  |         
+ third_id    | varchar(50)      | YES  |     |                  |         
+ finish_time | datetime(23,3)   | YES  |     |                  |         
+ out_id      | int(10)          | YES  |     |                  |         
+ in_id       | int(10)          | YES  |     |                  |         
+ type        | int(10)          | YES  |     | ('1充值2付款3广告4捐款') |         
+ status      | smallint(5)      | YES  |     |                  |         
+ create_time | datetime(23,3)   | YES  |     | (getdate())      |         
+ info_id     | int(10)          | YES  |     |                  |         
+-------------+------------------+------+-----+------------------+---------
+
+Table: z_people_need
+-------------+------------------+------+-----+---------+---------
+ Field       | Type             | Null | Key | Default | Remarks 
+-------------+------------------+------+-----+---------+---------
+ id          | int identity(10) | NO   | PRI |         |         
+ user_id     | int(10)          | YES  |     |         |         
+ title       | varchar(120)     | YES  |     |         |         
+ money       | money(19,4)      | YES  |     |         |         
+ unit        | varchar(10)      | YES  |     |         |         
+ type        | int(10)          | YES  |     |         |         
+ content     | varchar(2000)    | YES  |     |         |         
+ linkman     | varchar(10)      | YES  |     |         |         
+ telephone   | varchar(11)      | YES  |     |         |         
+ location_x  | varchar(11)      | YES  |     |         |         
+ location_y  | varchar(11)      | YES  |     |         |         
+ create_time | datetime(23,3)   | YES  |     |         |         
+ status      | smallint(5)      | YES  |     |         |         
+ city_id     | int(10)          | YES  |     |         |         
+ county_id   | int(10)          | YES  |     |         |         
+-------------+------------------+------+-----+---------+---------
+
+Table: z_people_service
+-------------+------------------+------+-----+---------+---------
+ Field       | Type             | Null | Key | Default | Remarks 
+-------------+------------------+------+-----+---------+---------
+ id          | int identity(10) | NO   | PRI |         |         
+ user_id     | int(10)          | YES  |     |         |         
+ title       | varchar(120)     | YES  |     |         |         
+ money       | money(19,4)      | YES  |     |         |         
+ unit        | varchar(10)      | YES  |     |         |         
+ type        | int(10)          | YES  |     |         |         
+ content     | varchar(2000)    | YES  |     |         |         
+ linkman     | varchar(10)      | YES  |     |         |         
+ telephone   | varchar(11)      | YES  |     |         |         
+ location_x  | varchar(11)      | YES  |     |         |         
+ location_y  | varchar(11)      | YES  |     |         |         
+ create_time | datetime(23,3)   | YES  |     |         |         
+ status      | smallint(5)      | YES  |     |         |         
+ city_id     | int(10)          | YES  |     |         |         
+ county_id   | int(10)          | YES  |     |         |         
+-------------+------------------+------+-----+---------+---------
+
+Table: z_phonemsm
+--------------+---------------------+------+-----+-------------+---------
+ Field        | Type                | Null | Key | Default     | Remarks 
+--------------+---------------------+------+-----+-------------+---------
+ id           | bigint identity(19) | NO   | PRI |             |         
+ telephone    | varchar(50)         | YES  |     |             |         
+ type         | smallint(5)         | YES  |     |             |         
+ content      | varchar(200)        | YES  |     |             |         
+ identifyCode | varchar(50)         | YES  |     |             |         
+ sendStatus   | smallint(5)         | YES  |     |             |         
+ status       | smallint(5)         | YES  |     |             |         
+ createTime   | datetime(23,3)      | YES  |     | (getdate()) |         
+--------------+---------------------+------+-----+-------------+---------
+
+Table: z_praise_info
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ info_id     | int(10)          | YES  |     |             |         
+ info_type   | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_product
+------------+------------------+------+-----+-------------+---------
+ Field      | Type             | Null | Key | Default     | Remarks 
+------------+------------------+------+-----+-------------+---------
+ id         | int identity(10) | NO   | PRI |             |         
+ title      | varchar(200)     | YES  |     |             |         
+ etitle     | varchar(200)     | YES  |     |             |         
+ status     | smallint(5)      | YES  |     | ((1))       |         
+ createtime | datetime(23,3)   | YES  |     | (getdate()) |         
+ local_id   | int(10)          | YES  |     |             |         
+ user_id    | int(10)          | YES  |     |             |         
+------------+------------------+------+-----+-------------+---------
+
+Table: z_product_show
+------------+------------------+------+-----+-------------+---------
+ Field      | Type             | Null | Key | Default     | Remarks 
+------------+------------------+------+-----+-------------+---------
+ id         | int identity(10) | NO   | PRI |             |         
+ product_id | int(10)          | YES  |     |             |         
+ pids       | varchar(200)     | YES  |     |             |         
+ pass       | smallint(5)      | YES  |     | ((0))       |         
+ createtime | datetime(23,3)   | YES  |     | (getdate()) |         
+ user_id    | int(10)          | YES  |     |             |         
+------------+------------------+------+-----+-------------+---------
+
+Table: z_report_info
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ info_id     | int(10)          | YES  |     |             |         
+ info_type   | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_search_info
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ context     | varchar(100)     | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_store_info
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ info_id     | int(10)          | YES  |     |             |         
+ info_type   | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_travel_guide
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ username    | varchar(20)      | YES  |     |             |         
+ price       | money(19,4)      | YES  |     |             |         
+ hours       | smallint(5)      | YES  |     |             |         
+ province_id | int(10)          | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ configure   | varchar(40)      | YES  |     |             |         
+ places      | varchar(100)     | YES  |     |             |         
+ car_c       | smallint(5)      | YES  |     |             |         
+ car_brand   | varchar(20)      | YES  |     |             |         
+ car_cate    | varchar(20)      | YES  |     |             |         
+ car_price   | money(19,4)      | YES  |     |             |         
+ car_hours   | smallint(5)      | YES  |     |             |         
+ message     | varchar(255)     | YES  |     |             |         
+ telephone   | varchar(255)     | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ update_time | datetime(23,3)   | YES  |     |             |         
+ status      | smallint(5)      | YES  |     |             |         
+ location_x  | varchar(20)      | YES  |     |             |         
+ location_y  | varchar(20)      | YES  |     |             |         
+ sex         | smallint(5)      | YES  |     |             |         
+ age         | smallint(5)      | YES  |     |             |         
+ user_status | smallint(5)      | YES  |     | ((1))       |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_travel_scenic
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ main_img    | varchar(100)     | YES  |     |             |         
+ show_status | smallint(5)      | YES  |     |             |         
+ city_id     | int(10)          | YES  |     |             |         
+ county_id   | int(10)          | YES  |     |             |         
+ province_id | int(10)          | YES  |     |             |         
+ title       | varchar(100)     | YES  |     |             |         
+ status      | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ update_time | datetime(23,3)   | YES  |     |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ location_x  | varchar(20)      | YES  |     |             |         
+ location_y  | varchar(20)      | YES  |     |             |         
+-------------+------------------+------+-----+-------------+---------
+
+Table: z_user
+-----------------+------------------+------+-----+-------------+---------
+ Field           | Type             | Null | Key | Default     | Remarks 
+-----------------+------------------+------+-----+-------------+---------
+ id              | int identity(10) | NO   | PRI |             |         
+ username        | varchar(20)      | YES  |     |             |         
+ password        | varchar(20)      | YES  |     |             |         
+ create_time     | datetime(23,3)   | YES  |     | (getdate()) |         
+ status          | smallint(5)      | YES  |     | ((1))       |         
+ nickname        | varchar(50)      | YES  |     |             |         
+ img             | varchar(200)     | YES  |     |             |         
+ sex             | smallint(5)      | YES  |     |             |         
+ getname         | varchar(50)      | YES  |     |             |         
+ gettel          | varchar(50)      | YES  |     |             |         
+ getadr          | varchar(300)     | YES  |     |             |         
+ getzipcode      | varchar(50)      | YES  |     |             |         
+ paper_img       | varchar(800)     | YES  |     |             |         
+ type            | smallint(5)      | YES  |     | ((1))       |         
+ score           | int(10)          | YES  |     |             |         
+ identity        | int(10)          | YES  |     |             |         
+ address         | varchar(200)     | YES  |     |             |         
+ qq              | varchar(50)      | YES  |     |             |         
+ identiticard    | varchar(500)     | YES  |     |             |         
+ invitetelephone | varchar(100)     | YES  |     |             |         
+ examinestate    | int(10)          | YES  |     |             |         
+ onlinestate     | bit(1)           | YES  |     |             |         
+ usernumber      | varchar(50)      | YES  |     |             |         
+ money           | money(19,4)      | YES  |     | ((0))       |         
+-----------------+------------------+------+-----+-------------+---------
+
+Table: z_user_pingbi
+----------+------------------+------+-----+-------------+---------
+ Field    | Type             | Null | Key | Default     | Remarks 
+----------+------------------+------+-----+-------------+---------
+ id       | int identity(10) | NO   | PRI |             |         
+ user_id  | int(10)          | YES  |     |             |         
+ days     | int(10)          | YES  |     |             |         
+ end_time | datetime(23,3)   | YES  |     | (getdate()) |         
+----------+------------------+------+-----+-------------+---------
+
+Table: z_userclick_info
+-------------+------------------+------+-----+-------------+---------
+ Field       | Type             | Null | Key | Default     | Remarks 
+-------------+------------------+------+-----+-------------+---------
+ id          | int identity(10) | NO   | PRI |             |         
+ user_id     | int(10)          | YES  |     |             |         
+ info_id     | int(10)          | YES  |     |             |         
+ info_type   | smallint(5)      | YES  |     |             |         
+ create_time | datetime(23,3)   | YES  |     | (getdate()) |         
+ status      | smallint(5)      | YES  |     | ((1))       |         
+-------------+------------------+------+-----+-------------+---------
+

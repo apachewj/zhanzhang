@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/MessageManagement.css">
+    <link rel="stylesheet" href="css/AuditReport.css">
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/adminMask.js"></script>
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+    <script src="js/lodash.min.js"></script>
+    <style>
+        .addDelete,.addDelete1{
+            position: relative;
+            right: -3px;
+            top: -103px;
+            width: 30px;
+            height: 30px;
+            float: right;
+            background-image: url("images/tuichu.png");
+            background-size: 20px ;
+            background-repeat:no-repeat ;
+        }
+
+        #cityPos{
+            z-index:9;
+            margin-bottom:20px
+        }
+        #sjld{
+            position: absolute;
+            z-index: 99999;
+            background-color: #f4f4f4;
+            display: none;
+            width: 400px;
+            height: 150px;
+            margin-top: 52px;
+            margin-left: 7px;
+        }
+        #sjld a{
+            display: block;
+            padding: 5px 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-left: 151px;
+            margin-right: 196px;
+            margin-top: 62px;
+            border-radius: 10px;
+        }
+        #sjld select{
+            border: none;
+            margin-top: 15px;
+            margin-left: 10px;
+            height: 31px;
+            border-radius: 5px;
+        }
+        .imgClass11{
+            width: 4rem;
+            height: 4rem;
+        }
+
+
+
+        #cityPos{
+            z-index:9;
+            margin-bottom:20px
+        }
+        .card-footer a{
+            color: #ff6600;
+        }
+        #sjld{
+            position: absolute;
+            z-index: 99999;
+            background-color: #f4f4f4;
+            display: none;
+            width: 400px;
+            height: 150px;
+            margin-top: 52px;
+            margin-left: 7px;
+        }
+        #sjld a{
+            display: block;
+            padding: 5px 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-left: 151px;
+            margin-right: 196px;
+            margin-top: 62px;
+            border-radius: 10px;
+        }
+        #sjld select{
+            border: none;
+            margin-top: 15px;
+            margin-left: 10px;
+            height: 31px;
+            border-radius: 5px;
+        }
+
+
+        .selected{
+            border-bottom: 2px solid #ff6600;
+        }
+        #adminDel{
+            width: 300px;
+            height: 150px;
+            z-index: 99999;
+            position: absolute;
+            background-color: #f4f4f4;
+            overflow: scroll;
+            margin-left: 50px;
+            margin-top: 62px;
+            border-radius: 10px;
+        }
+        #adminDel span{
+            display: block;
+            font-size: 18px;
+            margin: 0 auto;
+            line-height: 20px;
+            height: 20px;
+            margin-left: 90px;
+            color: #9c9c9c;
+            margin-top: 15px;
+        }
+        #adminDel a{
+            background-color: #f60;
+            font-size: 18px;
+            padding: 5px 15px;
+            margin-left: 83px;
+            border-radius: 5px;
+            color: #f4f4f4;
+            text-decoration: none;
+        }
+        .sjld{position: relative;z-index: 999;width:100%; background: white;}
+        .sjld div select{
+            border: none;
+            font-size: 15px;
+            background: white;
+            color: #f60;
+            width:100%;
+        }
+        .sjld1{position: relative;z-index: 999;width:100%; background: white;}
+        .sjld1 .col-33{
+            width:30%;
+            overflow: hidden;
+
+        }
+        .sjld1 div select{
+            border: none;
+            font-size: 15px;
+            background: white;
+            color: #f60;
+        }
+        .tip1{
+            font-family: "微软雅黑";
+            float: left;
+            font-size: 16px;
+        }
+    </style>
+    <script> var sexdata=["男","女"]</script>
+    <script> var statusdata=["空闲","忙碌"]</script>
+    <script> var passdata=["未解决","已解决"]</script>
+    <script type="tpl/text" id="tpl1">
+     <%if(list.length>0){%>
+        <% for(var i=0;i<list.length;i++){%>
+        <%if(list[i].types==1){%>
+         <div class="card jingqu_jingqu">
+                           <div class="card-header">
+                                <div class="item-title">景区</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/tourism.html?id=<%= list[i].id %>#pageScenicDetail" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                      <% if(list[i].main_img){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].main_img%>" style="margin:0 .5rem 0 0">
+                                      </div>
+                                     <% } %>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                          <div class="item-title"><%= list[i].title%></div>
+                                          <a class="item-after" href="http://localhost:8080/service/map.html?lng=<%= list[i].location_x %>lat=<%= list[i].location_y %>"><img src="images/tong_btn_dwtz.png"></a>
+                                        </div>
+                                        <div class="item-subtitle"><%if(list[i].content){%><%= list[i].content[0]%><%}%></div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                              <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>"  type=1 class="delete_00001">删除</span>
+                            </div>
+          </div>
+          <%}%>
+           <%if(list[i].types==7){%>
+                       <div class="card  findjob">
+                           <div class="card-header">
+                                <div class="item-title">招聘</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Marriage_Recruitment.html?id=<%= list[i].id%>#pagePostRecruitDetail" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].imgs){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].imgs%>" >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">
+                                                  <%=list[i].trade%>
+                                            </div>
+                                        </div>
+
+                                        <div class="item-subtitle1  linestyle">
+                                             <span><%=list[i].income%></span>
+                                              <span><%=list[i].degrees%></span>
+
+                                        </div>
+                                        <div class="item-subtitle2">
+                                             <%=list[i].introduce%>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                               <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>"  type=7  class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+          <%if(list[i].types==2){%>
+           <div class="card  jingqu_peiyou">
+                           <div class="card-header">
+                                <div class="item-title">陪游</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/tourism.html?id=<%= list[i].id %>#pageyoudetailes" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                      <%   if(list[i].img_path){ %>
+                                      <div class="item-media">
+
+                                         <img class="imgClass11" src="<%= list[i].img_path[0]%>" >
+                                      </div>
+                                     <% } %>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                          <div class="item-title">
+                                              <span><%= list[i].username%></span>
+                                              <span><%= sexdata[list[i].sex-1] %></span>
+                                              <span><%= list[i].age%>岁</span>
+                                          </div>
+                                          <div class="<%= list[i].user_status == 1 ? "item-after status" : "item-after status2"%>" >
+                                              <%= statusdata[list[i].user_status-1] %>
+                                          </div>
+                                                <% if(list[i].car_c==1){%>
+                                               <div class="addcar">车+导</div>
+                                                 <%}else if(list[i].car_c==2){%>
+                                                  <%}%>
+                                   
+                                        </div>
+
+                                        <div class="item-subtitle1">
+                                             <span><%= list[i].price%>元/</span>
+                                              <span><%= list[i].hours%>小时</span>
+                                        </div>
+
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                                <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=2 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                   <%}%>
+                   <%if(list[i].types==4){%>
+                      <div class="card mengdian">
+                           <div class="card-header">
+                                <div class="item-title">便民需求</div>
+                                <div class="item-after"></div>
+                           </div>
+
+                           <a href="http://localhost:8080/service/service.html?id=<%= list[i].id%>#pagePeopleNeedDetail" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].img_path){ %>
+                                      <div class="item-media">
+                                         <img src="<%= list[i].img_path%>" style="width:88px;height:88px" >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                          <div class="item-title"><%= list[i].title%></div>
+
+                                        </div>
+                                        <div class="item-subtitle">发布人昵称：<%= list[i].linkman%></div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                              <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=4 class="delete_00001">删除</span>
+                              <span id="demandShield">屏蔽店铺</span>
+                            </div>
+                       </div>
+                        <%}%>
+                        <%if(list[i].types==6){%>
+                       <div class="card  findjob">
+                           <div class="card-header">
+                                <div class="item-title">找工作</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Marriage_Recruitment.html?id=<%= list[i].id%>#pagePostJobDetail" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].img){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].img%>" >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">
+                                                  <%=list[i].job%>
+                                            </div>
+                                        </div>
+
+                                        <div class="item-subtitle1  linestyle">
+                                             <span><%=list[i].income%></span>
+                                              <span><%=list[i].degrees%></span>
+
+                                        </div>
+                                        <div class="item-subtitle2">
+                                             <%=list[i].linkman%>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                               <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=6 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==5){%>
+                      <div class="card  findobject">
+                           <div class="card-header">
+                                <div class="item-title">征婚</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Marriage_Recruitment.html?id=<%= list[i].id%>#pageObjectIntroduction" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].imgs){%>
+                                     <div class="item-media">
+
+                                          <img class="imgClass11" src="<%=list[i].imgs[0] %>" >
+
+                                      </div>
+                                        <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title wawa">
+                                                 <span><%=list[i].truename%></span>
+                                                 <% if(list[i].idcard){%>
+                                               <img src="images/zdx_img_sfz.png">
+                                                 <%}else{%><%}%>
+                                                  <% if(list[i].tel){%>
+                                                <img src="images/zdx_img_sj.png">
+                                                 <%}else{%><%}%>
+                                                 <img src="images/zdx_img_wz.png" >
+                                            </div>
+                                            <div class="item-after">
+                                                    <% if(list[i].distance==null){%>
+                                                    未知
+                                                 <%}else{%>
+                                                <%=list[i].distance%>米
+                                                 <%}%></div>
+                                        </div>
+
+                                        <div class="item-subtitle1 ">
+                                                  <% if(list[i].age==null){%>
+                                                    <span></span>
+                                                 <%}else{%>
+                                                 <span><%=list[i].age%>岁</span>
+                                                 <%}%>
+
+                                               <% if(list[i].high==null){%>
+                                                    <span></span>
+                                                 <%}else{%>
+                                                 <span><%=list[i].high%>cm</span>
+                                                 <%}%>
+
+                                                 <% if(list[i].degrees==null){%>
+                                                    <span></span>
+                                                 <%}else{%>
+                                                 <span><%=list[i].degrees%></span>
+                                                 <%}%>
+
+                                                  <% if(list[i].income==null){%>
+                                                    <span></span>
+                                                 <%}else{%>
+                                                 <span><%=list[i].income%>元</span>
+                                                 <%}%>
+
+
+                                              <span>
+                                                <img src="images/zdx_btn_fxx.png" width="10%">
+                                              </span>
+                                        </div>
+
+
+                                        <div class="item-subtitle2">
+                                             <%=list[i].requirement%>
+                                        </div>
+
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                              <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=5 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==3){%>
+                      <div class="card   ConvenienceServices">
+                           <div class="card-header">
+                                <div class="item-title">便民服务</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/service.html?id=<%= list[i].id %>#pagePeopleServiceDetail" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].img_path){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].img_path%>" style="margin:0 .5rem 0 0">
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title"><%= list[i].title%></div>
+                                          <a class="item-after" href="http://localhost:8080/service/map.html?lng=<%= list[i].location_x%>&lat=<%= list[i].location_y%>"><img src="images/tong_btn_dwtz.png"></a>
+                                        </div>
+                                        <div class="item-subtitle1">
+                                        <span><% if(list[i].money){ %><%= list[i].money%>元/<%}else{%> 面议<%}%></span><span><% if(list[i].unit){ %><%= list[i].unit%><%}else{%><%}%></span>
+                                            
+                                        </div>
+                                        <div class="item-subtitle2">
+                                             <%= list[i].reporttime%>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                               <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=3 class="delete_00001">删除</span>
+                              <span id="demandShield">屏蔽店铺</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==8){%>
+                      <div class="card   Forestry_Fisheries">
+                           <div class="card-header">
+                                <div class="item-title">农林渔副</div>
+                                <div class="item-after"> </div>
+                           </div>
+                           <a href="http://localhost:8080/service/Forestry_Fisheries.html?id=<%= list[i].id%>&maintype=2#pageSupplyHireEquipment_details" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].imgs){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src=" <%=list[i].imgs%>" >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title"> <%=list[i].title%></div>
+                                        </div>
+                                        <div class="item-title-row">
+                                            <div class="item-subtitle1">
+                                                 <span> <%=list[i].city_id%> <%=list[i].county_id%></span>
+                                            </div>
+                                            <div class="item-after">
+                               
+                                                 <span>
+                                                <% if(list[i].price=='面议'){%>
+                                                   <%=list[i].price%>
+                                                 <%}else{%>
+                                                   <%=list[i].price%>元/
+                                                 <%}%></span>  
+                                                 <span>
+                                                 <% if(list[i].priceunit){%>
+                                                     <%=list[i].priceunit%>
+                                                   <%}else{%>
+                                                   <%}%>
+                                                  </span>
+                                            </div>
+                                        </div>
+                                        <div class="item-title-row">
+                                            <div class="item-subtitle2">
+                                                 <a href="http://localhost:8080/service/map.html?lng=<%=list[i].location_x%>&lat=<%=list[i].location_y%>"><img src="images/tong_btn_dwtz.png"></a>
+                                            </div>
+                                           <div class="item-after color_after">
+                                                <span>2<%=list[i].create_time%></span>
+                                            </div>
+                                       </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                               <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=8 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==10){%>
+                      <div class="card  Local_enterprise">
+                           <div class="card-header">
+                                <div class="item-title">本地企业</div>
+                                <div class="item-after"><%=list[i].times%>次</div>
+                           </div>
+                           <a href="../service/Local_enterprise.html?id=<%= list[i].id%>#pageEnterpriseDetail" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].img_path){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src="<%=list[i].imgs%>" >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                          <div class="item-title"><%=list[i].com_name%></div>
+                                          <a class="item-after" href="http://localhost:8080/service/map.html?lng=<%= list[i].location_x%>&lat=<%= list[i].location_y%>"><img src="images/tong_btn_dwtz.png"></a>
+                                        </div>
+                                        <div class="item-subtitle"><%=list[i].message%></div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                              <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=10 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==9){%>
+                      <div class="card  Love">
+                           <div class="card-header">
+                                <div class="item-title">爱心众筹</div>
+                                <div class="item-after"> <%=list[i].times%>次</div>
+                           </div>
+                           <a href="http://localhost:8080/service/love.html?id=<%= list[i].id%>#pagelovedetails" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].img_path){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src=" <%=list[i].main_img%>" style="margin:0 .3rem 0 0 " >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                          <div class="item-title"> <%=list[i].title%></div>
+
+                                        </div>
+                                        <div class="item-subtitle"> <%if(list[i].content){%><%= list[i].content[0]%><%}%></div>
+
+                                        <a class="item-after" href="http://localhost:8080/service/map.html?lng=<%= list[i].location_x%>&lat=<%= list[i].location_y%>"><img src="images/tong_btn_dwtz.png"></a>
+
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                              <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=9 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==11){%>
+                       <div class="card   Speciality">
+                           <div class="card-header">
+                                <div class="item-title">本地特产</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Speciality.html?id=<%= list[i].id%>#pageSpecialityDetail" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].img_path){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src="<%=list[i].img_path[0]%>" >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title"> <%=list[i].title%></div>
+                                        </div>
+                               
+
+                                            <div class="item-subtitle2">
+                                                 <span>库存：<%=list[i].temprownumber%></span>
+                                            </div>
+                                       </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                               <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=11 class="delete_00001">删除</span>
+                              <span id="demandShield">屏蔽店铺</span>
+                            </div>
+                       </div>
+                            <%}%>
+                      <%if(list[i].types==12){%>
+                      <div class="card   Convenience_notice">
+                           <div class="card-header">
+                                <div class="item-title">便民通知</div>
+                                <div class="item-after"> <%=list[i].times%>次</div>
+                           </div>
+                           <a href="http://localhost:8080/service/Convenience_notice.html?id=<%= list[i].id%>#pagenoticedetails" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].main_img){ %>
+                                      <div class="item-media">
+                                         <img class="imgClass11" src=" <%=list[i].main_img%>" >
+                                      </div>
+                                      <%}%>
+                                      <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title"> <%=list[i].title%></div>
+                                        </div>
+                                        <div class="item-title-row">
+                                            <div class="item-subtitle1">
+                                                 <span><img src="images/bmtz_lll.png"></span>
+                                                 <span>
+
+                                                    <% if(list[i].wartchs==null){%>
+                                                    0
+                                                 <%}else{%>
+                                                 <%=list[i].wartchs%>
+                                                 <%}%>
+                                                  </span>
+                                            </div>
+                                        </div>
+
+                                            <div class="item-subtitle2">
+                                                 <span>发布时间 <%=list[i].reporttime%></span>
+                                            </div>
+                                       </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                                <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=12 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==13){%>
+                      <div class="card   Convenience_notice">
+                           <div class="card-header">
+                                <div class="item-title">便民通知－报名</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Convenience_notice.html?id=<%= list[i].id%>#pageenrolldetails" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].main_img){ %>
+                                        <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].main_img%>" >
+                                      </div>
+                                      <%}%>
+                                         <div class="item-inner">
+                                          <div class="item-title-row">
+                                            <div class="item-text wei_title"><%= list[i].title%></div>
+
+                                          </div>
+                                         <div class="n_num_1">
+                                              <div>需报<span><%= list[i].temprownumber%></span>人/已报<span><%= list[i].tempcolumn%></span>人</div>
+                                            <img src="images/bmtz_lll.png" width="17"><span><% if(list[i].wartchs==null){%>0<%}else{%><%=list[i].wartchs%><%}%></span></div>
+                                          <div class="item-title wei_text">发布时间: <time><%= list[i].starttime%></time></div>
+                                          <div class="item-title wei_text">结束时间: <time><%= list[i].endtime%></time></div>
+                                        </div>
+
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                                 <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=13 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==14){%>
+                      <div class="card   Convenience_notice">
+                           <div class="card-header">
+                                <div class="item-title">便民通知－反馈</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Convenience_notice.html?id=<%= list[i].id%>#pagefeedbackdetails" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                    <% if(list[i].main_img){ %>
+                                        <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].main_img%>" >
+                                        </div>
+                                        <%}%>
+                                        <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title"><%= list[i].title%></div>
+                                        </div>
+                                        <div class="item-title-row">
+                                            <div class="item-subtitle1">
+                                                 <span><img src="images/bmtz_lll.png"></span>
+                                                 <span><% if(list[i].wartchs==null){%>0<%}else{%><%=list[i].wartchs%><%}%></span>
+                                            </div>
+                                            <div class="item-after settled"><%= passdata[list[i].pass] %></div>
+                                        </div>
+
+                                            <div class="item-subtitle2">
+                                                 <span>发布时间 <%= list[i].reporttime%>时</span>
+                                            </div>
+                                       </div>
+
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="card-footer">
+                                <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=14 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==15){%>
+                                            <div class="card   Convenience_notice">
+                           <div class="card-header">
+                                <div class="item-title">便民通知－求证</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Convenience_notice.html?id=<%= list[i].id%>#pageconfirmdetails" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                     <% if(list[i].main_img){ %>
+                                        <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].main_img%>" >
+                                        </div>
+                                        <%}%>
+                                        <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title"><%= list[i].title%></div>
+                                        </div>
+                                        <div class="item-title-row">
+                                            <div class="item-subtitle1">
+                                                 <span><img src="images/bmtz_lll.png"></span>
+                                                 <span><% if(list[i].wartchs==null){%>0<%}else{%><%=list[i].wartchs%><%}%></span>
+                                            </div>
+
+                                        </div>
+
+                                            <div class="item-subtitle2">
+                                                 <span>发布时间 <%= list[i].reporttime%>时</span>
+                                            </div>
+                                       </div>
+
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="pinglun">
+                                                <dl>
+                                                  <dt style="border:none"><div class="true">真的</div><div class="true_num"><%= list[i].falsenum%></div></dt>
+                                                  <dt><div class="false">假的</div><div class="false_num"><%= list[i].notsurenum%></div></dt>
+                                                  <dt><div class="fair">不好说</div><div class="fair_num"><%= list[i].truenum%></div></dt>
+                                               </dl>
+                                       </div>
+                            <div class="card-footer">
+                                <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=15 class="delete_00001">删除</span>
+                            </div>
+                      </div>
+                      <%}%>
+                      <%if(list[i].types==16){%>
+                  <div class="card   Convenience_notice">
+                           <div class="card-header">
+                                <div class="item-title">便民通知－征求</div>
+                                <div class="item-after"></div>
+                           </div>
+                           <a href="http://localhost:8080/service/Convenience_notice.html?id=<%= list[i].id%>#pageseekdetails" external>
+                              <div class="card-content">
+                                <div class="list-block media-list">
+                                  <ul>
+                                    <li class="item-content">
+                                     <% if(list[i].main_img){ %>
+                                        <div class="item-media">
+                                         <img class="imgClass11" src="<%= list[i].main_img%>" >
+                                        </div>
+                                        <%}%>
+                                        <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title"><%= list[i].title%></div>
+                                        </div>
+                                        <div class="item-title-row">
+                                            <div class="item-subtitle1">
+                                                 <span><img src="images/bmtz_lll.png"></span>
+                                                  <span>
+
+                                                    <% if(list[i].wartchs==null){%>
+                                                    0
+                                                 <%}else{%>
+                                                 <%=list[i].wartchs%>
+                                                 <%}%>
+                                                  </span>
+                                            </div>
+
+                                        </div>
+
+                                            <div class="item-subtitle2">
+                                                 <span>发布时间 <%= list[i].reporttime%>时</span>
+                                            </div>
+                                       </div>
+
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="zantong">
+                                      <dl>
+                                        <dt style="border:none"><div class="true">赞同</div><div class="true_num"><%= list[i].truenum%></div></dt>
+                                        <dt><div class="false">不赞同</div><div class="false_num"><%= list[i].falsenum%></div></dt>
+                                     </dl>
+                              </div>
+                            <div class="card-footer">
+                                 <span data-id=""><a href="UserList.html?name=<%= list[i].nickname%>">查看会员信息</a></span>
+                              <span data-id="<%= list[i].id %>" type=16 class="delete_00001">删除</span>
+                            </div>
+                            </div>
+                 <%}}%>
+            <%}else{%>
+                <div style="margin-left: 153px;">暂无数据</div>
+            <%}%>
+    </script>
+    <script type="tpl/text" id="bendiInfo">
+
+
+                <div class="swiper-container" data-space-between='10'>
+                    <div class="swiper-wrapper">
+                       <% for(var i=0;i<list.imgs.split(",").length-1;i++){%>
+                            <div class="swiper-slide">
+                                 <img src="<%= list.imgs.split(",")[i]%>" alt="" style='width: 100%;height:8rem;'>
+                            </div>
+                       <%}%>
+                    </div>
+
+                <div class="swiper-pagination"></div>
+                <div class="banner-text banner-bottom"> <%= list.name%></div>
+           </div>
+
+
+            <div class="content-padded" style='margin-bottom:40px'>
+                <p><%= list.introduce%></p>
+            </div>
+            <div class="edit" style='position:absolute;z-index:999;width:100%;margin-top:-25px' >
+                    <a href="#" id='exxx' style="margin:auto;display:block;width:40px;text-align:center">编辑</a>
+             </div>
+    </script>
+    <script type="tpl/text" id="bendiSpec">
+         <div class="content-block_content">
+                <p><a href="#" class="button ">本地特产</a></p>
+            </div>
+            <section class="m_like">
+                <ul class="list">
+                <% for(var i=0;i<list.length;i++){%>
+                    <li class="<%= list[i].id%>">
+                        <a class="cont" href="#pageSpecialityDetail">
+
+                            <img src="<%= list[i].img_path[0]%>" style="height:6rem;">
+
+
+                            <p><%= list[i].title%></p>
+                            <span><%= list[i].etitle%></span>
+                            <div class="deleteimg"><img src="images/zz_btn_close.png"></div>
+                        </a>
+                    </li>
+                  <%}%>
+                    <li>
+                        <a class="cont" href="#" id="publish">
+                            <img src="images/zz_btn_tj.png">
+                        </a>
+                    </li>
+                </ul>
+            </section>
+    </script>
+    <script type="tpl/text" id="applyAdd">
+    <% for(var i=0;i<list.length;i++){%>
+        <%if(list[i].pass==0){%>
+         <div class="card   Speciality" type="<%= list[i].id%>">
+            <div class="card-header no-border">
+                <div class="item-title">
+                    <span class="applicationbutton">申请</span>
+                    <span><%= list[i].title%></span>
+                    <div class="applytime" style="display: block;">
+                        <span> 时间：</span>
+                        <span><%= list[i].createtime%>  </span>
+                    </div>
+                </div>
+            </div>
+            <a href="" external>
+                <div class="card-content">
+                    <div class="list-block media-list">
+                        <ul>
+                            <li class="item-content">
+                                <div class="item-media">
+
+
+                                <img style="width:4rem;height:4rem" src="<%= list[i].img_path[0]%>" >
+
+
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title"><%= list[i].content[0] %></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+            <div class="card-footer no-border">
+                <span class="button jujuebutton">拒绝</span>
+                <span class="button tongyibutton">同意</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <%}%>
+        <%if(list[i].pass==1){%>
+        <div class="card   Speciality" type="<%= list[i].id%>">
+            <div class="card-header no-border">
+                <div class="item-title">
+                    <span class="passbutton">通过</span>
+                    <span><%= list[i].title%></span>
+                    <div class="applytime" style="display: block;">
+                        <span> 时间：</span>
+                        <span><%= list[i].createtime%> </span>
+                    </div>
+                </div>
+            </div>
+            <a href="" external>
+                <div class="card-content">
+                    <div class="list-block media-list">
+                        <ul>
+                            <li class="item-content">
+                                <div class="item-media">
+                                    <img style="width:4rem;height:4rem" src="<%= list[i].img_path[0]%>" >
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title"><%= list[i].content[0]%></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+            <div class="card-footer no-border">
+                <span class="button shancubutton">删除</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <%}%>
+        <%}%>
+    </script>
+  </head>
+<body>
+<div class="page-group">
+    
+      <!--主界面-->
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav bar_color">
+             <h1 class="title">讯息管理</h1>
+             <a class="icon home-icon  pull-left external" href="WebmasterHomepage.html">
+                 <img src="images/dhl_btn_home.png">
+             </a>
+             <a class="button button-link button-nav pull-right" href="#" data-transition='slide-out'id="localSpecilty">
+             <span class="icon pull-right" ></span>
+             本地特产
+             </a>
+      </header>
+    <nav class="bar bar-tab">
+        <a class="tab-item external " href="AdvertisementManagement.html" id="ifad">
+                         <span class="icon">
+                             <img src="images/zz_btn_gg_d.png">
+                         </span>
+            <span class="tab-label">广告</span>
+        </a>
+        <a class="tab-item external" href="MessageManagement.html" id="ifmessage">
+                          <span class="icon">
+                              <img src="images/zz_btn_xx_d.png">
+                          </span>
+            <span class="tab-label du">讯息</span>
+        </a>
+        <a class="tab-item external" href="AuditReport.html" id="ifreport">
+                          <span class="icon">
+                             <img src="images/zz_btn_shjb_d.png">
+                          </span>
+            <span class="tab-label">审核举报</span>
+        </a>
+        <a class="tab-item external" href="capital.html" id="ifmoney">
+                         <span class="icon">
+                            <img src="images/zz_btn_zj_d.png">
+                         </span>
+            <span class="tab-label">资金</span>
+        </a>
+        <a class="tab-item external" href="SettingManagement.html" id="ifmaster">
+                         <span class="icon">
+                            <img src="images/zz_btn_sz_d.png">
+                         </span>
+            <span class="tab-label">设置</span>
+        </a>
+    </nav>
+      <div class="content" > 
+         <div class="tab_title">
+             <ul class="tab_11111">
+                 <li class="selected" type="1">
+                     <a href="#" title="">景区</a>
+                 </li>
+                 <li type="2">
+                     <a href="#" title="">陪游</a>
+                 </li>
+                 <li type="3">
+                     <a href="#" title="">便民服务</a>
+                 </li>
+                 <li type="4">
+                     <a href="#" title="">便民需求</a>
+                 </li>
+                 <li type="5">
+                     <a href="#" title="">征婚</a>
+                 </li>
+                 <li type="6">
+                     <a href="#" title="">找工作</a>
+                 </li>
+                 <li type="7">
+                     <a href="#" title="">招聘</a>
+                 </li>
+                 <li type="8">
+                     <a href="#" title="">农林牧渔</a>
+                 </li>
+                 <li type="9">
+                     <a href="#" title="">众筹爱心</a>
+                 </li>
+                 <li type="10">
+                     <a href="#" title="">本地企业</a>
+                 </li>
+                 <li type="11">
+                     <a href="#" title="">本地特产</a>
+                 </li>
+                 <li type="12">
+                     <a href="#" title="">通知</a>
+                 </li>
+                 <li type="13">
+                     <a href="#" title="">报名</a>
+                 </li>
+                 <li type="14">
+                     <a href="#" title="">反馈</a>
+                 </li>
+                 <li type="15">
+                     <a href="#" title="">求证</a>
+                 </li>
+                 <li type="16">
+                     <a href="#" title="">征求</a>
+                 </li>
+             </ul>
+         </div>
+
+          <div class="tabs">
+              <div id="tab1" class="tab active">
+                  <div class="content-padded">
+                      <div class="searchbar searchbar-textstyle">
+                          <div class="search-input">
+                              <label class="icon icon-search" for="search1" id="icon-search"></label>
+                              <input type="search" id='search1' placeholder='输入关键字...'/>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="datawapper"></div>
+                  <a href="" class="readmonre" style="margin-left: 157px;font-size: 12px">查看更多>></a>
+              </div>
+      </div>
+</div> 
+
+
+<!-- 本地特产 -->
+
+
+</div>
+
+
+
+</div>
+
+
+    <!--本地特产-->
+ <div class="page" id="pageLocalSpeciality">
+        <header class="bar bar-nav">
+            <h1 class="title">本地特产</h1>
+            <a class="icon icon-left pull-left" href="MessageManagement.html"></a>
+            <a class="icon  pull-right button-link" >关联申请</a>
+        </header>
+        <div class="content " >
+            <div class="sjld">
+                <div class="col-33" style="float: left">
+                    <select  name="province"  class="banner-text1 dqxz" id="select_province1" eleType='text' ></select>
+                </div>
+                <div class="col-33" style="float: left">
+                    <select   name="city" class="banner-text1 dqxz" id="select_city1" eleType='text'></select>
+                </div>
+                <div class="col-33" style="float: left">
+                    <select   name="city" class="banner-text1 dqxz" id="select_area1" eleType='text'></select>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+
+            <div class="myadd_localintroduction Introduction_content">
+                <div class="list-block media-list mar-list">
+                    <ul>
+                        <li class="detail-li">
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <form id="uploadForm2" method="post" enctype="multipart/form-data" name="up">
+                                        <div class="fileElem-photo" imgList="pubCarFindPeople_show_img_List" pubImg="pubCarFindPeople_show_img">
+                                        </div>
+                                        <input type="file" class="cert-upload fileInp-opacity filesss1" id="chooseFile2"  multiple accept="image/*"  onchange="doUpload1(this)" value="">
+                                        <div id="pubCarFindPeople_show_img_List" class="fileList" style="width:100%"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="detail-li">
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="row" >
+                                        <div class="col-33">
+                                            <span>请输入地名</span>
+                                        </div>
+                                    </div>
+                                    <div class="row text-row" >
+                                        <div class="item-input">
+                                            <input type="text" id="shuryAdress">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="detail-li">
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="row" >
+                                        <div class="col-33">
+                                            <span>地区介绍</span>
+                                        </div>
+                                    </div>
+                                    <div class="item-input textarea-row">
+                                        <textarea></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-50 quxiao"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+                        <div class="col-50 fasong" ><a href="#" class="button button-big button-fill button-success">发送</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content1">
+
+            </div>
+            <div class="content2"></div>
+        </div>
+ </div>
+
+
+    <!-- 特产添加 -->
+    <div class="page" id="pageSpecialityAdd">
+        <header class="bar bar-nav">
+            <h1 class="title">特产添加</h1>
+            <a class="icon icon-left pull-left" href="#"></a>
+        </header>
+        <div class="content Introduction_content">
+            <div class="list-block media-list mar-list">
+                <ul>
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="row" >
+                                    <div class="col-33">
+                                        <span>特产标题</span>
+                                    </div>
+                                </div>
+                                <div class="row text-row" >
+                                    <div class="item-input">
+                                        <input type="text" class="title1" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="row" >
+                                    <div class="col-50" style="font-size: .7rem;">
+                                        <span>特产副标题(选填)</span>
+                                    </div>
+                                </div>
+                                <div class="row text-row" >
+                                    <div class="item-input">
+                                        <input type="text"  class="etitle">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="row" >
+                                    <div class="col-33">
+                                        <span>特产描述</span>
+                                    </div>
+                                </div>
+                                <div class="item-input textarea-row itemss">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            <div id="pubScenic_c_image"  class="inp-cert">
+                                                <div class="cert-upload"></div>
+                                                <input type="file" class="cert-upload fileInp-opacity filesss"  multiple accept="image/*"  onchange="doUpload2(this)" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-50">
+                                            <textarea id="pubScenic_c_context" eleType="input"  maxlength="100" class="inp-text tianjiatupian col-100" placeholder="请添加图片说明"></textarea>
+                                        </div>
+                                    </div>
+                                    <a href="" id="www"></a>
+                                </div>
+                                <div class="item-content ">
+                                    <div class="item-inner">
+                                        <div class="item-text text-content">
+                                            <div class="row">
+                                                <div class="content-block content-block1">
+                                                    <a href="#" class="button button-fill button-warning" id="additem">+创建图片</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<form id="uploadForm1" method="post" enctype="multipart/form-data" name="up">-->
+                                <!--<input type="file" name="up_file" id="chooseFile1"/>-->
+                                <!--</form>-->
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50 quxiao"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+                    <div class="col-50 fasong" ><a href="#" class="button button-big button-fill button-success">发送</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 本地介绍 -->
+<div class="page" id="pageLocalIntroduction">
+      <header class="bar bar-nav">
+            <h1 class="title">本地介绍</h1>
+            <a class="icon icon-left pull-left" href="#"></a>
+      </header>
+      <div class="content Introduction_content">
+          <div class="sjld1">
+              <div class="col-33" style="float: left">
+                  <select  name="province"  class="banner-text1 dqxz" id="select_province2" eleType='text' ></select>
+              </div>
+              <div class="col-33" style="float: left">
+                  <select   name="city" class="banner-text1 dqxz" id="select_city2" eleType='text'></select>
+              </div>
+              <div class="col-33" style="float: left">
+                  <select   name="city" class="banner-text1 dqxz" id="select_area2" eleType='text'></select>
+              </div>
+          </div>
+          <div style="clear: both"></div>
+
+      </div>
+    <div id="MyMap" style="display:none"></div>
+</div>
+
+<!-- 申请添加 -->
+<div class="page" id="pageApplyAdd">
+    <header class="bar bar-nav">
+        <h1 class="title">申请添加</h1>
+        <a class="icon icon-left pull-left back" href="#"></a>
+    </header>
+    <div class="content shenqinglist_content">
+
+    </div>
+</div>
+<div id="sjld">
+    <div class="row ">
+        <div class="col-33">
+            <select  name="province"  class="banner-text1 dqxz" id="select_province" eleType='text' ></select>
+        </div>
+        <div class="col-33">
+            <select   name="city" class="banner-text1 dqxz" id="select_city" eleType='text'></select>
+        </div>
+        <div class="col-33">
+            <select   name="city" class="banner-text1 dqxz" id="select_area" eleType='text' ></select>
+        </div>
+    </div>
+    <a href="" id="sjldClose" >确定</a>
+</div>
+
+
+
+
+    <script type='text/javascript' src='js/zepto.js' ></script>
+    <script src="js/address.js"></script>
+    <script src="js/position.js"></script>
+
+    <script type="text/javascript" src="js/MessageManagement.js"></script>
+   <script type='text/javascript' src='js/select-district.js'></script>
+    <script>
+        region_init("select_province","select_city","select_area");
+        region_init("select_province1","select_city1","select_area1");
+        region_init("select_province2","select_city2","select_area2");
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+		body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+		#allmap{height:1000px;width:100%;}
+		#r-result{width:100%; font-size:14px;}
+
+
+ul {
+  list-style:none;
+}
+.bar .button-link{
+	color: #f96f0c;
+	padding: 0 .5rem;
+}
+.select_block .position_select .row{
+	 position: fixed;
+	color:#f96f0c;
+	background-color: #fff;
+	width: 100%;
+	margin-left: 0;
+    border-bottom: 1px solid #999;
+    border-top:1px solid #999;
+    font-size: .7rem;
+    text-align: center;
+    padding: .5rem;
+    z-index: 999;
+   
+}
+.select_block .position_select .row .col-33{
+	width: 29%;
+	border-right: 1px solid #999;
+}
+.select_block  .position_select .row .col-33:last-child{
+	border-right: none;
+}
+.select_block .button_select .row button{
+	position: fixed;
+	z-index: 999;
+	width: 40%;
+	height: 1.5rem;
+	bottom:5rem;
+	right: .5rem;
+	background-color: #800000;
+	color: #fff;
+	font-size: .8rem;
+	border-radius: .3rem;
+}
+
+
+.select_block  .textarea_select .row{
+z-index: 999;
+position: fixed;
+bottom: 2em;
+width: 95%;
+height:2.8rem;
+border-radius: .2rem;
+margin:0 .5rem;
+border: 1px solid #999;
+}
+.select_block  .textarea_select .row textarea{
+	width: 100%;
+	background-color: #fff;
+}
+.textarea_text{
+	font-size: .75rem;
+	padding-top: .3rem;
+	padding-left: 1rem;
+}

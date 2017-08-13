@@ -1,0 +1,154 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/mycollection.css">
+
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+
+  </head>
+<body>
+ <!--我的发布-->
+ <div class="page-group">
+   <div class="page page-current" id="pageIndex">  
+       <header class="bar bar-nav">
+          <h1 class="title">我的收藏</h1> 
+          <a class="icon icon-left pull-left " href="../service/Center.html" external></a>
+          <a class="button button-link button-nav pull-right" href="#" id="clearall" data-transition="slide-out">
+             <span class="icon pull-right"></span>
+             清空
+             </a>
+
+       </header>
+      <div class="content">
+           <div class="tab_title">
+              <input type="hidden" id="type" eleType="input" >
+   
+              <ul>
+
+                  <li class="selected">
+                      <a href="#" title="1">景区</a>
+                  </li>
+                  <li>
+                      <a href="#" title="2">陪游</a>
+
+                  </li>
+                  <li>
+                      <a href="#" title="3">便民服务</a>
+                  </li>
+                  <li>
+                      <a href="#" title="4">便民需求</a>
+                  </li>
+                  <li>
+                      <a href="#" title="5">征婚</a>
+                  </li>
+                  <li>
+                      <a href="#" title="6">找工作</a>
+                  </li>
+                  <li>
+                      <a href="#" title="7">招聘</a>
+                  </li>
+                  
+                  <li>
+                      <a href="#" title="8">农林渔牧</a>
+                  </li>
+                  <li>
+                      <a href="#" title="9">众筹爱心</a>
+                  </li>
+                  <li>
+                      <a href="#" title="10">本地企业</a>
+                  </li>
+                   <li>
+                      <a href="#" title="11">本地特产</a>
+                  </li>
+                   <li>
+                      <a href="" title="12">通知</a>
+                  </li>
+                   <li>
+                      <a href="" title="13">报名</a>
+                  </li>
+                   <li>
+                      <a href="" title="14">反馈</a>
+                  </li>
+                   <li>
+                      <a href="" title="15">求证</a>
+                  </li>
+                   <li>
+                      <a href="" title="16">征求</a>
+                  </li>
+              </ul>
+           </div>
+
+  <div class="list-block media-list list-block1 mobanlist  infinite-scroll " data-distance="100">
+    <ul >
+     
+         <div id="jingquList"  title="1"></div>
+         <div id="peiyouList"  title="2"></div>
+         <div id="bianminfuwuList"  title="3"></div>
+         <div id="bianminxuqiuList"  title="4"></div>
+    
+         <div id="zhenghuiList"  title="5"></div>
+         <div id="zhaogongzuoList"  title="6"></div>
+         <div id="zhaopingList"  title="7"></div>
+         <div id="nonginyumuList"  title="8"></div>
+         <div id="aixinList"  title="9"></div>
+        
+         <div id="bendiqiyeList"  title="10"></div>
+         <div id="benditecanList"  title="11"></div>
+         <div id="tongzhiList"  title="12"></div>
+         <div id="baominList"  title="13"></div>
+         <div id="fanguiList"  title="14"></div>
+         <div id="qiuzhengList"  title="15"></div>
+         <div id="zhengqiuList"  title="16"></div>
+          <input type="hidden" id="rent_pageNum" eleType="input" value="1">
+         <input type="hidden" id="rent_pageSize" eleType="input" value="10">
+         <div class="infinite-scroll-preloader">
+            <!-- <div class="preloader"></div> -->
+         </div>
+    </ul>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+    <script type='text/javascript' src='js/zepto.js' ></script>
+ 
+    <script type='text/javascript' src='js/sm.min.js' ></script>
+      <script src="js/Common.js"></script>
+    <script type="text/javascript" src="js/mycollection.js"></script>
+     <script type="text/javascript" src="js/juicer.js"></script>
+
+  <script>
+
+
+
+
+
+
+
+$(document).on('click','.confirm-ok', function () {
+      $.confirm('您确定要删除改信息吗?', function () {
+          $.alert('删除成功!');
+      });
+  });
+
+
+
+
+
+
+
+  </script>
+  </body>
+</html>

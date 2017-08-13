@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/Speciality.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+<script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+   </head>
+<body>
+<div class="page-group">
+    
+      <!--主界面-->
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav">
+            <h1 class="title">本地特产</h1>
+            <a class="icon icon-left pull-left external" onclick="fanhui()"></a>
+             <a class="icon icon-share pull-right alert-text" ></a>
+        </header>
+      <div class="content" > 
+
+        <input type="hidden" id="localmessageDetail_id" eleType='input'/>
+        <div class="swiper-container shouyeswiper-container" data-space-between='10'>
+                
+    <!--       <div class="banner-text banner-top"><span id="cityPos" ><a style="color:#fff;"  class="open-popup" data-popup=".popup-about">地区</a><img src="images/tong_banner_dw.png" height="14" style="margin:2px 0 0 5px; vertical-align:center;"></span></div> -->
+
+             <div class="banner-text banner-top">
+                      <div class="row ">  
+                              <div class="col-33">
+                                <select  name="province"  class="banner-text1" id="select_province" eleType='text'></select>
+                                  
+                               </div>  
+                                 <div class="col-33">
+                                 <select   name="city"  class="banner-text1" id="select_city" eleType='text'></select>
+                              </div> 
+                               <div class="col-33">
+                                 <select   name="street" class="banner-text1"  id="select_area" eleType='text'></select>
+                              </div> 
+                       </div>
+                </div>
+
+              <div class="swiper-wrapper" id="Speciality_img_List">
+
+              </div>
+
+              <div class="swiper-pagination"></div>
+         </div> 
+
+         
+         <div class="content-padded">
+      
+                 <p id="localmessageDetail_introduce" eleType='input'></p> 
+                 <div class="swiper-wrapper" id="localmessageDetail_main_img_List" ></div> 
+               <div class="" id="localmessageDetail_name" eleType='input'> </div>
+           <div class="look_more" onclick="zhan_kai()">
+                   展开全部   
+            </div>
+                <div class="look_more1" onclick="zhan_kai1()">
+                   收起   
+            </div>
+          </div>
+          <div class="content-block_content">
+            <p><a href="#" class="button ">本地特产</a></p>
+          </div>
+          <input type="hidden" id="Findchang_id">
+<!--           <div class="search">
+             <input class="search_text" placeholder="通过店铺名/用户名/关键词搜索内容" id="searchname" eleType="text"/>
+             <div class="search_img" id="search_chang"><img src="images/tong_btn_search.png" /></div>
+              <div class="clear"></div>
+          </div> -->
+         <div class="searchbar">
+          <a class="searchbar-cancel" id="search_chang">搜索</a>
+          <div class="search-input s_border">
+            <label class="icon icon-search ouye" for="search"></label>
+            <input type="search" id="searchname" eleType="text"  placeholder='通过店铺名/用户名/关键词搜索内容'/>
+          </div>
+        </div>
+         
+         <input type="hidden" id="local_id" eleType='text'/>
+         <input type="hidden" id="mpid" />
+         <section class="m_like">
+          <div class="infinite-scroll infinite-scroll-bottom" data-distance="100" id="productpage">
+                  <ul class="list" id="querychanpinList" style="text-align:center">
+         <!--               <li>
+                          <a class="cont" href="#pageSpecialityDetail">
+                              <img src="images/nrg.png">
+                              <p>蓝旗牛肉蓝旗牛肉蓝旗牛肉正蓝旗牛肉干正蓝旗牛肉干正蓝旗牛肉干</p>
+                              
+                          </a>
+                      </li> -->
+                   </ul>
+                 <input type="hidden" id="product_pageNum" value="1" />
+                 <input type="hidden" id="product_pageSize" value="10" />
+            <!-- 加载提示符 -->
+            <div class="infinite-scroll-preloader">
+              <div class="preloader"></div>
+            </div>
+        </div>
+          </section>
+    </div>
+
+</div> 
+
+
+
+<!-- 特产查看-->
+<div class="page" id="pageSpecialityDetail">
+      <header class="bar bar-nav">
+            <h1 class="title">特产详情</h1>
+            <a class="icon icon-left pull-left" onclick="self.location=document.referrer;"></a>
+            <a class="icon icon-share pull-right"></a>
+      </header>
+     <div class="content"> 
+     <input type="hidden" id="pageSpecialityDetail_id">
+     <input type="hidden" id="pageSpecialityDetail_local_id">
+         <div class="title_content">
+                        <h3 id="pageSpecialityDetail_title"></h3>
+                        <h5 id="pageSpecialityDetail_etitle"></h5>
+                        <div class="icon-sel start-size start-fill scstart-line scdiv" onclick="collectItem(this,'pageSpecialityDetail_id',11)"></div>
+                        <!-- <img src="images/tong_btn_sc_n.png"> -->
+                </div>
+                <div class="jszc_content">
+                       <p class="p_images" id="EnterprisexinwenDetail_imgs"></p>
+  
+                </div>
+               
+                <div class="row product-row">
+                    <div class="col-75">
+                        本地特产商品
+                    </div>
+                    <div class="col-25">
+                            <a href="#"><span class="button" id="apply">申请添加</span></a>
+                    </div>
+                    
+                </div>
+                 <div class="queding"  style="display:none"><p class="red">暂不能使用</p>您不是地区商家/或您未开通商家店<br/>铺功能
+                      <p class="queding_btn">确定<p>
+                    </div>
+                <div class="black_overlay fade"></div> 
+                <input type="hidden" id="product_id_huo">
+                <input type="hidden" id="mp"/>
+                <section class="m_like">
+                  <div class="infinite-scroll infinite-scroll-bottom" data-distance="100" id="xiapage">
+                        <ul class="list" id="addList">
+                        <!--   <li>
+                                <a class="cont" href="#">
+                                    <img src="images/nrg.png">
+                                    <p>蓝旗牛肉蓝旗牛肉蓝旗牛肉正蓝旗牛肉干正蓝旗牛肉干正蓝旗牛肉干</p>
+                                    
+                                </a>
+                            </li> -->
+       
+                         </ul>
+                  <input type="hidden" id="xia_pageNum" value="1" />
+                  <input type="hidden" id="xia_pageSize" value="10" />
+            <!-- 加载提示符 -->
+            <div class="infinite-scroll-preloader">
+              <div class="preloader"></div>
+            </div>
+             </div>
+                </section>
+
+     </div>
+</div> 
+
+<!-- 申请添加 -->
+<div class="page " id="pageApplicationAdd">
+      <header class="bar bar-nav">
+            <h1 class="title" >申请添加</h1>
+            <a class="icon icon-left pull-left back" href="#"></a>
+      </header>
+      <div class="content">
+          <input type="hidden" id="product_id_qu" eleType="input"/>
+          <input type="hidden" id="ids" eleType="input"/>         
+           <div class="list-block media-list list_add">
+          <div class="infinite-scroll infinite-scroll-bottom" data-distance="100" id="addpage">
+                <ul id="applyaddList">
+       <!--         <li><a href="#" class="item-link item-content">
+                    <div class="item-media"><img src="images/u103.png" style="width: 4rem;"></div>
+                    <div class="item-inner">
+                    <div class="item-title-row">
+                     <div class="item-title">商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品</div>
+                    </div>
+                    <div class="item-subtitle">¥999999.99</div>
+                    <div class="item-text">库存：265999</div> 
+                    </div>
+                    </a>
+                     <div class="ab_top">
+                    <input type="checkbox" name="choice" onclick="checkbox()"/>
+                    </div>
+                  </li> -->
+       
+
+                 </ul>
+                  <input type="hidden" id="add_pageNum" value="1" />
+                  <input type="hidden" id="add_pageSize" value="10" />
+            <!-- 加载提示符 -->
+            <div class="infinite-scroll-preloader">
+              <div class="preloader"></div>
+            </div>
+             </div>
+                      <!--<div class="content-block">-->
+                          <!--<div class="row finish">-->
+                              <!--<div class="col-66" ><a href="#" id="finish" class="button button-big button-fill button-success alert-text">完成</a></div>-->
+                         <!--</div>-->
+                    <!--</div> -->
+               <nav class="bar bar-tab bar-style bar-finish">
+                   <a class="tab-item  alert-text" href="#" id="finish">
+                       <span class="finish_style">完成</span>
+                   </a>
+               </nav>
+                    <div id="queding" style="display:none">选择完成将发送到区域站长审核<br/>请耐心等待
+                      <p id="queding_btn">确定<p>
+                    </div>
+                <div class="black_overlay fade"></div> 
+          </div>
+      </div>
+</div> 
+
+
+
+<!-- 展示管理 -->
+<div class="page " id="pageDisplayManagement">
+      <header class="bar bar-nav">
+            <h1 class="title">展示管理</h1>
+            <a class="icon icon-left pull-left back" href="#"></a>
+            <a class="button button-link button-nav pull-right" id="fabutuchang" href="#" data-transition='slide-out'>
+           <span class="icon pull-right" ></span>
+             发布
+           </a>
+      </header>
+      <div class="content">
+
+          <div class="infinite-scroll infinite-scroll-bottom" data-distance="100" id="myshenpage">
+           <div class="list-block media-list list_add">
+                <ul id="myapplyaddList">
+                <!--    <li>
+                        <div class="row status_row">
+                                <div class="col-75">
+                                    2016-03-18 15:30
+                                </div>
+                                <div class="col-20 putting">
+                                    投放中
+                                </div>
+                                 <div class="col-20 audit refuse">
+                                    拒绝
+                                </div>
+                                  <div class="col-20 audit">
+                                    审核中
+                                </div>
+                      </div>
+                        <a href="#" class="item-link item-content">
+
+                            <div class="item-media"><img src="images/u103.png" style='width: 4rem;'></div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品</div>
+
+                                    
+                                </div>
+                                <div class="item-subtitle">¥999999.99</div>
+                                <div class="item-after pull-right">
+                                         <span class="button button-danger confirm-ok" >删除</span>
+                                </div>
+                                <div class="item-text">库存：265999</div>
+
+                            </div>
+                        </a>
+                    </li> -->
+                </ul>
+             <input type="hidden" id="myshen_pageNum" value="1" />
+             <input type="hidden" id="myshen_pageSize" value="10" />
+            <!-- 加载提示符 -->
+            <div class="infinite-scroll-preloader">
+              <div class="preloader"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+           <div id="MyMap" style='width:100%; height:100%;display:none'></div>
+</div> 
+
+
+
+
+</div>
+    <script type='text/javascript' src='js/zepto.js' ></script>
+ 
+    <script src="js/Common.js"></script>
+    <script type='text/javascript' src='js/address1.js'></script>
+    <script type="text/javascript" src="js/juicer.js"></script>
+    <script type='text/javascript' src='js/sm.min.js' ></script>
+    <script type='text/javascript' src='js/sm-extend.min.js'></script>
+    <script type='text/javascript' src='js/Speciality.js'></script>
+   <script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script>
+        <script>
+  //下拉城市
+     function GetQueryString(name) {
+         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if (r != null)return unescape(decodeURI(r[2]));
+         return null;
+     }
+
+  function get(_region_p_default,_region_c_default,_region_d_default){
+      region_init("select_province","select_city","select_area",_region_p_default,_region_c_default,_region_d_default);
+      $("#sheng").val(_region_p_default)
+      $("#shi").val(_region_c_default)
+      $("#qu").val(_region_d_default)
+  }
+
+     if($.device.os=="android"){
+         var province1  = GetQueryString("province");
+         var city1  = GetQueryString("city");
+         var district1  = GetQueryString("district");
+          _cityPosdata(province1,city1,district1);
+
+     }else if($.device.os=="ios"){
+    region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+         $("#sheng").val(getCookie("p_id"))
+         $("#shi").val(getCookie("c_id"))
+         $("#qu").val(getCookie("d_id"))
+     }
+   
+
+  </script>
+  
+
+  <script>
+
+      $(function() {
+          "use strict";
+var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+        offset: new BMap.Size(0, 0),
+        imageOffset: new BMap.Size(0, 0)
+    });
+    var pt = new BMap.Point();
+
+    var geolocation = new BMap.Geolocation();
+    var geoc = new BMap.Geocoder();
+
+geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            pt = r.point;
+
+            geoc.getLocation(pt, function(rs){
+                var addComp = rs.addressComponents;
+                console.info(pt);
+
+                // console.info(addComp.province + ", " + addComp.city);
+                // _cityPosdata(addComp.province,addComp.city);
+              console.info(addComp.province + ", " + addComp.city+ ", " + addComp.district);
+
+
+                var address = addComp.street + addComp.streetNumber;
+                var xw = parseFloat(pt.lat).toFixed(6);
+                var yj = parseFloat(pt.lng).toFixed(6);
+                $('#pubZPeopleService_location_x').val(xw);
+                $('#pubZPeopleService_location_y').val(yj);
+                $('#pubZPeopleNeed_location_x').val(xw);
+                $('#pubZPeopleNeed_location_y').val(yj);
+                $('#peopleServiceDetail_location_x').val(xw);
+                $('#peopleServiceDetail_location_y').val(yj);
+            });
+           
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }
+    },{enableHighAccuracy: true});
+
+      });
+
+
+      </script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+     <link rel="stylesheet" href="css/Login.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <script>
+        console.log(111)
+    </script>
+  </head>
+<body>
+   <div class="page-group">
+   	<!--登录页面-->
+   	  <div class="page page-current" id="pageIndex">
+          <div class="linear">
+      	   <div class="content">
+      		     <div class='logo'>
+      		  	     <img src="images/logo.png" />
+      		  	</div>
+           <div class="">
+          			<ul>
+          		         <li class="">
+                               <div class="row">
+                                 <div class="col-100">
+                                   <input eleType="input" class="inp-text back_border" type="number" id="tel" placeholder="手机号">
+                                 </div>
+                                </div>
+                          </li>
+
+                         <li class="">
+                               <div class="row">
+                                 <div class="col-100">
+                                  <input eleType="input" class="inp-text back_border" type="password" id="password" placeholder="密码">
+                                 </div>
+                                </div>
+                          </li>
+                                      
+          			</ul>
+		      </div>
+
+      		   <div class="choose_tab">
+      		   	 <ul>
+      		   	 	<a href="#" class="open-popup" data-popup=".popup-about"><li>忘记密码</li></a>
+      		   	 </ul> 	
+      		   </div>
+             <br />
+      		   <div class="zhu_btn" id="hu_complete1">
+      		   	登录
+      		   </div>
+      		   <div class="bar bar-footer-secondary">
+                   <p>copyright ©易速网络 2014-2016</p>
+              </div>
+        </div>
+     </div>
+</div>
+
+   <!--忘记密码页面-->
+
+   <div class="page popup popup-about" id="pageIn" >
+    <header class="bar bar-nav orange">
+     <a  class="icon icon-left pull-left close-popup" href=""></a>
+          </header> 
+      <div class="linear">
+           <div class="content">
+               <div class='logo'>
+               <img src="images/logo.png" />
+              </div>
+              <div class="">
+                <ul>
+                       <li class="">
+                               <div class="row">
+                                 <div class="col-100">
+                                   <input eleType="input" class="inp-text back_border" type="number" placeholder="手机号" id="telephone">
+                                 </div>
+                                </div>
+                          </li>
+                         <li class="">
+                               <div class="row" style="position:relative">
+                                   <div class="col-30 blue" id="ps30" style="z-index: 999;position:absolute" onclick="getCode(this)">
+                                       获取验证码
+                                   </div>
+                                    <div class="col-30 blue" id="J_resetCode" style="z-index: 999;position:absolute;display:none;"><span id="J_second">60</span>秒后重发</div>
+                                   <div class="col-80">
+                                   <input eleType="input" class="inp-text back_border1" type="number" placeholder="验证码" id="code">
+                                     </div>
+
+                                </div>
+                          </li>
+                         <li class="">
+                               <div class="row">
+                                 <div class="col-100">
+                                  <input eleType="input" class="inp-text back_border" type="password" placeholder="设置密码" id="password_1">
+                                 </div>
+                                </div>
+                          </li>
+                            <li class="">
+                               <div class="row">
+                                 <div class="col-100">
+                                  <input eleType="input" class="inp-text back_border" type="password" placeholder="再次输入密码" id="password_2">
+                                 </div>
+                                </div>
+                          </li>                             
+                     </ul>
+               </div>
+
+               <div class="zhu_btn " id="zhu_complete">
+                完成
+               </div>
+               <div class="bar bar-footer-secondary">
+                   <p>copyright ©易速网络 2014-2016</p>
+              </div>
+
+           </div>
+       </div>
+
+ </div> 
+
+   <!--修改密码页面-->
+      <div class="" id="" >
+     <header class="bar bar-nav orange">
+     <a  class="icon icon-left pull-left" href="#"></a>
+          </header> 
+      <div class="linear">
+      	   <div class="content">
+		     <div class='logo'>
+		  	 <img src="images/logo.png" />
+		  	</div>
+           <div class="">
+			<ul>
+		         <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                         <input eleType="input" class="inp-text back_border" type="password" placeholder="旧密码">
+                       </div>
+                      </div>
+                </li>
+
+               <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                        <input eleType="input" class="inp-text back_border" type="password" placeholder="新密码">
+                       </div>
+                      </div>
+                </li>
+                  <li class="">
+                     <div class="row">
+                       <div class="col-100">
+                        <input eleType="input" class="inp-text back_border" type="password" placeholder="确认新密码">
+                       </div>
+                      </div>
+                </li>                             
+			</ul>
+		   </div>
+
+		  <div class="zhu_btn">
+		   	确认
+		   </div>
+
+		   <div class="zhu_btn1">
+		   	取消
+		   </div>
+
+
+
+
+           </div>
+     </div>
+
+    </div> 
+<!--修改密码页面-->
+
+  </div>   
+<script type='text/javascript' src='js/zepto.js' ></script> 
+<script type='text/javascript' src='js/sm.min.js' ></script>
+<script type='text/javascript' src='js/sm-extend.min.js'></script>
+<script type='text/javascript' src='js/Login.js'></script>
+
+<script>
++ function($) {
+
+$(document).on("pageInit", function(e, pageId, $page) {
+    // console.info("addadada");
+  });
+$.init()
+  }(Zepto);
+
+
+  $(document).on('click','.open-services', function () {
+  $.popup('.popup-services');
+});
+  
+
+</script>
+ </body>
+
+</html>

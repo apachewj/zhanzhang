@@ -1,0 +1,125 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+    font-size:.7em;
+
+}
+
+ul {
+  list-style:none;
+}
+img {
+  border:none;
+}
+a:link,a:visited, a:hover,a:active{
+  color:#000;
+  text-decoration:none;
+}
+.du{color:#0894ec}
+.clear{clear:both;}
+.page{
+  background-color: #fafafa;
+}
+.bar_color{
+  background-color:#f96f0c;
+          }
+         .bar_color .icon-left,.bar_color .button,.bar_color .title{
+          color: #fff;
+
+          }
+          .bar_color .button-nav.pull-right {
+          margin-right:0rem;
+          }
+.tab-item img{
+  width: 100%;
+}
+.bar .home-icon img{
+  width:1.5rem;
+}
+.tongji-padded a{
+  display: block;
+   text-align: center;
+   color: #f96f0c;
+
+}
+.capital_listblock{
+  margin-top: 0;
+}
+.shijian_row{
+  margin-left: 0;
+  color: #999;
+  font-size: .65rem;
+}
+
+ .list_row .mess-col{
+   color: #000;
+   font-size: .7rem;
+}
+.list_row .price_col{
+  color: #c00;
+  text-align: right;
+  font-size: .85rem;
+}
+.content-block .tixian_row {
+  width: 80%;
+  margin:0 auto;
+}
+.content-block .tixian_row .tixian{
+    background-color: #f96f0c;
+}
+.content-block .note_row{
+  font-size: .65rem;
+ margin-left: 0;
+  text-align: center;
+}
+
+
+
+
+/*账单*/
+.buttons-row_content{
+        width: 100%;
+        margin:.5rem auto 0;
+        padding: 0 .5rem .5rem .5rem;
+        border-bottom: 1px solid #999;
+}
+.buttons-row_content .button {
+    border-radius: 0;
+    background:#e4e4e4;
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    border-color: #d1d1d1;
+    color: #7c7c7c;
+    text-decoration: none;
+}
+.buttons-row_content .button.active {
+    background-color: #f96f0c;
+    color: #fff;
+    z-index: 90;
+}
+/*广告收入（总）*/
+.guanggao-listblock{
+  margin-top: 0;
+}
+
+
+/*提现记录*/
+
+
+.tixian-listblock{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.tixian-listblock .item-inner{
+  border-bottom: 1px solid #999;
+}
+.time-col{
+  color: #999;
+  font-size: .7rem;
+}
+

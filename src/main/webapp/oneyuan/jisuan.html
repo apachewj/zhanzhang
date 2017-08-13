@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>一元购</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/one_homepage.css"> 
+
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+
+
+    </head>
+   <body>
+    <div class="page page-current" id="">
+      <header class="bar bar-nav">
+             <h1 class="title">计算结果</h1>
+             <a class="icon icon-left pull-left external" href="goodsdetails_jiang.html"></a>
+             <a class="button button-link button-nav pull-right" href="guangchang.html"  >
+          <img src="images/btn_shaidan.png">
+            
+             </a>
+      </header> 
+      <div class="content"> 
+       <div class="dao_time2">
+        <b>计算公式</b><br />
+        <span>[(数值A+数值B)/商品所需人次]取余款+10000001</span>
+       </div>
+        
+        <div class="list-block media-list ">
+           <ul>
+            <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-inner">
+          <div class="item-subtitle">数值A</div>
+          <div class="item-subtitle">=截止该商品最后夺宝时间最后50条全站参与记录</div>
+          <div class="item-title-row">
+          <div class="item-subtitle">=<b1>132213</b1></div>
+            <div class="item-subtitle"><span id="zhen_text">展开↓</span></div>
+          </div>
+          </div>
+ 
+            </a>
+          <div class="kai" >
+            <div class="kai_line">
+            <div class="kai_time">抢购时间</div>
+            <div class="kai_user">用户账号</div>
+            <div class="clear"></div>
+            </div>
+           
+            <div class="kai_line">
+            <div class="kai_time">2016-07-23 15:23:34.345<span> → 123312312</span> </div> 
+            <div class="kai_user">留几件</div>
+            <div class="clear"></div>
+            </div>
+
+           <div class="kai_line">
+            <div class="kai_time">2016-07-23 15:23:34.345<span> → 123312312</span> </div> 
+            <div class="kai_user">留几件</div>
+            <div class="clear"></div>
+            </div>
+                  <div class="kai_line">
+            <div class="kai_time">2016-07-23 15:23:34.345<span> → 123312312</span> </div> 
+            <div class="kai_user">留几件</div>
+            <div class="clear"></div>
+            </div>
+          </div>
+          </li>
+
+           <li>
+        <a href="#" class="item-link item-content">
+          <div class="item-inner">
+          <div class="item-subtitle">数值B</div>
+          <div class="item-subtitle">=最近一期中国福利彩票“老时时彩”的揭晓结果</div>
+          <div class="item-subtitle">=<b1>132213</b1></div>
+
+          </div>
+ 
+            </a>
+          </li>
+        </ul>
+      </div>
+
+        <div class="dao_time1">
+          <span>幸运码</span><br />
+           <b>10000232</b>
+        </div>
+      </div>
+   </div>
+
+
+<script type="text/javascript">
+$(function(){
+
+     $("#zhen_text").click(function() {
+      if($(".kai").is(":visible")){
+      $(".kai").hide();
+      $(this).text("展开↓");
+    }else{
+      $(".kai").show();
+      $(this).text("收起↑");
+          
+    }
+    return false;
+   });
+
+});
+</script>
+
+</body>
+</html>

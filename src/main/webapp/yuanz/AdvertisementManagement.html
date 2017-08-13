@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/AdvertisementManagement.css">
+   <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/adminMask.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <style>
+        .selected{border-bottom: 2px solid #f60}
+        .active1{display: block}
+
+    </style>
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+    <script type="text/tpl" id="tpl">
+        <% for(var i=0;i<list.length;i++){%>
+                 <div class="card" data="<%= list[i].id%>">
+                        <div  class="card-header no-padding" >
+                            <img class='card-cover' src="<%=list[i].img%>" alt="">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-content-inner card-content-innerlist">
+                                <div class="row" >
+                                    <div class="col-33">
+                                        申请人昵称：
+                                    </div>
+                                    <div class="col-40">
+                                        <%= list[i].nickname%>
+                                    </div>
+                                    <div class="col-20">
+                                        <a class="button button-link button-nav pull-right" href="UserList.html?name=<%= list[i].nickname%>" data-transition='slide-out'>
+                                            查看用户
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                    <div class="col-33">
+                                        提交时间：
+                                    </div>
+                                    <div class="col-50">
+                                        <%= list[i].create_time%>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                    <div class="col-33">
+                                        投放时间：
+                                    </div>
+                                    <% for(var j=0;j<list[i].days.length;j++){%>
+                                    <% if(j>3){ %>
+                                    <div class="col-10 adNone" style="display:none">
+                                        <a class="button pull-right" >
+                                            <%= list[i].days[j].day%>
+                                        </a>
+                                    </div>
+                                    <%}else{%>
+                                     <div class="col-10">
+                                        <a class="button pull-right" >
+                                            <%= list[i].days[j].day%>
+                                        </a>
+                                    </div>
+                                    <%}
+                                    }%>
+                                    <div class="col-10">
+                                        <a class="button button_more pull-right" >
+                                            更多
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="card-footer buttons-row">
+                                <a href="#" class="button delete">删除</a>
+                           </div>
+
+                   </div>
+
+            <%}%>
+
+    </script>
+    <script type="text/tpl" id="tpl2">
+        <% for(var i=0;i<list.length;i++){%>
+             <div class="card" data="<%= list[i].id%>">
+                          <div  class="card-header no-padding">
+                              <img class='card-cover' src="<%= list[i].img%>" alt="">
+                          </div>
+                          <div class="card-content">
+                              <div class="card-content-inner card-content-innerlist">
+                                   <div class="row" >
+                                        <div class="col-33">
+                                             申请人昵称：
+                                        </div>
+                                        <div class="col-40">
+                                            <%= list[i].nickname%>
+                                        </div>
+                                        <div class="col-20">
+                                            <a class="button button-link button-nav pull-right" href="UserList.html?name=<%= list[i].nickname%>" data-transition='slide-out'>
+                                                 查看用户
+                                             </a>
+                                        </div>
+                                    </div>
+                                    <div class="row" >
+                                        <div class="col-33">
+                                             提交时间：
+                                        </div>
+                                        <div class="col-50">
+                                             <%= list[i].create_time%>
+                                        </div>
+                                    </div>
+                                    <div class="row" >
+                                        <div class="col-33">
+                                             投放时间：
+                                        </div>
+                                         <% for(var j=0;j<list[i].days.length;j++){%>
+                                    <% if(j>3){ %>
+                                    <div class="col-10 adNone" style="display:none">
+                                        <a class="button pull-right" >
+                                            <%= list[i].days[j].day%>
+                                        </a>
+                                    </div>
+                                    <%}else{%>
+                                     <div class="col-10">
+                                        <a class="button pull-right" >
+                                            <%= list[i].days[j].day%>
+                                        </a>
+                                    </div>
+                                    <%}
+                                    }%>
+                                        <div class="col-10">
+                                             <a class="button button_more pull-right" >
+                                               更多
+                                             </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                          </div>
+                            <div class="card-footer buttons-row">
+                            <a href="#" class="button delete">删除</a>
+                            <a href="#" class="button success">通过审核</a>
+                        </div>
+                     </div>
+        <%}%>
+
+    </script>
+    <script type="text/tpl" id="tpl3">
+         <div class="list-block media-list mar-list ">
+         <% for(var i=0;i<list.length;i++){%>
+          <%if(list[i].type==1){%>
+                <ul data-id="<%= list[i].id%>">
+                    <li class="detail-li" type="1">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第一屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                            <input type="text" value="<%= list[i].first%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" type="2">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第二屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                            <input type="text" value="<%= list[i].second%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" type="3">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第三屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                            <input type="text" value="<%= list[i].third%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" type="4">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第四屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                           <input type="text" value="<%= list[i].fourth%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li special_li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+                                         <button class="button pull-right special_li_add">
+                                                添加
+                                           </button>
+                                     <div class="special_li_title">特殊日期价格</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+               </ul>
+               <%}%>
+
+                <%if(list[i].type==2){%>
+               <ul data-id="<%= list[i].id%>">
+                    <li class="detail-li data_li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-50">
+                                            <a class="button  pull-left">
+                                            <%= list[i].startday.split(" ")[0]%>-<%= list[i].endday.split(" ")[0]%>
+                                            </a>
+                                        </div>
+                                        <div class="col-50">
+                                             <a class="button  pull-right adDelete1">
+                                                删除
+                                             </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" type="1">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第一屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                           <input type="text" value="<%= list[i].first%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" type="2">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第二屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                            <input type="text" value="<%= list[i].second%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" type="3">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第三屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                            <input type="text" value="<%= list[i].third%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" type="4">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text">
+
+                                    <div class="row">
+                                        <div class="col-25">
+                                            第四屏
+                                        </div>
+                                        <div class="col-60 price_col">
+                                            <input type="text" value="<%= list[i].fourth%>"  style="border:none;height:14px;width: 55.99999999999999%;
+color: #c00;    box-sizing: border-box;
+    float: left;    font-size:0.75rem;padding:0;text-indent:0" />
+                                        </div>
+                                        <div class="col-15">
+                                             <a class="button  pull-right modify">
+                                                修改
+                                             </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                 </ul>
+                 <%}%>
+                 <%}%>
+            </div>
+    </script>
+    <script type="text/tpl" id="tpl4">
+              <div class="title_content">
+                        <h3><%= list.title%></h3>
+                        <h5><%= list.create_time%></h5>
+
+                        <img src="<%= list.img%>">
+                </div>
+                <div class="jszc_content">
+                          <p><a href="#" class="button button-round"><%= list.nickname%></a></p>
+                          <% for(var i=0;i<list.imgcontext.length;i++){%>
+
+                          <p><img src="<%= list.img[i] %>" height="150px;"></p>
+                          <p class="p_words"><%= list.imgcontext[i]%></p>
+                          <%}%>
+                </div>
+    </script>
+  </head>
+<body>
+<div class="page-group">
+    
+      <!--主界面-->
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav bar_color">
+             <h1 class="title">广告管理</h1>
+             <a class="icon home-icon pull-left external" href="WebmasterHomepage.html">
+               <img src="images/dhl_btn_home.png">
+             </a>
+             <a class="button button-link button-nav pull-right" id="priceExcel" href="#pagePriceList" data-transition='slide-out'>
+             <span class="icon pull-right"></span>
+             价位表
+             </a>
+      </header>
+    <nav class="bar bar-tab">
+        <a class="tab-item external active" href="AdvertisementManagement.html" id="ifad">
+                         <span class="icon">
+                             <img src="images/zz_btn_gg_d.png">
+                         </span>
+            <span class="tab-label">广告</span>
+        </a>
+        <a class="tab-item external" href="MessageManagement.html" id="ifmessage">
+                          <span class="icon">
+                              <img src="images/zz_btn_xx_d.png">
+                          </span>
+            <span class="tab-label">讯息</span>
+        </a>
+        <a class="tab-item external" href="AuditReport.html" id="ifreport">
+                          <span class="icon">
+                             <img src="images/zz_btn_shjb_d.png">
+                          </span>
+            <span class="tab-label">审核举报</span>
+        </a>
+        <a class="tab-item external" href="capital.html" id="ifmoney">
+                         <span class="icon">
+                            <img src="images/zz_btn_zj_d.png">
+                         </span>
+            <span class="tab-label">资金</span>
+        </a>
+        <a class="tab-item external" href="SettingManagement.html" id="ifmaster">
+                         <span class="icon">
+                            <img src="images/zz_btn_sz_d.png">
+                         </span>
+            <span class="tab-label">设置</span>
+        </a>
+    </nav>
+      <div class="content" >  
+         <div class="tab_title">
+              <ul>
+                  <li class="selected"  >
+                      <a href="#" title="0">全部</a>
+                  </li>
+                  <li>
+                      <a href="#" title="01" >首页一</a>
+                  </li>
+                  <li>
+                      <a href="#" title="02">首页二</a>
+                  </li>
+                  <li>
+                      <a href="#" title="1">餐饮</a>
+                  </li>
+                  <li>
+                      <a href="#" title="2">住宿</a>
+                  </li>
+                  <li>
+                      <a href="#" title="3">门店</a>
+                  </li>
+                  <li>
+                      <a href="#" title="4">房屋租售</a>
+                  </li>
+                  <li>
+                      <a href="#" title="5">的士顺车</a>
+                  </li>
+                  <li>
+                      <a href="#" title="6">生活助手</a>
+                  </li>
+                  <li>
+                      <a href="#" title="7">便民服务</a>
+                  </li>
+                  <li>
+                      <a href="#" title="8">智能通讯</a>
+                  </li>
+                  <li>
+                      <a href="#" title="9">征婚招聘</a>
+                  </li>
+                  <li>
+                      <a href="#" title="10">二手</a>
+                  </li>
+                  <li>
+                      <a href="#" title="11">便民通知</a>
+                  </li>
+                  <li>
+                      <a href="#" title="12">询价</a>
+                  </li>
+                  <li>
+                      <a href="#" title="13">农林渔牧</a>
+                  </li>
+                  <li>
+                      <a href="#" title="14">爱心众筹</a>
+                  </li>
+                  <li>
+                      <a href="#" title="15">本地企业</a>
+                  </li>
+                  <li>
+                      <a href="#" title="16">金融保险</a>
+                  </li>
+                  <li>
+                      <a href="#" title="17">本地特产</a>
+                  </li>
+                  <li>
+                      <a href="#" title="18">旅游娱乐</a>
+                  </li>
+              </ul>
+         </div>
+          <div class="buttons-row buttons-row_content">
+                  <a href="#tab1" class="tab-link active button" id="adTab1">推广中</a>
+                  <a href="#tab2" class="tab-link button" id="adTab2">审核中</a>
+          </div>
+          <div class="tabs">
+                <div id="tab1xx" class="tab active active1 ">
+
+
+                </div>
+
+                <div id="tab2xx" class="tab" style="pagePriceListdisplay: none">
+
+                </div>
+              <a id="adMore">查看更多>></a>
+         </div>
+      </div>
+</div> 
+
+
+
+<!--广告位价格-->
+<div class="page" id="pagePriceList">
+        <header class="bar bar-nav">
+            <h1 class="title">广告位价格</h1>
+            <a class="icon icon-left pull-left" href="AdvertisementManagement.html"></a>
+        </header>
+            <div class="content">
+                <div class="guanggao">
+                    <!--<div class="list-block media-list mar-list ">-->
+                    <!--<ul> -->
+                    <!--<li class="detail-li">-->
+                    <!--<div class="item-content ">-->
+                    <!--<div class="item-inner ">-->
+                    <!--<div class="item-text">-->
+                    <!---->
+                    <!--<div class="row">-->
+                    <!--<div class="col-25">-->
+                    <!--第一屏-->
+                    <!--</div> -->
+                    <!--<div class="col-60 price_col">-->
+                    <!--15.55-->
+                    <!--</div>-->
+                    <!--<div class="col-15">-->
+                    <!--<a class="button  pull-right">-->
+                    <!--修改-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="detail-li">-->
+                    <!--<div class="item-content ">-->
+                    <!--<div class="item-inner ">-->
+                    <!--<div class="item-text">-->
+                    <!---->
+                    <!--<div class="row">-->
+                    <!--<div class="col-25">-->
+                    <!--第二屏-->
+                    <!--</div> -->
+                    <!--<div class="col-60 price_col">-->
+                    <!--15.55-->
+                    <!--</div>-->
+                    <!--<div class="col-15">-->
+                    <!--<a class="button  pull-right">-->
+                    <!--修改-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="detail-li special_li">-->
+                    <!--<div class="item-content ">-->
+                    <!--<div class="item-inner ">-->
+                    <!--<div class="item-text">        -->
+                    <!--<button class="button pull-right">-->
+                    <!--按钮-->
+                    <!--</button> -->
+                    <!--<div class="special_li_title">特殊日期价格</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--</ul>     -->
+                    <!--<ul> -->
+                    <!--<li class="detail-li data_li">-->
+                    <!--<div class="item-content ">-->
+                    <!--<div class="item-inner ">-->
+                    <!--<div class="item-text">-->
+                    <!---->
+                    <!--<div class="row">-->
+                    <!--<div class="col-50">-->
+                    <!--<a class="button  pull-left">-->
+                    <!--2015-05-01-->
+                    <!--</a>-->
+                    <!--</div> -->
+                    <!--<div class="col-50">-->
+                    <!--<a class="button  pull-right">-->
+                    <!--删除-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="detail-li">-->
+                    <!--<div class="item-content ">-->
+                    <!--<div class="item-inner ">-->
+                    <!--<div class="item-text">-->
+                    <!---->
+                    <!--<div class="row">-->
+                    <!--<div class="col-25">-->
+                    <!--第一屏-->
+                    <!--</div> -->
+                    <!--<div class="col-60 price_col">-->
+                    <!--15.55-->
+                    <!--</div>-->
+                    <!--<div class="col-15">-->
+                    <!--<a class="button  pull-right">-->
+                    <!--修改-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="detail-li">-->
+                    <!--<div class="item-content ">-->
+                    <!--<div class="item-inner ">-->
+                    <!--<div class="item-text">-->
+                    <!---->
+                    <!--<div class="row">-->
+                    <!--<div class="col-25">-->
+                    <!--第二屏-->
+                    <!--</div> -->
+                    <!--<div class="col-60 price_col">-->
+                    <!--15.55-->
+                    <!--</div>-->
+                    <!--<div class="col-15">-->
+                    <!--<a class="button  pull-right">-->
+                    <!--修改-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--</ul>   -->
+                    <!--</div> -->
+                </div>
+
+                <div class="white_content light">
+                    <div class="add_specialdate-block ">
+
+                        <ul class="top_line">
+                            <li class="detail-li ">
+                                <div class="item-content ">
+                                    <div class="item-inner ">
+                                        <div class="item-text">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    设置时间
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="detail-li tianjiadateprice" >
+                                <div class="item-content ">
+                                    <div class="item-inner ">
+                                        <div class="item-text">
+                                            <div class="row">
+                                                <div class="col-50">
+                                                    <input type="date" name="time" id="first_time"/>
+
+                                                </div>
+
+                                                <div class="col-50">
+                                                    <input type="date" name="time" id="second_time"/>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="detail-li">
+                                <div class="item-content ">
+                                    <div class="item-inner ">
+                                        <div class="item-text">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    第一屏
+                                                </div>
+                                                <div class="col-40 price_col">
+                                                    <input type="text" value="0.01" class="diyiping">
+                                                </div>
+                                                <div class="col-5">
+
+                                                    元
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="detail-li">
+                                <div class="item-content ">
+                                    <div class="item-inner ">
+                                        <div class="item-text">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    第二屏
+                                                </div>
+                                                <div class="col-40 price_col">
+                                                    <input type="text" value="0.01" class="dierping">
+                                                </div>
+                                                <div class="col-5">
+
+                                                    元
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="detail-li">
+                                <div class="item-content ">
+                                    <div class="item-inner ">
+                                        <div class="item-text">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    第三屏
+                                                </div>
+                                                <div class="col-40 price_col">
+                                                    <input type="text" value="0.01" class="disanping">
+                                                </div>
+                                                <div class="col-5">
+
+                                                    元
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="detail-li">
+                                <div class="item-content ">
+                                    <div class="item-inner ">
+                                        <div class="item-text">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    第四屏
+                                                </div>
+                                                <div class="col-40 price_col">
+                                                    <input type="text" value="0.01" class="disiping">
+                                                </div>
+                                                <div class="col-5">
+
+                                                    元
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="detail-li">
+                                <div class="item-content ">
+                                    <div class="item-inner ">
+                                        <div class="item-text">
+                                            <div class="row">
+                                                <div class="col-50"><a href="#" class="button button-big button-fill button-danger btn-cancel">取消</a></div>
+                                                <div class="col-50"><a href="#" class="button button-big button-fill button-success btn-sure">确定</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div  class="black_overlay fade"></div>
+
+
+        </div>
+</div>
+
+
+
+<!-- 查看客户－广告自定义 -->
+<div class="page " id="pageViewCustomer">
+      <header class="bar bar-nav">
+            <h1 class="title">随身找</h1>
+            <a class="icon icon-left pull-left" href="AdvertisementManagement.html"></a>
+             <a class="icon icon-share pull-right alert-text" ></a>
+      </header>
+    <div class="content"></div>
+    <!--<div class="content"> -->
+              <!--<div class="title_content">-->
+                        <!--<h3>新西兰开发“放羊无人机” 用噪音驱赶2000只羊无人机竟然能放羊？</h3>-->
+                        <!--<h5>2015-3-05 15:30</h5>-->
+                        <!---->
+                        <!--<img src="images/tong_btn_sc_n.png">-->
+                <!--</div>-->
+                <!--<div class="jszc_content">-->
+                          <!--<p><a href="#" class="button button-round">草原凤凰烧烤店铺</a></p>-->
+                          <!--<p><img src="images/jszc.png" height="150px;"></p>-->
+                          <!--<p class="p_words">这并不是我们的天马行空，最近新西兰的一位农民兄弟开始利用无人机取代牧羊犬来放羊了。来自新西兰南岛的农民布雷特·桑德斯（Brett Sanders）组装了一款特制的无人机，在上面安装喇叭和警报器后，用其代替牧羊犬帮助放养2000只羊。这种无人机带来的噪音可以让羊群想办法远离，他通过控制无人机来驱赶羊群放羊，利用其在一万多公顷的农场中控制羊群方向，并且已经成功的将一批羊从一个领域引到了另外一个领域中。而他本人则骑着摩托车，带着忠诚的牧羊犬等在另一侧。</p>-->
+                          <!--<p><img src="images/jszc.png" height="150px;"></p>-->
+                          <!--<p class="p_words">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>-->
+                <!--</div>-->
+               <!---->
+     <!--</div>-->
+</div> 
+
+
+
+
+
+
+</div>
+    <script type='text/javascript' src='js/zepto.js' ></script>
+    <script src="js/position.js"></script>
+    <!--<script type='text/javascript' src='js/sm.min.js' ></script>-->
+    <!--<script type='text/javascript' src='js/sm-extend.min.js'></script>-->
+    <script type="text/javascript" src="js/AdvertisementManagement.js"></script>
+   <script type='text/javascript' src='js/select-district.js'></script>
+<!--<script type="text/javascript" src="js/timepicki.js"></script>-->
+
+  <script>
+
+
+
+</script>
+</body>
+</html>

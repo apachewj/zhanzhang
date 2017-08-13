@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/adadmin.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+    <style>
+        #ckgd{
+            margin: 0 auto;
+            color: #0894ec;
+            font-size: 14px;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            display: block;
+            text-align: center;
+        }
+
+        .edit_org1 {
+            color: #000;
+            background: #d4d4d4;
+            border-radius: 10px;
+            text-align: center;
+            height: 28px;
+            line-height: 28px;
+            font-size: .6rem;
+            width: 50px;
+            float: left;
+        }
+        .edit_org2 {
+            color: #fff;
+            background: #f60;
+            border-radius: 10px;
+            text-align: center;
+            height: 28px;
+            line-height: 28px;
+            font-size: .6rem;
+            width: 40px;
+            float: right;
+        }
+    </style>
+    <script type="tpl/text" id="adMessage">
+        <% for(var i=0;i<list.length;i++){%>
+         <%if(list[i].status=="发布中/待"){%>
+        				 <li data="<%= list[i].id%>">
+                          <div class="left_tit"><%= list[i].location%></div>
+                            <div class="right_btn" style="    background: #F4B78B;"><%= list[i].status%></div>
+                            <div class="clear"></div>
+                            <a href="#" class="item-link item-content">
+                                <div class="item-media"><img style='width: 4rem; height: 4rem;'
+                                        ></div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title"><%= list[i].imgcontext%></div>
+
+                                    </div>
+
+                                    <div class="item-text time">发布时间：<%= list[i].create_time%></div>
+
+                                    <div class="edit_org1">12-15</div>
+                                    <div class="edit_org2">更多</div>
+
+
+                                </div>
+                            </a>
+
+                        </li>
+                     <%}%>
+                     <%if(list[i].status=="已结束"){%>
+                        <li data="<%= list[i].id%>">
+                            <div class="left_tit"><%= list[i].location%></div>
+                            <div class="right_btn"><%= list[i].status%></div>
+                            <div class="clear"></div>
+                            <a href="/details.html?id=<%= list[i].id%>" class="item-link item-content" style="display:inline-block">
+                                <div class="item-media" style="float:left"><img
+                                        src="<%= list[i].img%>"
+                                        style='width: 4rem;height: 4rem;'></div>
+                                <div class="item-title-row" style="float:right">
+                                        <div class="item-title"><%= list[i].imgcontext%></div>
+                                </div>
+
+                             </a>
+                              <div class="item-text time" style="float:right;margin-top:20px;margin-right:20px" >发布时间：<%= list[i].create_time%></div>
+                                <div class="item-inner" style="margin-top:-50px;position:absolute">
+
+                                    <div class="edit_org">编辑</div>
+                                    <div class="delete_blue">删除</div>
+                                </div>
+
+
+                        </li>
+                     <%}%>
+                      <%if(list[i].status=="草稿"){%>
+                        <li data="<%= list[i].id%>">
+                           <div class="left_tit"><%= list[i].location%></div>
+                            <div class="right_btn" ><%= list[i].status%></div>
+                            <div class="clear"></div>
+                             <a href="#" class="item-link item-content">
+                                <div class="item-media"><img
+                                        src="<%= list[i].img%>"
+                                        style='width: 4rem;height: 4rem;'></div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title"><%= list[i].imgcontext%></div>
+
+                                    </div>
+
+                                    <div class="item-text time">发布时间：<%= list[i].create_time%></div>
+                                    <div class="edit_org">编辑</div>
+                                    <div class="delete_blue">删除</div>
+                                </div>
+                            </a>
+
+                        </li>
+                       <%}%>
+                      <%if(list[i].status=="审核中"){%>
+                        <li data="<%= list[i].id%>">
+                           <div class="left_tit"><%= list[i].location%></div>
+                            <div class="right_btn" style="background: #F4B78B;"><%= list[i].status%></div>
+                            <div class="clear"></div>
+                            <a href="#" class="item-link item-content">
+                                <div class="item-media"><img
+                                        src="<%= list[i].img%>"
+                                        style='width: 4rem;height: 4rem;'></div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title"><%= list[i].imgcontext%></div>
+
+                                    </div>
+
+                                    <div class="item-text time">发布时间：<%= list[i].create_time%></div>
+                                    <div class="edit_org">编辑</div>
+                                    <div class="delete_blue">删除</div>
+                                </div>
+                            </a>
+                        </li>
+                        <%}%>
+                        <%}%>
+    </script>
+
+</head>
+<body>
+<div class="page-group">
+    <!--广告管理-->
+    <div class="page page-current" id="pageIndex">
+        <header class="bar bar-nav">
+            <h1 class="title">广告管理</h1>
+            <a class="icon icon-left pull-left back" href="#"></a>
+        </header>
+        <div class="content">
+            <div class="buttons-tab ">
+                <a href="" class="active button" type="0">全部</a>
+                <a href="" class="button" type="1">发布中/待</a>
+                <a href="" class="button" type="2">已结束</a>
+                <a href="" class="button" type="3">草稿</a>
+                <a href="" class="button" type="4">审核中</a>
+            </div>
+            <div class="">
+                <div class="list-block media-list list-block1">
+                    <ul>
+                 
+
+
+
+                    </ul>
+                    <a id="ckgd">查看更多>></a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type='text/javascript' src='js/zepto.js'></script>
+<script type='text/javascript' src='js/address.js'></script>
+<script type='text/javascript' src='js/sm.min.js'></script>
+<script type='text/javascript' src='js/sm-extend.min.js'></script>
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/lodash.min.js"></script>
+ <script type='text/javascript' src='js/adadmin.js'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>一元购</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/one_homepage.css"> 
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+   </head>
+<body>
+
+      
+    <div class="page page-current" id="">
+      <header class="bar bar-nav">
+             <h1 class="title">晒单广场</h1>
+             <a class="icon icon-left pull-left external" href="one_homepage.html"></a>
+      
+      </header> 
+      <div class="content"> 
+
+        <div class="list_ping">
+          <a href="guangchang_details.html">
+        <div class="information">
+
+              <div class="head-img">
+                <img src="images/home_btn_baoyang.png">
+              </div>
+
+              <div>
+
+                <div class="name">张阿萨德</div>
+
+                <div class="job">1小时前</div>
+             </div>
+             <div class="fuyan">定位定位恩瓦部分U币而不位定位恩瓦部分U币而不位定位恩瓦部分U币而不 </div>
+                 <div class="image">
+
+                  <div><img src=""></div>
+
+                  <div><img src=""></div>
+
+                  <div><img src=""></div>
+      
+                </div>
+        </div>    
+        </a>
+        <div class="comment-details">
+         <div class="h_f"><input type="text" class="huifu_content" /><img src="images/btn_fasong.png" class="huifu" data="<%= list[i].id %>">
+        <div class="clear"></div></div>
+               <img class="fahua" src="images/btn_pinlun.png">
+               <div class="clear"></div>
+              <div class="comment">
+
+                <div>
+
+                  <span>张丽 :</span>         
+                  <span>运气好！！！</span>
+                   <span>20分钟前</span>
+                </div>
+
+                <div>
+
+                  <span>张丽 :</span>
+                  <span>运气好！！！</span>
+                   <span>20分钟前</span>
+                </div>
+
+                <div>
+
+                  <span>张丽 :</span>
+                  <span>运气好！！！</span>
+                  <span>20分钟前</span>
+                </div>
+              <div class="look_more">查看全部36条评论</div>
+              </div>
+
+            </div>
+            
+          </div>
+
+      <div class="list_ping">
+        <a href="guangchang_details.html">
+        <div class="information">
+
+              <div class="head-img">
+                <img src="images/home_btn_baoyang.png">
+              </div>
+
+              <div>
+
+                <div class="name">张阿萨德</div>
+
+                <div class="job">1小时前</div>
+
+          
+
+
+             </div>
+             <div class="fuyan">定位定位恩瓦部分U币而不位定位恩瓦部分U币而不位定位恩瓦部分U币而不 </div>
+                 <div class="image">
+
+                  <div><img src=""></div>
+
+                  <div><img src=""></div>
+
+                  <div><img src=""></div>
+                </div>
+        </div>   
+         </a> 
+        <div class="comment-details">
+    <div class="h_f"><input type="text" class="huifu_content" /><img src="images/btn_fasong.png" class="huifu" data="<%= list[i].id %>">
+        <div class="clear"></div></div>
+               <img class="fahua" src="images/btn_pinlun.png">
+               <div class="clear"></div>
+              <div class="comment">
+
+                <div>
+
+                  <span>张丽 :</span>         
+                  <span>运气好！！！</span>
+                   <span>20分钟前</span>
+                </div>
+
+                <div>
+
+                  <span>张丽 :</span>
+                  <span>运气好！！！</span>
+                   <span>20分钟前</span>
+                </div>
+
+                <div>
+
+                  <span>张丽 :</span>
+                  <span>运气好！！！</span>
+                  <span>20分钟前</span>
+                </div>
+
+              </div>
+
+            </div>
+           
+          </div>
+     </div>
+
+   </div>
+
+
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script>
+$(document).on('click','.fahua',function(){
+      $(this).parents('.list_ping').find('.h_f').show();
+      $('.huifu_content').focus();
+});
+
+$(document).on('click','.huifu',function(){
+      $('.h_f').hide();
+      $('.huifu_content').val('');
+});
+</script>
+</body>
+</html>

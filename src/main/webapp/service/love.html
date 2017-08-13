@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+     <link rel="stylesheet" href="css/love.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    
+  </head>
+<body>
+     <div class="page-group">
+   
+    <!--主界面-->
+     <div class="page page-current" id="pageIndex">
+        <header class="bar bar-nav">
+          <h1 class="title">爱心众筹</h1>
+     <a class="icon icon-left pull-left external"onclick="fanhui()"></a>
+      <!--     <a class="pull-right" href="#pagechoose">发布</a> -->
+              <a class="button button-link button-nav pull-right"  href="#pagefabu" data-transition='slide-out'>
+      <span class="icon pull-right"></span>
+      发布
+    </a>
+        </header> 
+        <div class="content" > 
+
+        <input type="hidden" id="location_x">
+        <input type="hidden" id="location_y">
+          <div class="swiper-container" data-space-between='10'>
+               
+       <!--          <div class="banner-text banner-top"><span id="cityPos" ><a style="color:#fff;"  >地区</a><img src="images/tong_banner_dw.png" height="14" style="margin:2px 0 0 5px; vertical-align:center;"></span></div> -->
+                    <div class="banner-text banner-top">
+                      <div class="row ">  
+                              <div class="col-33">
+                                <select  name="province"  class="banner-text1" id="select_province1" eleType='input'></select>
+                                  
+                               </div>  
+                                 <div class="col-33">
+                                 <select   name="city"  class="banner-text1" id="select_city1" eleType='input'></select>
+                              </div> 
+                               <div class="col-33">
+                                 <select   name="street" class="banner-text1"  id="select_area1" eleType='input'></select>
+                              </div> 
+                       </div>
+                  </div>
+              <div class="swiper-wrapper" id="Love_img_List">
+           <!--        <div class="swiper-slide"><img src="images/car-banner-01.png" alt="" style='width: 100%'></div>
+                  <div class="swiper-slide"><img src="images/car-banner-02.png" alt="" style='width: 100%'></div>
+                  <div class="swiper-slide"><img src="images/car-banner-03.png" alt="" style='width: 100%'></div> -->
+              </div>
+              <div class="swiper-pagination"></div>
+        
+          </div>
+
+
+
+    <div class="searchbar">
+    <a class="searchbar-cancel" id="btn_search">搜索</a>
+    <div class="search-input s_border">
+      <label class="icon icon-search ouye" for="search"></label>
+      <input type="search" id="love_searchname" eleType="text"  placeholder='通过店铺名/用户名/关键词搜索内容'/>
+    </div>
+  </div>
+
+     <div class="search_border">
+        <select class="inp-text1" id="love_type_1" eleType="text"> 
+            <option >全部分类</option>
+            <option>医疗</option>
+            <option>教育</option>
+            <option>动物</option>
+            <option>灾难</option>
+            <option>其他</option>
+            <option>众筹</option>
+            
+         </select>
+
+
+         <div class="guanzhu"  id="btntimeorder" onclick="orderxuan()">关注度</div>
+         <input type="hidden" id="love_order" value="0" eleType="text"/>
+    </div>
+
+  
+        <div class="infinite-scroll infinite-scroll-bottom" data-distance="100" id="pagechange">
+            <div class="list-block media-list">
+              <ul id="queryloveList">
+                
+              </ul>
+            </div>
+            <input type="hidden" id="love_pageNum" value="1" />
+            <input type="hidden" id="love_pageSize" value="10" />
+            <!-- 加载提示符 -->
+            <div class="infinite-scroll-preloader">
+              <div class="preloader"></div>
+            </div>
+        </div>
+
+        </div>
+        </div>
+
+ <!--发布-->
+      <div class="page" id="pagefabu">
+        <header class="bar bar-nav">
+          <h1 class="title">发布</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+          <a class="button button-link button-nav pull-right external" href="../service/myfabu.html?id=9" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+       </header>
+       <div class="content">
+      <input type="hidden" id="love_id" >
+      <input type="hidden" id="love_location_x">
+      <input type="hidden" id="love_location_y">
+          <div class="list-block media-list mar-list">
+                <ul>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33">
+                                    上传主图
+                                       </div>
+                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                      <div class="row ">
+                          <div class="col-33">
+                              <div id="love_main_img"  class="inp-cert">
+                                  <div class="cert-upload"></div>
+                                  <input type="file" class="cert-upload fileInp-opacity" multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('love_main_img'))" value="">
+                                  <div class="close-div hide"></div>
+                              </div>
+
+                          </div>
+                    
+                  <div class="right_check"><input type="checkbox"  value="0" name="add_type" 
+                          id="love_showincontent"  eleTyle="radio"/><span>显示在详情中</span></div>
+                     </div>
+                  </li>
+                    <div class="clear"></div>
+
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33">
+                                            标题＊
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input  id="love_title" eleType="input" class="inp-text1"  maxlength="30" type="text" placeholder="简短的自我介绍广告语">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                             计划筹款＊
+                                        </div>
+                                        <div class="col-33">
+                                      <div class="item-input">
+                                                <input id="love_money" eleType="input" class="inp-text1" type="number" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                       <div class="col-33">
+                                            元
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row select_row">
+                                        <div class="col-50">
+                                            筹款结束时间＊
+                                        </div>
+                                        <div class="col-50">
+                                   
+                                              <div class="item-input">
+                                                <input id="love_endtime" eleType="inputDate" type="text" placeholder="--请选择结束时间--" class="inp-text" data-toggle='date' readonly="true" />
+                                              
+                                            </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                     <div class="row select_row">
+                                        <div class="col-50">
+                                             位置（默认当前位置）
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li" >
+                       <a href="#">
+                        <div class="item-content item-content_select">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row span-row"  onclick="selectMyPos('love_location_x','love_location_y',1)">
+                                          <div class="item-input span-content1">
+                                                <span class="chooselocation">-请选择位置-</span>
+                                          </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+
+   
+                </ul>
+            </div> 
+            <div class="list-block media-list mar-list ">
+                <ul>
+                     <li class="detail-li  second_list-block_li">
+                        <div class="item-content ">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                        <div class="col-50">
+                                            选择显示区域＊ 
+                                        </div> 
+                                         <div class="col-33 moren">
+                                            默认当前 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                          
+                    <li class="detail-li">
+                              <a class="item-content position_select">
+                                  <div class="item-inner">
+                                      <div class="item-text ">     
+                                          <div class="row">  
+                                              <div class="col-33 line_quyu">
+                                                  <select  name="province"  id="select_province"></select>
+                                               </div>  
+                                                 <div class="col-33 line_quyu">
+                                                 <select   name="city"  id="select_city"></select>
+                                              </div> 
+                                               <div class="col-33 line_quyu">
+                                                 <select   name="street"  id="select_area"></select>
+                                              </div> 
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                          </li>
+
+                    <!-- <li class="detail-li grey_back">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                        <div class="col-33">
+                                            捐助人信息
+                                        </div> 
+                                           <div class="col-50 grey_back1">
+                                            (请确保消息真实与捐助者一致，发布后可补全)
+                                        </div> 
+                                         <div class="col-15 img_right">
+                                          <img src="images/tong_btn_fang.png" />
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                  <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                        <div class="col-33 bold">
+                                            身份信息
+                                        </div> 
+                                           <div class="col-60 grey_back1">
+                                            (请填写和上传捐助人身份证信息和图片)
+                                        </div> 
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            姓名
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input eleType="input" class="inp-text1" type="text" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+                     <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            身份证号
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input eleType="input" class="inp-text1" type="number" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                 <li class="detail-li dashed">
+   
+
+                        <div class="fileElem-photo" imgList="pubCarFindbmtz_lll_show_img_List" pubImg="pubCarFindbmtz_lll_show_img"></div>
+                        <input type="hidden" id="pubCarFindbmtz_lll_show_img" eleType='img'/>
+                        <div id="pubCarFindbmtz_lll_show_img_List" class="fileList" style="width:100%"></div>
+                      
+                  </li>
+                  <li class="detail-li ">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                        <div class="col-33 bold">
+                                            医院证明
+                                        </div> 
+                                           <div class="col-60 grey_back1">
+                                            (请上传医院相关证明图片)
+                                        </div> 
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li dashed">
+   
+
+                        <div class="fileElem-photo" imgList="pubCarFindbmtz_lll_show_img_List" pubImg="pubCarFindbmtz_lll_show_img"></div>
+                        <input type="hidden" id="pubCarFindbmtz_lll_show_img" eleType='img'/>
+                        <div id="pubCarFindbmtz_lll_show_img_List" class="fileList" style="width:100%"></div>
+                      
+                  </li>
+
+                     <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                        <div class="col-33 bold">
+                                            银行账号
+                                        </div> 
+                                    
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                                      <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            持卡人
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input eleType="input" class="inp-text1" type="text" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+                     <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            卡号
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input eleType="input" class="inp-text1" type="number" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row select_row">
+                                        <div class="col-60">
+                                            我的位置＊
+                                        </div>
+                                        <div class="col-200" onclick="transCityID(this)">
+                                               
+                                                
+                                                <span class="open-popup" data-popup=".popup-about">-选择市-</span>
+                                          
+                                 
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li dashed">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            绑定手机号
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input eleType="input" class="inp-text1" type="number" placeholder="请输入与办卡时所绑定的手机号">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <li class="detail-li ">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                        <div class="col-33 bold">
+                                            红十字会认证
+                                        </div> 
+                                           <div class="col-60 grey_back1">
+                                            (请上传红十字会相关证明图片)
+                                        </div> 
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+   
+
+                        <div class="fileElem-photo" imgList="pubCarFindbmtz_lll_show_img_List" pubImg="pubCarFindbmtz_lll_show_img"></div>
+                        <input type="hidden" id="pubCarFindbmtz_lll_show_img" eleType='img'/>
+                        <div id="pubCarFindbmtz_lll_show_img_List" class="fileList" style="width:100%"></div>
+                      
+                  </li> -->
+                 <li class="detail-li grey_back">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                        <div class="col-33">
+                                            详情描述编辑
+                                        </div> 
+                                           <div class="col-50 grey_back1">
+                                            (详情描述筹款原因等内容，发布不可更改)
+                                        </div> 
+                                         <div class="col-15 img_right">
+                                          <img src="images/tong_btn_fang.png" />
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                     <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row add_workarea">
+                                              <a href="#pagebianji" class="button button-fill button-warning">去编辑  >></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-block media-list mar-list ">
+                <ul>
+                  
+                     <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            联系人＊
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="love_name" eleType="input" class="inp-text1" type="text" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+                     <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            联系电话＊
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="love_tel" eleType="input" class="inp-text1" type="number" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                   <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            分类＊
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                               <select class="inp-text1" id="love_type" eleType="input" placeholder="请输入">
+                                                    <option value="">全部分类</option>
+                                                    <option>医疗</option>
+                                                    <option>教育</option>
+                                                    <option>动物</option>
+                                                    <option>灾难</option>
+                                                    <option>其他</option>
+                                                    <option>众筹</option>
+                                                 </select>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row checkbox_row">
+                                        <div class="col-60">
+                                             是否显示电话联系
+                                        </div>
+                                        <div class="col-40 checkbox_col" >
+                                            <div class="item-input  ">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox" id="love_showtel" eleType="input" value="0">
+                                                    <div class="checkbox" onclick="checkvalue2()"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row checkbox_row">
+                                        <div class="col-60">
+                                             是否显示在线咨询
+                                        </div>
+                                        <div class="col-40 checkbox_col" >
+                                            <div class="item-input  ">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox" id="love_showcontact" eleType="input" value="0" >
+                                                    <div class="checkbox" onclick="checkvalue3()"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+               </ul>      
+          </div>
+             <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun" id="love_save"><a href="#" class="button button-big button-fill button-danger">保存</a></div>
+                      <div class="col-50 fabu" id="love_fabu"><a href="#" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+            </div>
+       </div>
+      </div>
+    
+
+<!--通知详情-->
+    <div class="page" id="pagelovedetails">
+       <header class="bar bar-nav">
+          <h1 class="title">通知详情</h1>
+          <a class="icon icon-left pull-left"  onclick="self.location=document.referrer;"></a>
+           <a class="icon icon-share pull-right alert-text" ></a>
+      </header>
+         <nav class="bar bar-tab under-bar">
+          <input type="hidden" id="loveDetail_tel"  eleType="telVew"/>
+          <a href="" id="loveDetail_showcontact" eleType='showcontact'></a> 
+          <a href="" id="loveDetail_showtel" eleType='showtelephone'></a> 
+          <a id="routerjuanzen" eleType='zhaojuan'><span class='bm_btn'>捐&nbsp;&nbsp;赠</span> </a> 
+           
+        </nav>
+  
+   <div class="content">
+    <input type="hidden" id="mpid"/>
+    <input type="hidden" id="mp"/>
+    <input type="hidden" id="Donate_info_id"/>
+    <input type="hidden" id="juan_crowd_id"/>
+  
+    <input type="hidden" id="loveDetail_id" eleType='input'/>
+    <input type="hidden" id="loveDetail_location_x" eleType='input' value=""/>
+    <input type="hidden" id="loveDetail_location_y" eleType='input' value=""/>
+         <div class="row1" id="loveDetail_title">
+        
+        </div>
+          <div class="row row2">
+            <div class="col-33 grey bold">
+              计划筹款
+            </div>
+             <div class="col-50 red" >
+              <span id="loveDetail_money"></span>元
+            </div>
+            <div class="col-33 rem1">
+            <div class="icon-sel start-size start-fill scstart-line scdiv" onclick="collectItem(this,'loveDetail_id',9)"></div>
+              <!-- <img src="images/tong_btn_sc_n.png" /> -->
+       <div class="yuanlogo icon-sel1 start-size jbstart-line jubaodiv" onclick="reportItem(this,'loveDetail_id',9)">
+                     <!--  <img src="images/tong_btn_jb_y.png"> --> 
+                   </div>
+            </div>
+          </div>
+           <div class="row row2">
+            <div class="col-33 grey bold">
+              已筹款
+            </div>
+             <div class="col-50 red">
+              <span id="loveDetail_have" eleType ='leftday1'></span>元
+            </div>
+
+          </div>
+          <div class="row row2">
+            <div class="col-33 grey">
+              结束时间：
+            </div>
+             <div class="col-40 grey" id="loveDetail_endtime" eleType ='riqi'>
+              
+            </div>
+           <div class="col-30 grey">
+              剩余<span id="loveDetail_leftday" eleType ='leftday'></span>天
+            </div>
+         
+          </div>
+
+        <div class="renzhen">
+          <div class="row row2">
+            <div class="col-60">
+            捐助人信息
+            </div>
+            <div class="col-40" id="loveDetail_name">
+            
+            </div>
+            </div>
+           <div class="row row3">
+
+            <span id="loveDetail_shenfen" eleType ='shenfen'>
+     
+            </span>
+            
+             <span id="loveDetail_yiyuan" eleType ='yiyuan'>
+     
+            </span>
+     
+            </div>
+           <div class="row row3">
+            <span id="loveDetail_zhanghao" eleType ='zhanghao'>
+     
+            </span>
+       
+
+            <span id="loveDetail_hongshizi" eleType ='hongshizi'>
+     
+            </span>
+            </div>
+        </div>
+        <div class="buttons-tab button-tab_content">
+                <a href="#tab1" class="tab-link active button">捐款详情</a>
+                <a href="#tab2" class="tab-link button" id="juankuanjilu">捐款记录</a>
+        </div>
+       <div class="tabs">
+          <div id="tab1" class="tab tab_content active">
+               <div class="jszc_content">
+                  <p>
+                      <div class="zhutu" id="loveDetail_main_img_List" ></div> 
+                      <input type="hidden" id="loveDetail_main_img" eleType='img'/> 
+                  </p>
+
+                 <p class="p_images" id="loveDetail_c_imgage"></p>
+                </div>
+  
+
+          </div>
+    <div id="tab2" class="tab tab_content">
+         
+         <input type="hidden" id="maa" />
+          <input type="hidden" id="user_id_id" />
+           <input type="hidden" id="user_idd"  />
+           <input type="hidden" id="user_name_name"  />
+     <!--     <div class="queding" style="display:none"><textarea class="neirong" value="swqd"></textarea>
+                <p class="queding_btn">确定<p>
+                </div> -->
+
+        <div class="infinite-scroll infinite-scroll-bottom" data-distance="100" id="">
+            
+              <div class="huifu_detailes">
+              <ul id="querydonateList">
+<!--            <li class="type1">
+                 <a href="#pagejuankuanjilu">
+                 <div>
+                    <img src="images/f.png" />
+                 </div>
+                 <div>
+                    <h1>用户名234</h1>
+                     <span class="red"> ¥999</span>
+                     <p>内容dsadjksbdsfsd奥数各方UR网官方起飞约该区域奉公如法余人各个如果服用额答复一号 egf </p>
+
+                    <div class="settled1">回复</div>
+               
+                </div>
+                <div>
+                   <div>
+                    <img src="images/f.png" />
+                   </div>
+                 <div>
+                    <h1>用户名234</h1>
+                 
+                     <p>内容dsadjksbdsfsd奥数各方UR网官方起飞约该区域奉公如法余人各个如果服用额答复一号 egf</p>
+                   </div>
+                 </div>
+
+                <div class="clear"></div>
+                 </a>
+             </li> -->
+            </ul>
+            </div> 
+           
+            <input type="hidden" id="Donate_pageNum" value="1" />
+            <input type="hidden" id="Donate_pageSize" value="10" />
+            <!-- 加载提示符 -->
+            <div class="infinite-scroll-preloader">
+              <div class="preloader"></div>
+            </div>
+        </div>
+         <div  class="black_overlay fade"></div> 
+              </div>
+        </div>
+
+      </div>
+    
+    </div>  
+
+  <!--捐款记录-->
+<!--  <div class="page" id="pagejuankuanjilu">
+       <header class="bar bar-nav">
+          <h1 class="title">捐款记录</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+      </header>
+<div class="content">
+ <div class="juankuan_detailes">
+          <ul>
+           <li class="type1">
+                 <a href="#">
+                 <div>
+                    <img src="images/f.png" />
+                 </div>
+                 <div>
+                   <div class="row">
+                   <div class="col-50">
+                    <h1>用户名</h1>
+                  </div>
+                  <div class="col-50">
+                     <p>捐款金额&nbsp;&nbsp;<span class="red">¥999</span></p>
+                  </div>
+                  </div>
+
+                     <p>联系方式：234234</p>
+                     <p>联系地址：微风二分区日微风二分区</p>
+                </div>
+                <div class="clear"></div>
+                 </a>
+                 <div class="liuyan">
+                   留言：dw
+                 </div>
+             </li>
+           </ul>
+        </div> 
+     </div>  
+  </div>   --> 
+
+
+  <!--捐赠-->
+       <div class="page" id="pagejuanzen">
+       <header class="bar bar-nav">
+          <h1 class="title">捐赠</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+    <!--       <a class="button button-link button-nav pull-right" href="../service/myfabu.html?id=9" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a> -->
+       </header>
+          <div class="content">
+            <input type="hidden" id="juan_crowd_id" />
+            <input type="hidden" id="mpid" />
+              <input type="hidden" id="juankuang_id">
+             <div class="list-block media-list mar-list">
+                <ul>
+
+                      <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            捐款金额＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                            <div class="item-input input-content">
+                                                 <input id="juan_money" class="inp-text1 inp-right" type="number" eleType="input">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            留言
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li dashed">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                           <textarea class="inp-text" id="juan_content" eleType="input"eleType="input"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li bold">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            以下内容选填，只显示给捐款人，便于记录
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            捐款人姓名
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                            <div class="item-input input-content">
+                                                 <input  class="inp-text1 inp-right" id="juan_name" type="text" eleType="input">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            捐款人地址
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                            <div class="item-input input-content">
+                                                 <input  id="juan_address" class="inp-text1 inp-right" type="text" eleType="input">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                   <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            捐款人联系方式
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                            <div class="item-input input-content">
+                                                 <input  class="inp-text1 inp-right" id="juan_tel" type="text" eleType="input">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                
+                     <li class="detail-li bold solid">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                         选择方式
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+             
+                                    <div class="row bold solid">
+                                      <div class="zhifu_pic">
+                                        <img src="images/zhifu1.png"  id="btn_zhifuw"/>
+                                         <img src="images/zhifu2.png"  onclick="zhifubaozhifu()"/>
+                                        </div> 
+                                    </div>
+              
+
+                </ul>
+             </div>
+          </div>
+        </div>
+
+  <!--编辑图文介绍-->
+   <div class="page" id="pagebianji">
+       <header class="bar bar-nav">
+          <h1 class="title">编辑图文介绍</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+      </header>
+     <div class="content">
+     <div class="list-block media-list mar-list">
+            <ul>
+                   <li class="detail-li ">
+                            <div class="row">
+                             <div class="col-33">
+                                        <div id="love_c_image"  class="inp-cert">
+                                            <div class="cert-upload"></div>
+                                            <input type="file" class="cert-upload fileInp-opacity"  multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('love_c_image'))" value="">
+                                           
+                                        </div>
+                              </div>
+                       
+                              <div class="col-50">
+                                   <textarea id="love_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明" ></textarea>
+                              </div>
+                          </div>
+                  </li>
+                  <div id="add_tuwen">
+                  </div>
+               <li class="detail-li">
+                              <div class="item-content ">
+                                  <div class="item-inner">
+                                      <div class="item-text text-content">
+                                          <div class="row">
+                                              <div class="content-block content-block1">
+                                                    <a href="#"  class="button button-fill button-warning" onclick="add2()">+创建图片</a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                        </li>
+              </ul>
+     </div>  
+              <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun"><a href="#pagefabu" class="button button-big button-fill button-danger">取消</a></div>
+                      <div class="col-50 fabu" ><a href="#pagefabu" class="button button-big button-fill button-success">确定</a></div>
+                 </div>
+           </div>
+  </div>   
+   </div>  
+
+     <!--发布位置-->
+    <div class="page" id="pageMap">
+        <header class="bar bar-nav">
+            <h1 class="title">位置选择</h1>
+            <a class="icon icon-left pull-left back" href="#"></a>
+            <a class="icon  pull-right back " href="#">确定</a>
+        </header>
+        <div class="content">
+            <input type="hidden" id="sheng">
+            <input type="hidden" id="shi">
+            <input type="hidden" id="qu">
+                <div class="banner-text banner-top" >
+                            <div class="row ">
+                                <div class="col-33 line_quyu">
+                                    <select  name="province"  class="banner-text1" id="select_province4" eleType="input">
+
+                                    </select>
+                                </div>
+                                <div class="col-33 line_quyu">
+                                    <select   name="city"  class="banner-text1" id="select_city4" eleType="input">
+
+                                    </select>
+                                </div>
+                                <div class="col-33 line_quyu">
+                                    <select   name="street"  class="banner-text1" id="select_area4" eleType="input">
+
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+
+
+
+           <div class=" select_block" >
+                      <ul>
+
+                           <li class="detail-li">
+                              <a class="item-content button_select"  >
+                                  <div class="item-inner">
+                                      <div class="item-text ">
+                                          <div class="row localplace" id="select-localpos">
+                                              <div class="dingtupian"><img src="images/u95.png"></div>
+                                              <button>当前位置</button>
+                                          </div>
+                                          <div class="row zidinyi" id="select-pos">
+                                              <button>重新自定义位置</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                          </li>
+  
+                      </ul>
+               </div>
+            <input type="hidden" id="">
+            <div id="MyMap" style='width:100%; height:100%'></div>
+             
+        </div>
+
+    </div>
+
+      <!--定位位置-->
+<!--  <div class="page" id="pagedingMap">  
+        
+        <div class="content">
+
+         <div id="map"></div>
+          
+
+          <div id="l-map" style="display: none;"></div>
+          <div id="r-result" style="display: none;"></div>
+       
+        </div>
+   
+        <div class="back-row">
+            <div class="row">
+                 <a  class="icon icon-left pull-left back "></a>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <div class="row" >
+                <div class="col-33">
+                    <a href="#" class="button button-big button-fill button-success walk">步行</a>
+                </div>
+                <div class="col-33">
+                    <a href="#" class="button button-big  button-fill button-success bus" external>公交</a>
+                </div>
+                <div class="col-33">
+                    <a href="#" class="button button-big button-fill button-success drive">驾车</a>
+                </div>
+            </div>
+        </div>
+</div> -->
+     </div>
+     
+    <script type='text/javascript' src='js/zepto.js' ></script> 
+    <script src="js/Common.js"></script>
+    <script type='text/javascript' src='js/sm.min.js' ></script>
+    <script type='text/javascript' src='js/sm-extend.min.js'></script>
+    <script type='text/javascript' src='js/love.js'></script>
+    <script type='text/javascript' src='js/address2.js'></script>
+    <script type='text/javascript' src='js/juicer.js'></script>
+           <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=FbzOyQ4YujPrZsxiQKoB07aB&services=&t=20160708193109"></script>
+     <script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script>
+
+</body>
+
+   <script>
+       var map = new BMap.Map('MyMap');
+       $(function() {
+        $("#routerjuanzen").click(function() {
+           
+            if ($("#loveDetail_leftday").html()==0) {
+             $.alert("该捐款活动已结束,谢谢您的关注");
+            }else{
+              $.router.load("#pagejuanzen");
+            };
+         });
+   });
+  //下拉城市
+     function GetQueryString(name) {
+         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if (r != null)return unescape(decodeURI(r[2]));
+         return null;
+     }
+
+       function get(_region_p_default,_region_c_default,_region_d_default){
+           region_init("select_province1","select_city1","select_area1",_region_p_default,_region_c_default,_region_d_default);
+           region_initx("select_province","select_city","select_area",_region_p_default,_region_c_default,_region_d_default);
+           map_init("select_province4","select_city4","select_area4",_region_p_default,_region_c_default,_region_d_default)
+           $("#sheng").val(_region_p_default)
+           $("#shi").val(_region_c_default)
+           $("#qu").val(_region_d_default)
+       }
+
+     if($.device.os=="android"){
+         var province1  = GetQueryString("province");
+         var city1  = GetQueryString("city");
+         var district1  = GetQueryString("district");
+          _cityPosdata(province1,city1,district1);
+
+     }else if($.device.os=="ios"){
+      region_init("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+   region_initx("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+     map_init("select_province4","select_city4","select_area4",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"))
+         $("#sheng").val(getCookie("p_id"))
+         $("#shi").val(getCookie("c_id"))
+         $("#qu").val(getCookie("d_id"))
+     }
+
+
+    
+
+
+ 
+  function pubget(region_p_default,region_c_default,region_d_default){
+    if(region_p_default&&region_c_default&&region_d_default){
+
+region_initx("select_province","select_city","select_area",region_p_default,region_c_default,region_d_default);
+
+    }
+}
+  </script>
+
+ <script>
+  $("input[name=add_type]").click(function(){
+   if($(this).attr("checked")==true){
+           $(this).val(1);
+   }else{
+           $(this).val(0);
+   }
+
+})
+
+var j=0;
+    function add2() {
+            j++;
+            jia2(j);
+        }
+  function jia2(iq) {
+   var html='<li class="detail-li ">'; 
+   html += '<div class="row sc-12">'; 
+   html += '<div class="col-33 inp-cert" id="love_c_image'+iq+'" >'; 
+   html += '<div class="cert-upload"></div>'; 
+   html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'love_c_image'+iq+'\'))"/>';
+   // html += '<div class="close-div hide"></div>'; 
+   html += '</div>'; 
+   html += '<textarea  id="love_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60" placeholder="请添加图片说明"></textarea>'; 
+   html += '</div>';   
+   html += "<img class='delete_img' src='images/tuichu.png' onclick='removeAddLable(this)'/>" ;                
+   html += '</li>'; 
+  $("#add_tuwen").append(html);
+  $(".file_up_").change(function(){
+    handleFiles(this,this.parentNode);
+});
+}
+
+function checkvalue2() {
+        if($("#love_showtel").attr("checked")==true){  
+        document.getElementById('love_showtel').value=0;
+       }else{
+        document.getElementById('love_showtel').value=1;
+       }
+    }
+
+function checkvalue3() {
+
+   if($("#love_showcontact").attr("checked")==true){  
+        document.getElementById('love_showcontact').value=0;
+       }else{
+        document.getElementById('love_showcontact').value=1;
+       }
+    
+}
+
+function orderxuan() {
+    
+  var tm=document.getElementById("love_order").value;
+  if (0==tm) {
+     document.getElementById("love_order").value=1;
+  }else if (1==tm) {
+     document.getElementById("love_order").value=0;
+  }
+
+    
+}
+
+// $(function(){
+//   $('#loveDetail_endtime').date()
+//   $('#loveDetail_endtime').val((new Date()).Format("yyyy-MM-dd") )
+// })
+
+
+var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+        offset: new BMap.Size(0, 0),
+        imageOffset: new BMap.Size(0, 0)
+    });
+    var pt = new BMap.Point();
+    var geolocation = new BMap.Geolocation();
+    var geoc = new BMap.Geocoder();
+
+
+
+
+geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            pt = r.point;
+            geoc.getLocation(pt, function(rs){
+                var addComp = rs.addressComponents;
+             
+                var address = addComp.street + addComp.streetNumber;
+                var xw = parseFloat(pt.lat).toFixed(6);
+                var yj = parseFloat(pt.lng).toFixed(6);
+                // $('#pubRent_address_detail').val(address);
+                // $('#pubSell_address_detail').val(address);
+                // $('#pubInquiryRent_address_d').val(address);
+                // $('#pubInquiryBuy_address_d').val(address);
+                $('#love_location_x').val(xw);
+                $('#love_location_y').val(yj);
+                // $('#pubZPeopleNeed_location_x').val(xw);
+                // $('#pubZPeopleNeed_location_y').val(yj);
+                // $('#pubInquiryRent_location_x').val(xw);
+                // $('#pubInquiryRent_location_y').val(yj);
+                // $('#pubInquiryBuy_location_x').val(xw);
+                // $('#pubInquiryBuy_location_y').val(yj);
+            });
+
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }
+    },{enableHighAccuracy: true});
+
+
+    function selectMyPos(wdId,jdId,info_type){
+
+        $('#select-pos').show();
+        $('#pageMap').attr('forData',info_type);
+        var wdStr=$('#'+wdId).val();
+        var jdStr=$('#'+jdId).val();
+        if ($.trim(wdStr) == '' || $.trim(jdStr)=='') {
+        $.alert('正在定位，请稍后！');
+            return;
+        }
+        var wd;
+        var jd;
+        if (parseInt(jdStr) > 999) {
+            wd = parseInt(wdStr)/Math.pow(10,6);
+            jd = parseInt(jdStr)/Math.pow(10,6)
+        }else{
+            wd = parseFloat(wdStr).toFixed(6);
+            jd = parseFloat(jdStr).toFixed(6);
+        }
+        $.router.load("#pageMap"); 
+
+        var size = new BMap.Size(66, 40);
+         map.addControl(new BMap.CityListControl({
+          anchor: BMAP_ANCHOR_TOP_LEFT,
+          offset: size,
+          // 切换城市之间事件
+          // onChangeBefore: function(){
+          //    alert('before');
+          // },
+          // 切换城市之后事件
+          // onChangeAfter:function(){
+          //   alert('after');
+          // }
+        }));
+        var top_left_navigation = new BMap.NavigationControl();   
+        map.addControl(top_left_navigation);
+       
+        var point = new BMap.Point(jd,wd);
+
+        var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+            offset: new BMap.Size(0, 0), 
+            imageOffset: new BMap.Size(0, 0)  
+        });  
+        var marker=new BMap.Marker(point,{icon:myIcon}); 
+        map.addOverlay(marker); 
+        map.centerAndZoom(point, 15); 
+
+
+        $('#select-pos').click(function(){
+            map.clearOverlays();
+            map.addEventListener("click",selectPos); 
+        }); 
+        function selectPos(e){
+            selectPt = e.point;
+            drawPoints(e.point,myIcon);
+            position.latitudeP=e.point.lat;
+            position.longitudeP=e.point.lng;
+            map.removeEventListener("click",selectPos); 
+            var geoc = new BMap.Geocoder(); 
+            geoc.getLocation(selectPt, function(rs){
+                var addComp = rs.addressComponents; 
+                console.info(addComp);
+                console.info(addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                $(".chooselocation").text(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                var address = addComp.street + addComp.streetNumber;
+                var city = addComp.city + "." +addComp.district;
+                console.info(city);
+                var wd = parseFloat(selectPt.lat).toFixed(6);
+                var jd = parseFloat(selectPt.lng).toFixed(6);
+                if (1==info_type) {
+                    // $('#pubZPeopleService_city').find('a').html(city);
+                    // $('#pubInquiryBuy_address_d').val(address);
+                    $('#love_location_x').val(wd);
+                    $('#love_location_y').val(jd);
+                }
+
+            }); 
+        }
+        var drawPoints = function(point,myIcon){
+            var marker=new BMap.Marker(point,{icon:myIcon}); 
+            map.addOverlay(marker);
+            marker.addEventListener("click", function(e){
+                position.latitudeP=e.point.lat;
+                position.longitudeP=e.point.lng;
+                console.info(e.point.lng + ", " + e.point.lat); 
+            });
+
+        };
+
+        $('#select-localpos').click(function(){
+            map.clearOverlays();
+            var sheng = $("#sheng").val();
+            var shi = $("#shi").val();
+            var qu = $("#qu").val();
+            map_init("select_province4","select_city4","select_area4",sheng,shi,qu)
+        });
+    }
+
+
+
+
+  </script>
+
+</html>

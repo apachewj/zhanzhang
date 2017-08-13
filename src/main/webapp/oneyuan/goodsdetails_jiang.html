@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>一元购</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/one_homepage.css"> 
+     <link rel="stylesheet" href="css/progress.css"> 
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+
+
+     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/one_homepage.js"></script>
+     <script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+
+
+    </head>
+   <body>
+    <div class="page page-current" id="">
+      <header class="bar bar-nav">
+             <h1 class="title">商品详情</h1>
+             <a class="icon icon-left pull-left external" href="one_homepage.html"></a>
+             <a class="button button-link button-nav pull-right" href="guangchang.html"  >
+          <img src="images/btn_shaidan.png">
+            
+             </a>
+      </header> 
+      <div class="content"> 
+        <div class="part1">
+        <div class="main_visual">
+          <div class="flicking_con">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+           <a href="#">4</a>
+          </div>
+          <div class="main_image">
+            <ul>
+              <li><span ><img src="images/img_main_3.jpg"  width="100%" height="210px"/></span></li>
+              <li><span ><img src="images/img_main_2.jpg" width="100%" height="210px"/></span></li>
+              <li><span ><img src="images/img_main_1.jpg" width="100%" height="210px"/></span></li>
+                <li><span ><img src="images/img_main_1.jpg" width="100%" height="210px"/></span></li>
+            </ul>
+            
+          </div>
+        </div>
+        </div>
+
+        <div class="card">
+           <div class="card-content">
+      <div class="list-block media-list">
+    <ul>
+            <li>
+        <a href="#" class="item-link item-content">
+
+          <div class="item-inner">
+            <div class="item-title-row">
+               <div class="item-text">
+                <span class="jiexiao">已揭晓</span>
+                &nbsp;此处是标题内容此处是标题内容此处是标题内容此处是标题内容此处是标题内容此处是标题内容</div>
+            </div>
+            <div class="xinyuan_zhan">
+               <div><img src="images/xxx.png"/></div>
+               <div>
+                <p>幸运码：<span>1032322</span></p>
+                <p>获奖者：1032322</p>
+                <p>参与：1032322</p>
+                <p>揭晓时间：1032322wqeqwd</p>
+               </div>
+               <div id="jing_ji">计算详情</div>
+               <div class="clear"></div>
+            </div>
+          </div>
+        
+        </a>
+
+      </li>
+        </ul>
+       </div>
+        </div>
+       </div>
+
+      <div class="card">
+        <div class="card-footer">
+        <span>活动说明</span>
+         <span><img src="images/youjian.png" style="width:.4rem;vertical-align: middle;"/></span>
+      </div>
+     </div>
+     <div class="hongdong_content">
+      我好得很无个vubebfhbrwwbvbb比比我比U币我个U币完毕U币吧人六二别人吧个不比比比比奔比比本期比比奔本期宝贝奔二笔并且把六二班UI比企鹅吧逼i二笔被building宝贝别被吧六二班别被未覆盖个撒打算
+     </div>
+ 
+
+      </div>
+   </div>
+
+
+<script type="text/javascript">
+$(function(){
+     $("#jing_ji").click(function() {
+
+       location.href="jisuan.html"
+     });
+});
+
+
+// 轮播
+$(document).ready(function(){
+  
+  $(".main_image").touchSlider({
+    flexible : true,
+    speed : 200,
+    btn_prev : $("#btn_prev"),
+    btn_next : $("#btn_next"),
+    paging : $(".flicking_con a"),
+    counter : function (e){
+      $(".flicking_con a").removeClass("on").eq(e.current-1).addClass("on");
+    }
+  });
+  
+  $(".main_image").bind("mousedown", function() {
+    $dragBln = false;
+  });
+  
+  $(".main_image").bind("dragstart", function() {
+    $dragBln = true;
+  });
+  
+  $(".main_image a").click(function(){
+    if($dragBln) {
+      return false;
+    }
+  });
+  
+  timer = setInterval(function(){
+    $("#btn_next").click();
+  }, 5000);
+  
+  $(".main_visual").hover(function(){
+    clearInterval(timer);
+  },function(){
+    timer = setInterval(function(){
+      $("#btn_next").click();
+    },5000);
+  });
+  
+  $(".main_image").bind("touchstart",function(){
+    clearInterval(timer);
+  }).bind("touchend", function(){
+    timer = setInterval(function(){
+      $("#btn_next").click();
+    }, 5000);
+  });
+  
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+     <link rel="stylesheet" href="css/fabu.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+<script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+<style type="text/css">
+  li{list-style:none;}
+  .row{margin-left:0;}
+    .selectHide{display: none}
+  .selectShow{display: block}
+  .addDelete{
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      width: 30px;
+      height: 30px;
+      float: right;
+      background-image: url("images/tuichu.png");
+      background-size: 20px ;
+      background-repeat:no-repeat ;
+  }
+  .addXXX{
+      margin-top: -27px;
+      position: relative;
+      right: -9px;
+      top: 30px;
+      width: 30px;
+      height: 30px;
+      float: right;
+      background-image: url("images/tuichu.png");
+      background-size: 20px;
+      background-repeat: no-repeat;
+  }
+  .zhanshi img{
+      width: 120px;
+      height: 120px;
+  }
+  .zhanshi{
+      width: 120px;
+      height: 120px;
+  }
+  .adDelete0{
+      width: 0.8rem;
+      height:0.8rem;
+      background-image: url("images/tuichu.png");
+      background-size: 0.8rem;
+      float: right;
+      position: absolute;
+  }
+</style>
+    <script type="tpl/text" id="tpl">
+    <% for(var i=0;i<list.length;i++){%>
+         <div class="col-50">
+              <div class="zhanshi">
+                   <a href="#"  class="addXXX"></a>
+                   <img style="    width: 120px;height: 120px;" src="<%= list[i].img%>" />
+                   <div class="col-100 judge selectShow">选择</div>
+                   <div class="col-100 judge selectHide ">取消</div>
+                   <div class="clear"></div>
+              </div>
+         </div>
+         <%}%>
+    </script>
+    <script type="tpl/text" id="tpl2">
+          <div class="col-50">
+              <div class="zhanshi">
+               <a href="#"  class="addXXX"></a>
+                   <img src="<%= list.data%>" />
+                   <div class="col-100 judge selectShow">选择</div>
+                   <div class="col-100 judge  selectHide">取消</div>
+                   <div class="clear"></div>
+              </div>
+         </div>
+    </script>
+  </head>
+<body>
+  
+
+<!-- 广告投放 -->
+    <div class="page" id="pageadpush" style="display:block">
+       <header class="bar bar-nav">
+          <h1 class="title">广告投放</h1>
+          <a class="icon icon-left pull-left back" href="adadmin.html"></a>
+          <a class="button button-link button-nav pull-right external" href="adadmin.html" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+          </header>
+          <div class="content">
+      <div class="list-block media-list mar-list ">
+       <ul>
+               <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-50">
+                                            选择投放区域*
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+              <li class="detail-li">
+
+                                           <div class="row ">
+                                               <div class="col-33">
+                                                   <select  name="province"  class="banner-text1 dqxz" id="select_province" eleType='text' ></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_city" eleType='text'></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_area" eleType='text'></select>
+                                               </div>
+                                                <div style="clear:both"></div>
+                                           </div>
+                                       
+
+                    </li>
+
+                   <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-50">
+                                            选择轮播页*
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+   <li class="ping">
+    <div class="" data="1">
+      第一屏 
+     </div> 
+     <div class="" data="2">
+      第二屏 
+     </div> 
+     <div class="" data="3">
+      第三屏 
+     </div> 
+     <div class="" data="4">
+      第四屏 
+     </div> 
+   </li>                    
+<div class="clear"></div>
+<div class="row" style="margin-top:10px;padding-top:10px">
+  <div class="col-25 border">
+<select id="ag">
+  <option value="2016">2016</option>
+  </select>
+</div>
+ <div class="col-25 border">
+   <select id="mon">
+   <option value="01">一月</option>
+   <option value="02">二月</option>
+   <option value="03">三月</option>
+   <option value="04">四月</option>
+   <option value="05">五月</option>
+   <option value="06">六月</option>
+   <option value="07">七月</option>
+   <option value="08">八月</option>
+   <option value="09">九月</option>
+   <option value="10">十月</option>
+   <option value="11">十一月</option>
+   <option value="12">十二月</option>
+  </select>
+  </div>
+<div class="col-25 up_month">上月</div>
+<div class="col-25 down_month">下月</div>
+</div>
+<div class="course">
+
+    <div class="table">
+       <div id="w0">
+        <div>周日</div>
+      </div>
+   
+      <div id="w1">
+        <div>周一</div>
+
+      </div>
+
+      <div  id="w2">
+        <div>周二</div>
+  
+      </div>
+
+      <div  id="w3">
+        <div>周三</div>
+
+      </div>
+
+      <div  id="w4">
+        <div>周四</div>
+
+      </div>
+
+      <div  id="w5">
+        <div>周五</div>
+
+      </div>
+
+      <div  id="w6">
+        <div>周六</div>
+      </div> 
+  
+    </div>
+        
+
+  </div>
+
+  <div class="clear"></div>
+
+   <div class="bottom_dt">
+    <div>
+    <div class="xuan1">
+    </div>已过期
+   </div>
+   <div>
+    <div class="xuan2">
+    </div>已投放
+    </div>
+    <div>
+    <div class="xuan3">
+    </div>未投放
+    </div>
+    <div>
+     <div class="xuan4">
+      <img src="images/home_fbgg_gx.png" width="23"  />
+     </div>选中
+     </div>
+   </div>
+      </ul>
+       </div>
+       <div class="clear"></div>
+       <div class="tou_time">
+        <p id="tou">已选择投放时间</p>
+
+       </div>
+       <div class="zhifu">
+          <p>应支付金额</p>
+          <span id="fabuMoney"></span>
+       </div>
+
+      <a href="#pagebianji"><div class="next_bu">
+        <p class="fabuNext">下一步</p></a>
+      </div>
+      </div>
+
+    </div>  
+
+    <!-- 广告投放编辑 -->
+   <div class="page" id="pagebianji">
+       <header class="bar bar-nav">
+           <h1 class="title">广告发布</h1>
+           <a class="icon icon-left pull-left back" href="#"></a>
+           <a class="button button-link button-nav pull-right external" href="adadmin.html" data-transition='slide-out'>
+               <span class="icon pull-right"></span>
+               管理
+           </a>
+       </header>
+       <div class="content">
+           <div class="list-block media-list mar-list ">
+               <ul>
+                   <li class="detail-li">
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           活动人数＊
+                                       </div>
+                                       <div class="col-33">
+
+                                           <input  id="page_comein" class="inp-text1" name="ad" value="1" type="radio" checked="true">
+                                           直接进入
+                                       </div>
+                                       <div class="col-33">
+
+                                           <input id="page_details" class="inp-text1" name="ad" value="2" type="radio">
+                                           进页详情
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="detail-li">
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-50">
+                                           选择店铺＊
+                                       </div>
+                                       <div class="col-33 dianpu">
+                                           <select>
+                                               <option>
+                                                   -- 请选择 --
+                                               </option>
+                                           </select>
+                                       </div>
+
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+
+
+                   <li class="detail-li" id="enterDetail" style="display:none;">
+                      <div class="item-content ">
+                           <div class="item-inner item-tel">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           广告位展示＊
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                       <ul>
+                           <li class="detail-li  item">
+                               <div class="row">
+                                   <div class="col-33">
+                                       <div id="pubScenic_c_image"  class="inp-cert">
+                                           <div class="cert-upload"></div>
+                                           <input type="file" class="cert-upload fileInp-opacity imglod "  multiple accept="image/*"  onchange="doUpload2(this)" value="">
+                                       </div>
+                                   </div>
+                                   <div class="col-50">
+                                       <textarea id="pubScenic_c_context" eleType="input"  class="inp-text textlod col-100" placeholder="请添加图片说明"></textarea>
+                                   </div>
+                               </div>
+
+                           </li>
+                       </ul>
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           标题＊
+                                       </div>
+                                   </div>
+                                   <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                           <textarea class="inp-text" placeholder="请用30字内简述你的广告" id="textareaTitle"></textarea>
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                       <div class="tuwenbiji" >
+                       <div class="item-content ">
+                           <div class="item-inner item-tel">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           详情＊
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                           <ul id="add">
+                               <li class="detail-li  item">
+                                   <div class="row">
+                                       <div class="col-33">
+                                           <div id="pubScenic_c_image"  class="inp-cert">
+                                               <div class="cert-upload"  ></div>
+                                               <input type="file" class="cert-upload fileInp-opacity filesss infofabu_choose"  multiple accept="image/*"  onchange="doUpload2(this)" value="">
+                                           </div>
+                                       </div>
+                                       <div class="col-50">
+                                           <textarea id="pubScenic_c_context" eleType="input"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明"></textarea>
+                                       </div>
+                                   </div>
+                                   <a href="" id="www"></a>
+                               </li>
+                           </ul>
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row">
+                                       <div class="content-block content-block1">
+                                           <a href="#" class="button button-fill button-warning" id="additem">+创建图片</a>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+
+
+
+                   <li class="detail-li" id="ad_content" style="display:block">
+                       <div class="item-content ">
+                           <div class="item-inner">
+                               <div class="item-text text-content">
+                                   <div class="row" id="addTemplate">
+
+
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+
+
+               </ul>
+
+               <div class=" row  coll-50">
+                   <input type="file" name="upload" id="imgla"   onchange="doUpload(this)" style="display:none">
+                   <img src="images/shangchuangtupian.png" id="directEnter"/>
+               </div>
+
+           </div>
+           <div class="content-block">
+               <div class="row">
+                   <div class="col-50 baocun"><a href="#" class="button button-big button-fill button-danger">保存</a></div>
+                   <div class="col-50 fabu" ><a href="#" class="button button-big button-fill button-success">支付</a></div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+  
+<script type='text/javascript' src='js/address.js' ></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src='js/lodash.min.js'></script>
+<script type="text/javascript" src="js/ad.js"></script>
+   <script src="js/fabu3.js"></script>
+
+
+<script>
+    
+</script>
+<script type="text/javascript">
+  var id=location.search
+            id=id.substring(1)
+            id=id.split("=")
+            id=id[1]
+  $.post('/user/ad/AdApply',{info_id:id}).then(function(data){
+    window.local=data.location
+    console.log(data);
+      $('.imglod').attr('data',data.img)
+      $('#init').attr('src',data.img)
+      $('.textlod').val('data',data.imgcontext)
+    region_init("select_province","select_city","select_area",data.province_id,data.city_id,data.county_id);
+    $('.ping>div:nth-child('+data.showtype+')').addClass('on')
+    $(data.days).each(function(){
+       var day=this.day.split(' ')[0].split("-")
+         console.log(day);
+         var m=day[1]
+         var d=day[2]
+      $('#tou').after("<span id="+m+"-"+d+" class='isok'>"+m+"-"+d+"</span>")
+    })
+
+    $('.zhifu>span').html(data.money+"元")
+    if(data.type==1){
+        $('#page_comein').attr('checked',true)
+    }else{
+        $('#page_details').attr('checked',true)
+        $("#page_details").click()
+    }
+    $('#textareaTitle').val(data.title)
+    var content=data.context_.split(',')
+     var imgs=data.c_image.split(',')
+     console.log(imgs);
+        $(content).each(function(index,item){
+          console.log(item);
+              if(index>0){
+          var str='<li class="detail-li  item ">'
+              +'<div class="row">'
+              +' <div class="col-33">'
+              +' <div id="pubScenic_c_image"  class="inp-cert">'
+              +'<div class="cert-upload"></div>'
+              +'<input type="file" class="cert-upload fileInp-opacity filesss"  multiple accept="image/*"  value="" onchange="doUpload2(this)" data="'+imgs[index]+'">'
+              +'<img style="position: absolute;width: 70px;left: 21px;top: 7px;border-radius: 5px;" src="'+imgs[index]+'">'
+                  +' </div>'
+              +'</div>'
+              +' <div class="col-50">'
+              +' <textarea id="pubScenic_c_context" eleType="input"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明">'+item+'</textarea>'
+              +' </div>'
+              +' </div>'
+              + ' <a href="" class="addDelete">'
+              + '</a>'
+              +' </li>'
+          $('#add').append(str)
+              }else{
+                 $('.item:first').find('.tianjiatupian').val(item)
+                 $('.item:first').find('.filesss').attr('data',imgs[index])
+              }
+        })
+   
+
+        
+  })
+
+</script>
+
+
+ </body>
+
+</html>

@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/service.css"> 
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <!--<script>-->
+        <!--$(document).ready(function(){-->
+            <!---->
+        <!--});-->
+    <!--</script>-->
+  </head>
+<body>
+
+
+<div class="page-group">
+    
+      <!--主界面-->
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav">
+             <h1 class="title">便民服务</h1>
+             <a class="icon icon-left pull-left external" onclick="fanhui()"></a>
+              <!--     <a class="pull-right" href="#pagechoose">发布</a> -->
+             <a class="button button-link button-nav pull-right" href="#pagePostChoose"  data-transition='slide-out'>
+             <span class="icon pull-right"></span>
+             发布
+             </a>
+      </header> 
+      <div class="content"> 
+        
+      <div class="swiper-container shouyeswiper-container" data-space-between='10'>
+
+
+               <div class="banner-text banner-top" >
+                      <div class="row ">  
+                              <div class="col-33">
+                                  <select  name="province"  class="banner-text1" id="select_province2" eleType='text' ></select>
+                                  
+                               </div>  
+                                 <div class="col-33">
+                                 <select   name="city" class="banner-text1" id="select_city2" eleType='text'></select>
+                              </div>
+                          <div class="col-33">
+                              <select   name="district" class="banner-text1" id="select_area2" eleType='text'></select>
+                          </div>
+
+                       </div>
+                </div>
+              <div class="swiper-wrapper" id="Service_img_List">
+ <!--                   <div class="swiper-slide"><img src="images/car-banner-01.png" alt="" style='width: 100%'></div>
+                   <div class="swiper-slide"><img src="images/car-banner-02.png" alt="" style='width: 100%'></div>
+                  <div class="swiper-slide"><img src="images/car-banner-03.png" alt="" style='width: 100%'></div>
+                   <div class="swiper-slide"><img src="images/car-banner-03.png" alt="" style='width: 100%'></div> -->
+              </div>
+
+             <div class="swiper-pagination"></div>
+          </div>
+           <div class="search_border">
+                     <select class="inp-text1" id="sell_house_type" eleType="text">
+                        <option value="0">请选择分类</option>
+                        <option value="1">家政清洁</option>
+                        <option value="2">车辆服务</option>
+                        <option value="3">管道疏通</option>
+                        <option value="4">搬家运送</option>
+                        <option value="5">装饰装修</option>
+                        <option value="6">上门维修</option>
+                        <option value="7">其他</option>
+                     </select>
+<!--           <div class="search">
+             <input class="search_text" id="sell_param" placeholder="通过店铺名/用户名/关键词搜索内容"/>
+             <div id="btnQuery" class="search_img"><img src="images/tong_btn_search.png" /></div>
+              <div class="clear"></div>
+         </div> -->
+
+  <div class="searchbar">
+    <a class="searchbar-cancel" id="btnQuery">搜索</a>
+    <div class="search-input s_border">
+      <label class="icon icon-search ouye" for="search"></label>
+      <input type="search" id="sell_param" eleType="text"  placeholder='通过店铺名/用户名/关键词搜索内容'/>
+    </div>
+  </div>
+  <div class="clear"></div>
+            </div>
+                  
+         
+
+
+         <div class="buttons-row buttons-row_content" data-offset="44" >
+                   
+                  <a href="#tab1" id="service_c" name="types" data-pub="0" class="tab-link active button" check="true">服务</a>
+                  <a href="#tab2" id="need_c" name="types" data-pub="1" class="tab-link button">需求</a>  
+          </div>
+          <div class="tabs " >
+                      <input type="hidden" id="ZPeopleService_location_x" eleType='value' value="32163306"/>
+                      <input type="hidden" id="ZPeopleService_location_y" eleType='value' value="118712513"/>
+
+                <div id="tab1" class="tab active  infinite-scroll " data-distance="100">
+             
+                      <div class="card-content " >
+                          <div class="list-block media-list" >
+                               <ul id="queryList" ></ul>
+                          </div>
+                       </div>
+                   
+                          <input type="hidden" id="sell_pageNum" value="1"/>
+                          <input type="hidden" id="sell_pageSize" value="10" />
+
+                          <div class="infinite-scroll-preloader">
+                               <!--<div class="preloader"></div>-->
+                          </div>
+                    
+               </div>
+       
+              <div id="tab2" class="tab  infinite-scroll " data-distance="100">
+                      <div class="card-content " >
+                          <div class="list-block media-list" >
+                               <ul id="queryNeedList" ></ul>
+                          </div>
+                       </div>
+
+                          <input type="hidden" id="rent_pageNum" value="1" />
+                          <input type="hidden" id="rent_pageSize" value="10" />
+                          <div class="infinite-scroll-preloader">
+                               <!--<div class="preloader"></div>-->
+                          </div>
+              
+              </div> 
+     </div> 
+
+
+         
+     </div>
+                <div class="tanchu_btn">
+             <img   src="images/bmfw_btn_kjj.png">
+             </div>
+          <div  class="black_overlay fade"></div>    
+     
+            <div class="tanchu">
+                  <img class="i-add" src="images/bmfw_kjcx_img.png">
+                  <img  class="i-add1"  src="images/bmfw_btn_s.png" >
+           </div>
+</div> 
+
+<!-- 便民服务详情 -->
+<div class="page" id="pagePeopleServiceDetail">
+        <header class="bar bar-nav">
+             <h1 class="title">便民服务</h1>
+             <a class="icon icon-left pull-left " onclick="self.location=document.referrer;"></a>
+             <a class="icon icon-share pull-right alert-text" ></a>
+        </header>
+         <nav class="bar bar-tab under-bar">
+          <span class="" id="peopleServiceDetail_linkman" eleType='input'></span>  
+          <span class="bar-name button-danger" id="peopleServiceDetail_telephone"  eleType="telVew"></span>  
+           <a href="" ><img class="contact" src="images/tong_btn_d_xslx.png"></a> 
+           <a href=""  id="peopleServiceDetail_tel"><img class="contact" src="images/tong_btn_d_dh.png"></a> 
+           <a href=""  id="peopleServiceDetail_sms"><img class="contact" src="images/tong_btn_d_dx.png"></a> 
+        </nav>
+        <div class="content">
+            <input type="hidden" id="peopleServiceDetail_id" eleType='input'/>
+            <input type="hidden" id="peopleServiceDetail_location_x" eleType='input' value="32163306"/>
+            <input type="hidden" id="peopleServiceDetail_location_y" eleType='input' value="118712513"/>
+            <div class="swiper-container" data-space-between='10'>
+                <div class="swiper-wrapper" id="peopleServiceDetail_show_img_List" > 
+                </div>
+                <input type="hidden" id="peopleServiceDetail_show_img" eleType='img'/>
+                <div class="swiper-pagination"></div>
+            </div>
+           <div class="listdetail">
+               <div class="content_de">
+                   <p id="peopleServiceDetail_title" eleType='input'></p>
+                   <div class="pd">
+                       <span>价格：</span>
+                       <span class="num" id="peopleServiceDetail_money" eleType='input'></span><span class="num" id="mianyi1">元/</span><span class="num" id="peopleServiceDetail_unit" eleType='input'></span>
+                       <div class="groupbtn">
+                               <div class="report">
+                     <div class="newsbottom icon-sel start-size jbstart-line jubaodiv" onclick="reportItem(this,'peopleServiceDetail_id',3)">
+                     <!--  <img src="images/tong_btn_jb_y.png"> -->
+                      </div>
+                               </div>
+                               <div class="collection">
+                      <div class="icon-sel start-size scstart-line scdiv" onclick="collectItem(this,'peopleServiceDetail_id',3)">
+                           <!--   <img src="images/tong_btn_sc_n.png"> -->
+                      </div>
+                               </div>
+                               <div class="position">
+                      <div class="icon-sel start-size back-icon" onclick="showMap('peopleServiceDetail_location_x','peopleServiceDetail_location_y',1)"></div>
+                               </div>
+      
+                       </div>
+                       <div class="clear"></div>
+                  </div>
+               </div>
+            </div>
+            <div class="wrap_de">
+                  <div class="wrap-content">
+                      <h2>详情</h2>
+                      <p id="peopleServiceDetail_content" eleType='input'></p>
+                  </div>
+            </div>
+        </div>
+</div>
+
+<!-- 便民需求详情 -->
+<div class="page" id="pagePeopleNeedDetail">
+        <header class="bar bar-nav">
+             <h1 class="title">便民需求</h1>
+             <a class="icon icon-left pull-left " onclick="self.location=document.referrer;"></a>
+             <a class="icon icon-share pull-right alert-text" ></a>
+        </header>
+         <nav class="bar bar-tab under-bar">
+          <span class="" id="peopleNeedDetail_linkman" eleType='input'></span>  
+          <span class="bar-name button-danger" id="peopleNeedDetail_telephone" eleType="telVew" ></span>  
+          <a href="" ><img class="contact" src="images/tong_btn_d_xslx.png"></a> 
+          <a href="" id="peopleNeedDetail_tel"><img class="contact" src="images/tong_btn_d_dh.png"></a> 
+          <a href="" id="peopleNeedDetail_sms"><img class="contact" src="images/tong_btn_d_dx.png"></a> 
+        </nav>
+        <div class="content">
+            <input type="hidden" id="peopleNeedDetail_id" eleType='input'/>
+            <input type="hidden" id="peopleNeedDetail_location_x" eleType='input' value="32163306"/>
+            <input type="hidden" id="peopleNeedDetail_location_y" eleType='input' value="118712513"/>
+            <div class="swiper-container" data-space-between='10'>
+                <div class="swiper-wrapper" id="peopleNeedDetail_show_img_List" > 
+                </div>
+                <input type="hidden" id="peopleNeedDetail_show_img" eleType='img'/>
+                <div class="swiper-pagination"></div>
+            </div>
+           <div class="listdetail">
+               <div class="content_de">
+                   <p id="peopleNeedDetail_title" eleType='input'></p>
+                   <div class="pd">
+                       <span>价格：</span>
+                       <span class="num" id="peopleNeedDetail_money" eleType='input'></span><span class="num" id="mianyi">元/</span><span class="num" id="peopleNeedDetail_unit" eleType='input'></span>
+                       <div class="groupbtn">
+                               <div class="report">
+                     <div class="newsbottom icon-sel start-size jbstart-line jubaodiv" onclick="reportItem(this,'peopleNeedDetail_id',4)">
+        
+                       </div>
+                               </div>
+                               <div class="collection">
+                      <div class="icon-sel start-size scstart-line scdiv" onclick="collectItem(this,'peopleNeedDetail_id',4)">
+                  
+                      </div>
+                               </div>
+                        <div class="position">
+                        <div class="icon-sel start-size back-icon" onclick="showMap('peopleNeedDetail_location_x','peopleNeedDetail_location_y',2)"></div>
+                               </div>
+      
+                       </div>
+                       <div class="clear"></div>
+                  </div>
+               </div>
+            </div>
+            <div class="wrap_de">
+                  <div class="wrap-content">
+                      <h2>详情</h2>
+                      <p id="peopleNeedDetail_content" eleType='input'></p>
+                  </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="page" id="pagePostChoose">
+       <header class="bar bar-nav">
+          <h1 class="title">发布选择</h1>
+          <a class="icon icon-left pull-left " href="#pageIndex"></a>
+ <!--          <a class="button button-link button-nav pull-right external" href="" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a> -->
+      </header>
+      <div class="content">
+        <div class='choose_type'>
+          <ul>
+            <li>
+               <a href="#pagePubZPeopleNeed"  data-no-cache="true" data-transition='slide-out' ><img src="images/bmfw_fbxq.png" />发布需求</a>
+            </li>
+            <li>
+               <a href="#pagePubZPeopleService"  data-no-cache="true" data-transition='slide-out' ><img src="images/bmfw_fbfw.png"/>发布服务</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+ </div>
+
+
+
+<!--  发布服务 -->
+ <div class="page" id="pagePubZPeopleService">
+      <header class="bar bar-nav">
+          <h1 class="title">发布服务</h1>
+          <a class="icon icon-left pull-left back " ></a>
+          <a class="button button-link button-nav pull-right external" href="../service/myfabu.html?id=3" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+      </header>
+       <div class="content">
+            <input type="hidden" id="pubZPeopleService_id" >
+            <input type="hidden" id="pubZPeopleService_location_x">
+            <input type="hidden" id="pubZPeopleService_location_y">
+           <div class="list-block media-list mar-list">
+                <ul>
+                    <li class="detail-li">
+                        <div class="fileElem-photo" imgList="pubZPeopleService_imgs_List" pubImg="pubZPeopleService_imgs"></div>
+                        <input type="hidden" id="pubZPeopleService_imgs" eleType='img'/>
+                        <div id="pubZPeopleService_imgs_List" class="fileList" style="width:100%"></div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                           <textarea id="pubZPeopleService_title" eleType="input" maxlength="30"  class="inp-text" placeholder="一句话简明描述您要的服务*"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                          <div class="col-40">
+                                              <div class="item-input input-content" >
+                                                  <input id="pubZPeopleService_money" class="inp-text inp-right " eleType="input" type="number" placeholder="填写价格">
+                                              </div>
+                                          </div>
+                                          <div class="col-15">元/</div>
+                                          <div class="col-40">
+                                                <div class="item-input input-content">
+                                                    <input id="pubZPeopleService_unit" class="inp-text inp-right" eleType="input" type="text" placeholder="填写单位如‘件’">
+                                                </div>  
+                                          </div>                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row select-row">
+                                       <div class="item-input select-content">
+                                           <select id="pubZPeopleService_type" eleType="input" class="inp-text">
+                                              <option value="0">请选择分类</option>
+                                              <option value="1">家政清洁</option>
+                                              <option value="2">车辆服务</option>
+                                              <option value="3">管道疏通</option>
+                                              <option value="4">搬家运送</option>
+                                              <option value="5">装饰装修</option>
+                                              <option value="6">上门维修</option>
+                                              <option value="7">其他</option>
+                                           </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li ">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                           <textarea id="pubZPeopleService_content" eleType="input" class="inp-text" placeholder="详情介绍（如工作范围，内容等详细介绍）*"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            联系人*：
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="pubZPeopleService_linkman" eleType="input" class="inp-text" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-tel">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            手机号*：
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="pubZPeopleService_telephone" eleType="input" class="inp-text" type="number" placeholder="139...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                              <a class="item-content ">
+                                  <div class="item-inner ">
+                                      <div class="item-text quyu-select"> 
+                                     选择显示区域（不选默认当前）
+                                          <div class="row xianshi-row">  
+                                              <div class="col-33 line_quyu">
+                                                  <select  name="province"  id="select_province1" eleType="input">
+                                                        
+                                                  </select>
+                                               </div>  
+                                                 <div class="col-33 line_quyu">
+                                                 <select   name="city"  id="select_city1" eleType="input">
+                                                        
+                                                 </select>
+                                              </div> 
+                                               <div class="col-33 line_quyu">
+                                                 <select   name="street"  id="select_area1" eleType="input">
+                                                      
+                                                 </select>
+                                              </div> 
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                      </li>
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                        <div class="col-66">
+                                             是否开启我的位置：
+                                        </div>
+                                        <div class="col-33" >
+                                            <div class="item-input open-position">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox"  id="checkbox" >
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li weizhixuanze"  style="display: none;">
+                       <a href="#">
+                        <div class="item-content item-content_select">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row span-row"  onclick="selectMyPos('pubZPeopleService_location_x','pubZPeopleService_location_y',1)">
+                                          <div class="item-input span-content">
+                                                <span class="chooselocation">-请选择位置-</span>
+                                          </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                     
+                    
+                </ul>
+            </div> 
+            <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun"><a id="btnSaveZPeopleService" class="button button-big button-fill button-danger">保存</a></div>
+                      <div class="col-50 fabu" ><a id="btnPubZPeopleService" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+           </div>
+      </div>
+</div>
+
+
+
+ <!--发布需求-->
+ <div class="page" id="pagePubZPeopleNeed">
+      <header class="bar bar-nav">
+          <h1 class="title">发布需求</h1>
+          <a class="icon icon-left pull-left back" ></a>
+          <a class="button button-link button-nav pull-right external" href="../service/myfabu.html?id=4" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+      </header>
+       <div class="content">
+            <input type="hidden" id="pubZPeopleNeed_id" >
+            <input type="hidden" id="pubZPeopleNeed_location_x">
+            <input type="hidden" id="pubZPeopleNeed_location_y">
+           <div class="list-block media-list mar-list">
+                <ul>
+                    <li class="detail-li">
+                        <div class="fileElem-photo" imgList="pubZPeopleNeed_imgs_List" pubImg="pubZPeopleNeed_imgs"></div>
+                        <input type="hidden" id="pubZPeopleNeed_imgs" eleType='img'/>
+                        <div id="pubZPeopleNeed_imgs_List" class="fileList" style="width:100%"></div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                          <textarea id="pubZPeopleNeed_title" eleType="input"    class="inp-text" placeholder="一句话简明描述您的需求*"  maxlength="30"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                          <div class="col-40">
+                                              <div class="item-input input-content" >
+                                                  <input id="pubZPeopleNeed_money" class="inp-text inp-right " eleType="input" type="number" placeholder="填写价格">
+                                              </div>
+                                          </div>
+                                          <div class="col-15">元/</div>
+                                          <div class="col-40">
+                                                <div class="item-input input-content">
+                                                    <input id="pubZPeopleNeed_unit" class="inp-text inp-right" eleType="input" type="text" placeholder="填写单位如‘件’">
+                                                </div>
+                                          </div>                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row select-row">
+                                       <div class="item-input select-content">
+                                           <select id="pubZPeopleNeed_type" eleType="input" class="inp-text">
+                                              <option value="0">请选择分类</option>
+                                              <option value="1">家政清洁</option>
+                                              <option value="2">车辆服务</option>
+                                              <option value="3">管道疏通</option>
+                                              <option value="4">搬家运送</option>
+                                              <option value="5">装饰装修</option>
+                                              <option value="6">上门维修</option>
+                                              <option value="7">其他</option>
+                                           </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li ">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                           <textarea id="pubZPeopleNeed_content" eleType="input" class="inp-text" placeholder="详情介绍（如工作范围，内容等详细介绍）*"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            联系人*：
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="pubZPeopleNeed_linkman" eleType="input" class="inp-text" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-tel">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            手机号*：
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="pubZPeopleNeed_telephone" eleType="input" class="inp-text" type="number" placeholder="139...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                              <a class="item-content ">
+                                  <div class="item-inner ">
+                                      <div class="item-text quyu-select"> 
+                                     选择显示区域（不选默认当前）
+                                          <div class="row xianshi-row">  
+                                              <div class="col-33 line_quyu">
+                                                  <select  name="province"  id="select_province3" eleType="input">
+                                                        
+                                                  </select>
+                                               </div>  
+                                                 <div class="col-33 line_quyu">
+                                                 <select   name="city"  id="select_city3" eleType="input">
+                                                        
+                                                 </select>
+                                              </div> 
+                                               <div class="col-33 line_quyu">
+                                                 <select   name="street"  id="select_area3" eleType="input">
+                                                      
+                                                 </select>
+                                              </div> 
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                      </li>
+                    
+                    <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                        <div class="col-66">
+                                             是否开启我的位置：
+                                        </div>
+                                        <div class="col-33" >
+                                            <div class="item-input open-position1">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox"  id="checkbox1" >
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li weizhixuanze1"  style="display: none;">
+                       <a href="#">
+                        <div class="item-content item-content_select">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row span-row"  onclick="selectMyPos('pubZPeopleNeed_location_x','pubZPeopleNeed_location_y',2)">
+                                          <div class="item-input span-content">
+                                                <span class="chooselocation">-请选择位置-</span>
+                                          </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                     
+                    
+                </ul>
+            </div> 
+            <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun"><a id="btnSaveZPeopleNeed" class="button button-big button-fill button-danger">保存</a></div>
+                      <div class="col-50 fabu" ><a id="btnPubZPeopleNeed" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+           </div>
+      </div>
+</div>
+
+
+      
+
+
+
+     <!--发布位置-->
+    <div class="page" id="pageMap">
+        <header class="bar bar-nav">
+            <h1 class="title">位置选择</h1>
+            <a class="icon icon-left pull-left back" href="#"></a>
+            <a class="icon  pull-right back " href="#">确定</a>
+        </header>
+        <div class="content">
+            <input type="hidden" id="sheng">
+            <input type="hidden" id="shi">
+            <input type="hidden" id="qu">
+                <div class="banner-text banner-top" >
+                            <div class="row ">
+                                <div class="col-33 line_quyu">
+                                    <select  name="province"  class="banner-text1" id="select_province4" eleType="input">
+
+                                    </select>
+                                </div>
+                                <div class="col-33 line_quyu">
+                                    <select   name="city"  class="banner-text1" id="select_city4" eleType="input">
+
+                                    </select>
+                                </div>
+                                <div class="col-33 line_quyu">
+                                    <select   name="street"  class="banner-text1" id="select_area4" eleType="input">
+
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+
+
+
+           <div class=" select_block" >
+                      <ul>
+
+                           <li class="detail-li">
+                              <a class="item-content button_select"  >
+                                  <div class="item-inner">
+                                      <div class="item-text ">
+                                          <div class="row localplace" id="select-localpos">
+                                              <div class="dingtupian"><img src="images/u95.png"></div>
+                                              <button>当前位置</button>
+                                          </div>
+                                          <div class="row zidinyi" id="select-pos">
+                                              <button>重新自定义位置</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                          </li>
+  
+                      </ul>
+               </div>
+            <input type="hidden" id="">
+            <div id="MyMap" style='width:100%; height:100%'></div>
+             
+        </div>
+
+    </div>
+
+
+</div>
+
+   <script type='text/javascript' src='js/zepto.js' ></script>
+    <script type='text/javascript' src='js/sm.min.js' ></script>
+    <script type='text/javascript' src='js/sm-extend.min.js'></script>
+    <script type="text/javascript" src="js/juicer.js"></script>
+ <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=FbzOyQ4YujPrZsxiQKoB07aB&services=&t=20160708193109"></script>
+           <script src="js/Common.js"></script>
+       <script type='text/javascript' src='js/address1.js'></script>
+    <script type="text/javascript" src="js/service.js"></script>
+    
+<script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script>
+
+</body>
+
+   
+ <script>
+     var map = new BMap.Map('MyMap');
+     function GetQueryString(name) {
+         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if (r != null)return unescape(decodeURI(r[2]));
+         return null;
+     }
+     function get(_region_p_default,_region_c_default,_region_d_default){
+         region_init("select_province2","select_city2","select_area2",_region_p_default,_region_c_default,_region_d_default);
+         region_initx("select_province1","select_city1","select_area1",_region_p_default,_region_c_default,_region_d_default)
+         region_initx("select_province3","select_city3","select_area3",_region_p_default,_region_c_default,_region_d_default)
+         map_init("select_province4","select_city4","select_area4",_region_p_default,_region_c_default,_region_d_default)
+         $("#sheng").val(_region_p_default)
+         $("#shi").val(_region_c_default)
+         $("#qu").val(_region_d_default)
+     }
+
+     if($.device.os=="android"){
+         var province  = GetQueryString("province");
+         var city  = GetQueryString("city");
+         var district1  = GetQueryString("district");
+          _cityPosdata(province,city,district1);
+
+     }else if($.device.os=="ios"){
+         region_init("select_province2","select_city2","select_area2",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+         region_initx("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+         region_initx("select_province3","select_city3","select_area3",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+         map_init("select_province4","select_city4","select_area4",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+         $("#sheng").val(getCookie("p_id"))
+         $("#shi").val(getCookie("c_id"))
+         $("#qu").val(getCookie("d_id"))
+     }
+
+
+
+
+function pubget(region_p_default,region_c_default,region_d_default){
+    if(region_p_default&&region_c_default&&region_d_default){
+
+region_initx("select_province1","select_city1","select_area1",region_p_default,region_c_default,region_d_default);
+region_initx("select_province3","select_city3","select_area3",region_p_default,region_c_default,region_d_default);
+    }
+}
+  </script>
+  <script>
+
+
+
+
+
+
+
+$(function(){
+     $(".open-position").click(function(){
+
+          
+     if(!$("#checkbox").attr("checked")){  
+      
+         $(".weizhixuanze").show();
+       }else{
+        $(".weizhixuanze").hide();
+       }
+       
+     });
+     });
+
+$(function(){
+     $(".open-position1").click(function(){
+
+          
+     if(!$("#checkbox1").attr("checked")){  
+      
+         $(".weizhixuanze1").show();
+       }else{
+        $(".weizhixuanze1").hide();
+       }
+       
+     });
+     });
+
+
+$(function() {
+    "use strict";
+
+var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+        offset: new BMap.Size(0, 0),
+        imageOffset: new BMap.Size(0, 0)
+    });
+
+
+    var pt = new BMap.Point();
+//    $.showPreloader();
+    var geolocation = new BMap.Geolocation();
+    var geoc = new BMap.Geocoder();
+
+
+geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            pt = r.point;
+
+            geoc.getLocation(pt, function(rs){
+                var addComp = rs.addressComponents;
+                console.info(pt);
+
+                console.info(addComp.province + ", " + addComp.city+ ", " + addComp.district);
+
+
+                var address = addComp.street + addComp.streetNumber;
+                var xw = parseFloat(pt.lat).toFixed(6);
+                var yj = parseFloat(pt.lng).toFixed(6);
+                $('#pubZPeopleService_location_x').val(xw);
+                $('#pubZPeopleService_location_y').val(yj);
+                $('#pubZPeopleNeed_location_x').val(xw);
+                $('#pubZPeopleNeed_location_y').val(yj);
+                $('#peopleServiceDetail_location_x').val(xw);
+                $('#peopleServiceDetail_location_y').val(yj);
+                $('#peopleNeedDetail_location_x').val(xw);
+                $('#peopleNeedDetail_location_y').val(yj);
+            });
+
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }
+    },{enableHighAccuracy: true});
+
+
+ });
+
+
+
+    function selectMyPos(wdId,jdId,info_type){
+      $('#select-pos').show();
+
+        $('#pageMap').attr('forData',info_type);
+        var wdStr=$('#'+wdId).val();
+        var jdStr=$('#'+jdId).val();
+        if ($.trim(wdStr) == '' || $.trim(jdStr)=='') {
+        $.alert('正在定位，请稍后！');
+            return;
+        }
+        var wd;
+        var jd;
+        if (parseInt(jdStr) > 999) {
+            wd = parseInt(wdStr)/Math.pow(10,6);
+            jd = parseInt(jdStr)/Math.pow(10,6)
+        }else{
+            wd = parseFloat(wdStr).toFixed(6);
+            jd = parseFloat(jdStr).toFixed(6);
+        }
+        $.router.load("#pageMap");
+//        var map = new BMap.Map('MyMap');
+        var size = new BMap.Size(66, 40);
+        var top_left_navigation = new BMap.NavigationControl();
+        map.addControl(top_left_navigation);
+
+        var point = new BMap.Point(jd,wd);
+
+        var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+            offset: new BMap.Size(0, 0),
+            imageOffset: new BMap.Size(0, 0)
+        });
+        var marker=new BMap.Marker(point,{icon:myIcon});
+        map.addOverlay(marker);
+        map.centerAndZoom(point, 15);
+
+
+        $('#select-pos').click(function(){
+            map.clearOverlays();
+            map.addEventListener("click",selectPos);
+        });
+        function selectPos(e){
+            selectPt = e.point;
+            drawPoints(e.point,myIcon);
+            position.latitudeP=e.point.lat;
+            position.longitudeP=e.point.lng;
+            map.removeEventListener("click",selectPos);
+            var geoc = new BMap.Geocoder();
+            geoc.getLocation(selectPt, function(rs){
+                var addComp = rs.addressComponents;
+                console.info(addComp);
+                console.info(addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                $(".chooselocation").text(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber)
+                var address = addComp.street + addComp.streetNumber;
+                var city = addComp.city + "." +addComp.district;
+                console.info(city);
+                var wd = parseFloat(selectPt.lat).toFixed(6);
+                var jd = parseFloat(selectPt.lng).toFixed(6);
+
+                console.info(info_type)
+
+                if (1==info_type) {
+                    $('#pubZPeopleService_location_x').val(wd);
+                    $('#pubZPeopleService_location_y').val(jd);
+
+                }else if (2==info_type) {
+                     $('#pubZPeopleNeed_location_x').val(wd);
+                     $('#pubZPeopleNeed_location_y').val(jd);
+                }
+
+              });
+        }
+        var drawPoints = function(point,myIcon){
+            var marker=new BMap.Marker(point,{icon:myIcon});
+            map.addOverlay(marker);
+            marker.addEventListener("click", function(e){
+                position.latitudeP=e.point.lat;
+                position.longitudeP=e.point.lng;
+                console.info(e.point.lng + ", " + e.point.lat);
+            });
+        };
+
+
+        $('#select-localpos').click(function(){
+            map.clearOverlays();
+            var sheng = $("#sheng").val();
+            var shi = $("#shi").val();
+            var qu = $("#qu").val();
+            map_init("select_province4","select_city4","select_area4",sheng,shi,qu)
+        });
+
+    }
+
+
+
+
+
+
+
+</script>
+
+</html>

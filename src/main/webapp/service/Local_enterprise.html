@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/Local_enterprise.css">
+ 
+    
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+
+ 
+  </head>
+<body>
+<div class="page-group">
+    
+      <!--主界面-->
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav">
+             <h1 class="title">本地企业</h1>
+             <a class="icon icon-left pull-left external" onclick="fanhui()"></a>
+             <a class="button button-link button-nav pull-right" id="postpanduan"  data-transition='slide-out'>
+             <span class="icon pull-right" ></span>
+             发布
+             </a>
+      </header> 
+      <div class="content"> 
+
+           <input type="hidden" id="user_id">
+           <input type="hidden" id="mp"/>
+           <input type="hidden" id="checkH" value="" />
+           <input type="hidden" id="pindexf" value="index">
+            
+            <div class="swiper-container shouyeswiper-container" data-space-between='10'>
+
+               <div class="banner-text banner-top">
+                      <div class="row ">  
+                              <div class="col-33">
+                                  <select  name="province"  id="select_province1" class="banner-text1" eleType="input"></select>
+                                  
+                               </div>  
+                                 <div class="col-33">
+                                 <select   name="city"  id="select_city1" class="banner-text1" eleType="input"></select>
+                              </div> 
+                           <div class="col-33">
+                                 <select   name="street" class="banner-text1" id="select_area1" eleType="input">
+
+                                 </select>
+                              </div>
+                       </div>
+                </div>
+               <div class="swiper-wrapper" id="Enterprise_img_List">
+                    <!-- <div class="swiper-slide"><img src="images/car-banner-01.png" alt="" style='width: 100%'></div>
+                    <div class="swiper-slide"><img src="images/car-banner-02.png" alt="" style='width: 100%'></div>
+                    <div class="swiper-slide"><img src="images/car-banner-03.png" alt="" style='width: 100%'></div> -->
+               </div>
+               <div class="swiper-pagination"></div>
+
+            </div>
+            
+       
+
+<!--          <div class="search">
+             <input id="list_param" class="search_text" eleType="input" placeholder="通过店铺名/用户名/关键词搜索内容"/>
+             <div class="search_img" id="btnQuery"><img src="images/tong_btn_search.png" /></div>
+              <div class="clear"></div>
+         </div> -->
+
+   <div class="searchbar">
+    <a class="searchbar-cancel" id="btnQuery">搜索</a>
+    <div class="search-input s_border">
+      <label class="icon icon-search ouye" for="search"></label>
+      <input type="search" id="list_param" eleType="input"  placeholder='通过店铺名/用户名/关键词搜索内容'/>
+    </div>
+  </div>
+
+          <div class="infinite-scroll infinite-scroll-bottom" data-distance="100" id="pagelistContent">
+               <div class="card jingqu_jingqu  "  >
+    
+                <div class="card-content infinite-scroll infinite-scroll-bottom" id="queryList"> 
+                </div>
+                         <input type="hidden" id="list_pageNum" value="1" />
+                          <input type="hidden" id="list_pageSize" value="10" />
+                          <div class="infinite-scroll-preloader">
+                                 <!-- <div class="preloader"></div> -->
+                          </div>
+               
+               
+              </div>
+          </div>
+     </div>
+</div> 
+
+
+
+<!--我的企业-->
+<div class="page" id="pagePubMyenterprise">
+      <header class="bar bar-nav">
+          <h1 class="title">我的企业</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+          <a class="button button-link button-nav pull-right external" href="../service/myfabu.html?id=10"  data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+      </header>
+
+       <div class="content">
+          <input type="hidden" id="pubMyEnterprise_id" >
+            <input type="hidden" id="pubMyEnterprise_location_x">
+            <input type="hidden" id="pubMyEnterprise_location_y">
+           <div class="list-block media-list mar-list">
+                <ul>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            信息填写
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-40">
+                                            企业图片(轮播)
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li">
+                            <div class="fileElem-photo" imgList="pubMyEnterprise_main_img_List" pubImg="pubMyEnterprise_main_img"></div>
+                            <input type="hidden" id="pubMyEnterprise_main_img" eleType='img'/>
+                            <div id="pubMyEnterprise_main_img_List" class="fileList" style="width:100%"></div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text ">
+                                    <div class="row"> 
+                                        <div class="col-33">
+                                            选择地区*
+                                        </div>
+                                         <div class="col-66 chooseweizhi"  onclick="selectMyPos('pubMyEnterprise_location_x','pubMyEnterprise_location_y',1)">
+                                          <div class="item-input span-content">
+                                                <span class="showaddress">-请选择位置-</span>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                     <li class="detail-li">
+                              <a class="item-content ">
+                                  <div class="item-inner ">
+                                      <div class="item-text quyu-select"> 
+                                        选择显示区域＊
+                                          <div class="row xianshi-row">  
+                                              <div class="col-33">
+                                                  <select  name="province"  id="select_province" eleType="input">
+                                                        
+                                                  </select>
+                                               </div>  
+                                                 <div class="col-33">
+                                                 <select   name="city"  id="select_city" eleType="input">
+                                                        
+                                                 </select>
+                                              </div> 
+                                               <div class="col-33">
+                                                 <select   name="street"  id="select_area" eleType="input">
+                                                      
+                                                 </select>
+                                              </div> 
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                      </li>
+                      
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            企业名称＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                            <div class="item-input input-content">
+                                                 <input  id="pubMyEnterprise_com_name" class="inp-text inp-right" maxlength="30" type="text" placeholder="请输入企业名称">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-40">
+                                            企业简介＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                      <li class="detail-li">
+                          <div class="item-content ">
+                              <div class="item-inner">
+                                  <div class="item-text text-content">
+                                      <div class="row textaera-row">
+                                         <div class="item-input textarea-content-title">
+                                             <textarea class="inp-text" id="pubMyEnterprise_message" placeholder="请输入企业介绍"></textarea>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </li>
+                      <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            认证申请
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-40">
+                                            营业执照
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="fileElem-photo" imgList="pubMyEnterprise_id_img_List" pubImg="pubMyEnterprise_id_img"></div>
+                        <input type="hidden" id="pubMyEnterprise_id_img" eleType='img'/>
+                        <div id="pubMyEnterprise_id_img_List" class="fileList" style="width:100%"></div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-40">
+                                            委托协议
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="fileElem-photo" imgList="pubMyEnterprise_paper_img_List" pubImg="pubMyEnterprise_paper_img"></div>
+                        <input type="hidden" id="pubMyEnterprise_paper_img" eleType='img'/>
+                        <div id="pubMyEnterprise_paper_img_List" class="fileList" style="width:100%"></div>
+                    </li>
+                    
+                </ul>
+             </div>       
+            <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun"><a href="#" id="btnSaveMyEnterprise" class="button button-big button-fill button-danger">保存</a></div>
+                      <div class="col-50 fabu" ><a href="#" id="btnPubMyEnterprise" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+            </div>
+            
+      </div>
+</div>
+
+
+
+
+<!--公司详情-->
+<div class="page" id="pageEnterpriseDetail">
+        <header class="bar bar-nav">
+            <h1 class="title" name="EnterpriseDetail_com_name" eleType='input'></h1>
+            <a class="icon icon-left pull-left " onclick="self.location=document.referrer;" ></a>
+             <a class="icon icon-share pull-right" ></a>
+        </header>
+        <div class="content">
+            <input type="hidden" id="EnterpriseDetail_id" eleType='input'/>
+           
+            <!-- <input type="hidden" id="EnterpriseDetail_location_x" eleType='input' value="32163306"/>
+            <input type="hidden" id="EnterpriseDetail_location_y" eleType='input' value="118712513"/> -->
+            <div class="swiper-container  " data-space-between='10' >
+                        <div class="swiper-wrapper" id="EnterpriseDetail_main_img_List" ></div> 
+                        <input type="hidden" id="EnterpriseDetail_main_img" eleType='img'/>
+                        <div class="swiper-pagination"></div>
+                     <div class="banner-text banner-bottom" name="EnterpriseDetail_com_name" eleType='input'></div>
+                  <div class="gongsijb start-size jbstart-line jubaodiv" onclick="reportItem(this,'EnterpriseDetail_id',10)">
+                      <!-- <img src="images/tong_btn_jb_y.png"> -->
+                  </div>
+                  <div class="gongsisc start-size scstart-line scdiv" onclick="collectItem(this,'EnterpriseDetail_id',10)">
+                      <!-- <img src="images/tong_btn_sc_n.png"> -->
+                  </div>
+            </div>
+            
+            <div class="content-padded">
+                 <p class="companymessage" id="EnterpriseDetail_message"></p>
+            </div>
+            <div class="clear"></div>
+
+          <div class="buttons-tab button-tab_content">
+             <a href="#tab1" id="xinwen_c" name="type" data-pub="1" class="tab-link active button" check="true">新闻动态</a>
+              <a href="#tab2" id="chanpin_c" name="type" data-pub="2" class="tab-link button">产品介绍</a>
+              <a href="#tab3" id="jishu_c" name="type" data-pub="3" class="tab-link button">技术支持</a>
+              <a href="#tab4" id="lianxi_c" name="type" data-pub="4" class="tab-link button" data-no-cache="true">联系我们</a>
+          </div>
+            
+            <div class="tabs">
+                 <input type="hidden" id="mpid"/>
+                 <input type="hidden" id="com_id" eleType='input'/>
+                <div id="tab1" class="tab tab_content active">
+                    <!-- <input type="hidden" id="EnterprisexinwenDetail_id" eleType='input'/> -->
+                     
+                          <!-- <input type="hidden" id="xinwen_pageNum" value="1" />
+                          <input type="hidden" id="xinwen_pageSize" value="10" /> -->
+                          <!-- <div class="infinite-scroll-preloader">
+                          <div class="preloader"></div>
+                          </div> -->
+                    
+                      <div class="sct-bd sct-bd-pd">
+                         <!-- <input type="hidden" id="EnterprisechanpinDetail_id" eleType='input'/> -->
+                          <div class="situation-box" id="queryxinwenList">
+                             <!--  <div class="situation-box-item" >
+                                  <div>
+                                      <a href="#pageNewsInformation">
+                                        <h3>2015年10月应用注册用户迎来1亿人</h3>
+                                        <p>自幼曾攻经史，长成亦有权谋。恰如猛虎卧荒丘，潜伏爪牙忍受。不幸刺文双颊，那堪配在江州。他年若得报冤仇，血染浔阳江口...</p>
+                                      </a>
+                                  </div>
+                              </div> -->
+                          </div>
+                     </div>
+                </div>
+                <div id="tab2" class="tab tab_content">
+                    
+                          <!-- <input type="hidden" id="sell_pageNum" value="1" />
+                          <input type="hidden" id="sell_pageSize" value="10" /> -->
+                          <!-- <div class="infinite-scroll-preloader">
+                          <div class="preloader"></div>
+                          </div> -->
+                     
+                      <section class="m_like">
+                            <ul class="list" id="querychanpinList">
+                               <!--   <li>
+                                    <a class="cont" href="#">
+                                        <img src="images/nrg.png">
+                                        <p>正蓝旗牛肉干</p>
+                                       
+                                    </a>
+                                </li> -->
+                                 
+                            </ul>
+                     </section>
+                 
+                </div>
+                <div id="tab3" class="tab tab_content">
+
+                     <input type="hidden" id="EnterprisejishuDetail_id" eleType='input'/>
+                    
+                           <div class="jszc_content">
+                             <p class="p_images" id="EnterprisejishuDetail_imgs"></p>
+                          </div>
+                  <span id="btnxiugaijishuzhichi">
+                     <!-- <nav class="bar bar-tab bar-style bar-jishu">
+                          <a class="tab-item " href="#pagePubTechnicalSupport">
+                              <span class="tab-label">修改技术支持</span>
+                          </a>
+                      </nav> -->
+                    </span>  
+                </div>
+                <div id="tab4" class="tab tab_content">
+                   <span id="btnxiugailainxifangshi">
+                    <!-- <nav class="bar bar-tab bar-style bar-jishu">
+                        <a class="tab-item " href="#pagePostContact" data-no-cache="true" >
+                            <span class="tab-label">修改联系方式</span>
+                        </a>
+                    </nav> -->
+                    </span>
+                    <div class="contactUs">
+                      <p name="EnterpriseDetail_com_name"></p>
+                         
+                              <div class="userphone" id="link_info_attr">
+                                      <!-- div class="userphone_content" ><div >总经理:</div><div>13775015520</div></div> 
+                                      <div class="userphone_content_right"><img src="images/mobl.png"></div>  -->  
+                              </div> 
+                              <div class="clear"></div>       
+                        
+                    
+                              <div class="userphone">
+                                    <div class="userphone_content">
+                                              <div>邮箱:</div>  
+                                              <div id="EnterpriselianxiDetail_email"></div>                    
+                                    </div>
+                              </div>
+                              <div class="userphone">
+                                    <div class="userphone_content">
+                                              <div>地址:</div>
+                                              <div style="width: 9.8rem;height:auto;display:block;word-break: break-all;word-wrap: break-word;" id="EnterpriselianxiDetail_address"></div>                    
+                                    </div>
+                              </div>
+                                 
+                              <div class="clear"></div> 
+                     
+                             <div class="worktime">
+                                  <span>营业时间</span>
+                                  <ul>
+                                       <div id="work_info_attr"></div>
+                                       <li>法定节假日（值班)</li><li><span id="EnterpriselianxiDetail_holiworkstart"></span>—<span id="EnterpriselianxiDetail_holiworkend"></span></li>
+                                  </ul>
+                             </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!--发布选择-->
+<div class="page" id="pagePostChoose">
+       <header class="bar bar-nav">
+          <h1 class="title">发布选择</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+
+      </header>
+      <div class="content">
+        <div class='choose_type'>
+          <ul>
+            <li >
+               <a href="#pagePostContact" data-transition='slide-out'><img src="images/bdqy_btn_lxfs.png" />发布联系方式</a>
+            </li>
+            <li>
+               <a href="#pagePubNews" data-transition='slide-out'><img src="images/bdqy_btn_xw.png"/>发布新闻</a>
+            </li>
+            <li>
+               <a href="#pagePubProduct" data-transition='slide-out'><img src="images/bdqy_btn_cp.png"/>发布产品</a>
+            </li>
+            <li>
+               <a href="#pagePubTechnicalSupport" data-transition='slide-out'><img src="images/bdqy_btn_jszc.png"/>技术支持</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+ </div>
+
+
+
+ <!--发布产品-->
+<div class="page" id="pagePubProduct">
+      <header class="bar bar-nav">
+          <h1 class="title">发布产品</h1>
+          <a class="icon icon-left pull-left back"></a>
+
+      </header>
+       <div class="content">
+           <input type="hidden" id="pubProduct_id" >
+           <div class="list-block media-list mar-list">
+                <ul>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            产品图片
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="fileElem-photo" imgList="pubProduct_imgs_List" pubImg="pubProduct_imgs"></div>
+                        <input type="hidden" id="pubProduct_imgs" eleType='img'/>
+                        <div id="pubProduct_imgs_List" class="fileList" style="width:100%"></div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            产品名称＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                            <div class="item-input input-content">
+                                                 <input id="pubProduct_title"  class="inp-text inp-right" type="text" maxlength="15" placeholder="Your product name">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-40">
+                                            产品副标题＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row input-row">
+                                            <div class="item-input input-content">
+                                                 <input id="pubProduct_etitle" class="inp-text inp-right" type="text" maxlength="30" placeholder="Your product subtitle">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            产品介绍＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                       <div class="item-input textarea-content">
+                                           <textarea id="pubProduct_content" class="inp-text" placeholder="请输入产品介绍"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+             </div>       
+            <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun"><a href="#" id="btnSaveProduct" class="button button-big button-fill button-danger">保存</a></div>
+                      <div class="col-50 fabu" ><a href="#" id="btnPubProduct" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+           </div>
+            
+      </div>
+</div>
+
+
+
+
+<!--发布技术支持-->
+<div class="page" id="pagePubTechnicalSupport">
+      <header class="bar bar-nav">
+          <h1 class="title">发布技术支持</h1>
+          <a class="icon icon-left pull-left back" ></a>
+
+      </header>
+       <div class="content">
+           <input type="hidden" id="pubTechnicalSupport_id" >
+             <div class="list-block media-list mar-list">
+                <ul>
+                       
+                      <li class="detail-li ">
+                          <div class="row">
+                             <div class="col-33">
+                                        <div id="pubTechnicalSupport_c_image"  class="inp-cert">
+                                            <div class="cert-upload"></div>
+                                            <input type="file" class="cert-upload fileInp-opacity" multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('pubTechnicalSupport_c_image'))" value="">
+                                           <!--  <div class="close-div hide"></div> -->
+                                        </div>
+                              </div>
+                           
+                              <div class="col-50">
+                                   <textarea id="pubTechnicalSupport_c_context" eleType="input"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明"></textarea>
+
+                              </div>
+                          </div>
+                      </li>
+                      <div id="add_technical">
+                        
+                      </div>
+                        <li class="detail-li">
+                              <div class="item-content ">
+                                  <div class="item-inner">
+                                      <div class="item-text text-content">
+                                          <div class="row">
+                                              <div class="content-block content-block1">
+                                                    <a href="#" class="button button-fill button-warning" onclick="add3()">+添加技术支持</a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                        </li>
+                  </ul>   
+            </div>        
+            <div class="content-block">
+                    <div class="row">
+                        <div class="col-50 baocun"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+                        <div class="col-50 fabu" ><a href="#" id="btnPubTechnicalSupport" class="button button-big button-fill button-success">发布</a></div>
+                   </div>
+            </div>
+        </div>       
+</div>
+
+
+
+
+
+<!--发布新闻-->
+<div class="page" id="pagePubNews">
+      <header class="bar bar-nav">
+          <h1 class="title">发布新闻</h1>
+          <a class="icon icon-left pull-left back"></a>
+  
+      </header>
+       <div class="content">
+             <input type="hidden" id="pubNews_id" >
+             <div class="list-block media-list mar-list">
+                  <ul>
+                      <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-40">
+                                            请输入标题＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                      <li class="detail-li">
+                          <div class="item-content ">
+                              <div class="item-inner">
+                                  <div class="item-text text-content">
+                                      <div class="row textaera-row">
+                                         <div class="item-input textarea-content-title">
+                                             <textarea class="inp-text" id="pubNews_title" maxlength="30" placeholder="请输入标题"></textarea>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </li>
+                       <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-40">
+                                            请输入正文＊
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                  
+                     <li class="detail-li ">
+                          <div class="row">
+                             <div class="col-33">
+                                        <div id="pubNews_c_image"  class="inp-cert">
+                                            <div class="cert-upload"></div>
+                                            <input type="file" class="cert-upload fileInp-opacity"  multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('pubNews_c_image'))" value="">
+                                           
+                                        </div>
+                              </div>
+                           
+                              <div class="col-50">
+                                   <textarea id="pubNews_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明" ></textarea>
+                                  
+                              </div>
+                          </div>
+                      </li>
+                      <div id="add_tuwen">
+                      </div>
+                        <li class="detail-li">
+                              <div class="item-content ">
+                                  <div class="item-inner">
+                                      <div class="item-text text-content">
+                                          <div class="row">
+                                              <div class="content-block content-block1">
+                                                    <a href="#"  class="button button-fill button-warning" onclick="add2()">+添加新闻</a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                        </li>
+                  </ul>   
+            </div>        
+            <div class="content-block">
+                    <div class="row">
+                        <div class="col-50 baocun"><a href="#" id="btnNewsCancel" class="button button-big button-fill button-danger">取消</a></div>
+                        <div class="col-50 fabu" ><a href="#" id="btnPubNews" class="button button-big button-fill button-success">发布</a></div>
+                   </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+<!--发布联系方式-->
+<div class="page" id="pagePostContact">
+       <header class="bar bar-nav">
+          <h1 class="title">发布联系方式</h1>
+          <a class="icon icon-left pull-left back" data-no-cache="true"></a>
+    
+      </header>
+       <div class="content">
+         <input id="contact_id" eleType="input" class="inp-text" type="hidden" >
+           <div class="list-block media-list mar-list ">
+                <ul>
+                   
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100" id="companyname"></div>
+                                        <p class="comname" name="EnterpriseDetail_com_name"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            联系方式(选填)
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-33">
+                                            称呼：
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="contact_nikname" eleType="inputnikname" class="inp-text" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-tel2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            电话：
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="contact_tel" eleType="inputtel" class="inp-text" type="number" placeholder="139...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <div id="add_contact" >
+       
+                    </div>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="content-block ">
+                                              <p><a id="continue_add_contact" class="button button-fill button-warning" onclick="add();">继续添加</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact2">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33">
+                                            邮箱：
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input  id="contact_email" class="inp-text" type="email" eleType="input" placeholder="E-mail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-33 ">
+                                            地址
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                          <div class="item-content item-content_select ">
+                              <div class="item-inner item-contact2">
+                                  <div class="item-text text-content">
+                                      <div class="row textaera-row ">
+                                         <div class="item-input textarea-content-title">
+                                             <textarea id="contact_address" class="inp-text" eleType="input"  placeholder="一句话简明描述您的需求"></textarea>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    <div class="row " >
+                                        <div class="col-33 ">
+                                           营业时间
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                     <li class="detail-li">
+                        <div class="item-content item-content_select ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row select-row">
+                                       <div class="col-40 ">
+                                             <div class="item-input select-content">
+                                                 <select  id="contact_startday" eleType="inputstartday"
+                                                   class="inp-text">
+                                                    <option value="">请选择日期</option>
+                                                    <option>星期一</option>
+                                                    <option>星期二</option>
+                                                    <option>星期三</option>
+                                                    <option>星期四</option>
+                                                    <option>星期五</option>
+                                                    <option>星期六</option>
+                                                    <option>星期日</option>
+
+                                                 </select>
+                                              </div>
+                                        </div>
+                                        <div class="col-40 ">
+                                             <div class="item-input select-content">
+                                                 <select  id="contact_endday"
+                                                 eleType="inputendday" class="inp-text inp-text1">
+                                                    <option value="">请选择日期</option>
+                                                    <option>星期一</option>
+                                                    <option>星期二</option>
+                                                    <option>星期三</option>
+                                                    <option>星期四</option>
+                                                    <option>星期五</option>
+                                                    <option>星期六</option>
+                                                    <option>星期日</option>
+                                                   
+                                                 </select>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li  timechoose_in">         
+                             <input  id="contact_starttime" eleType="inputstarttime" type="time" value="09:00"  />
+                             <input  id="contact_endtime"  eleType="inputendtime" type="time" value="18:00"   />
+                    </li>
+                    <div id="add_worktime">
+               <!--       <li class="detail-li timechoose_down" id="xuanzeriqi">
+                        <div class="item-content item-content_select ">
+                            <div class="item-inner item-inner_select">
+                                <div class="item-text text-content">
+                                    <div class="row select-row">
+                                       <div class="col-40 ">
+                                             <div class="item-input select-content">
+                                                 <select class="inp-text">
+                                                    <option>请选择日期</option>
+                                                    <option>星期一</option>
+                                                    <option>星期二</option>
+                                                    <option>星期三</option>
+                                                    <option>星期四</option>
+                                                    <option>星期五</option>
+                                                    <option>星期六</option>
+                                                    <option>星期日</option>
+
+                                                 </select>
+                                              </div>
+                                        </div>
+                                        <div class="col-40 ">
+                                             <div class="item-input select-content">
+                                                 <select class="inp-text inp-text1">
+                                                    <option>请选择日期</option>
+                                                    <option>星期一</option>
+                                                    <option>星期二</option>
+                                                    <option>星期三</option>
+                                                    <option>星期四</option>
+                                                    <option>星期五</option>
+                                                    <option>星期六</option>
+                                                    <option>星期日</option>
+                                                   
+                                                 </select>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                   <li class="detail-li  timechoose_in1 linlei">         
+                             <input  type="time" value="09:00"  />
+                             <input  type="time" value="18:00"  />
+
+                    </li> -->
+                    </div>
+                    <li class="detail-li timechoose_down" >
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="content-block  ">
+                                              <p><a  class="button button-fill button-warning button-warning" onclick="add1();">继续添加</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-tel2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-60">
+                                             法定节假日：
+                                        </div>
+                                        <div class="col-200 ">
+                                           <input type="radio" name="sex" data-pub="1" id="furlough1"/><label>有值班</label>
+                                           <input type="radio" name="sex" data-pub="0"  id="furlough" /><label>休假</label>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                 <li class="detail-li" id="holiday_input" style="display: none;">
+                        <div class="item-content ">
+                            <div class="item-inner item-tel2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div  class="timechoose_in" >     
+                                          <input  id="contact_holiworkstart" eleType="input" type="time" value="09:00"   />
+                                          <input  id="contact_holiworkend"  eleType="input" type="time" value="18:00"   />   
+                                          </div>                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+                  
+                </ul>
+            </div> 
+            <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun"><a href="#" class="button button-big button-fill button-danger back">取消</a></div>
+                      <div class="col-50 fabu" id="btncontactfabu"><a href="#" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+            </div>
+            
+      </div>
+</div>
+
+
+
+
+
+
+
+
+<!--新闻资讯-->
+<div class="page" id="pageNewsInformation">
+        <header class="bar bar-nav">
+            <h1 class="title">新闻资讯</h1>
+            <a class="icon icon-left pull-left back" ></a>
+             <a class="icon icon-share pull-right alert-text" ></a>
+        </header>
+        <span id="btnxiugaixinwen">
+            <!--  <nav class="bar bar-tab bar-style" >
+                    <a class="tab-item" href="#pagePubNews" >
+                        <span class="tab-label">修改新闻资讯</span>
+                    </a>
+                </nav> -->
+              </span>
+        <div class="content">
+           <input type="hidden" id="EnterprisexinwenDetail_id" eleType='input'/>
+                <div class="title_content">
+                        <h3 id="EnterprisexinwenDetail_title"></h3>
+                        <h5 >发布人：<span id="EnterprisexinwenDetail_username"></span></h5>
+                        <div class="title_content_time">
+                             <time id="EnterprisexinwenDetail_create_time"></time>
+                             <span >浏览量:<span id="EnterprisexinwenDetail_nums"></span></span>
+                        </div>
+
+                       <div class="gongsisc start-size scstart-line scdiv" onclick="collectItem(this,'EnterprisexinwenDetail_id',10)">
+                      <!-- <img src="images/tong_btn_sc_n.png"> -->
+                      </div>
+                        
+                </div>
+                <div class="jszc_content">
+                       <p class="p_images" id="EnterprisexinwenDetail_imgs"></p>
+  
+                </div>
+                <div class="jb start-size jbstart-line jubaodiv" onclick="reportItem(this,'EnterprisexinwenDetail_id',10)">
+                     <!--  <img src="images/tong_btn_jb_y.png"> -->
+                </div> 
+               
+                
+           
+      </div>
+
+      
+</div>
+
+
+
+
+<!-- 产品查看-->
+<div class="page " id="pageProductDetail">
+      <header class="bar bar-nav">
+            <h1 class="title">产品查看</h1>
+            <a class="icon icon-left pull-left back"></a>
+             <a class="icon icon-share pull-right"></a>
+      </header>
+           <span id="btnxiugaichanpin">
+              <!-- <nav class="bar bar-tab bar-style">
+                    <a class="tab-item" href="#pagePubProduct">
+                        <span class="tab-label">修改产品信息</span>
+                    </a>
+                </nav> -->
+              </span>
+     <div class="content"> 
+        <input type="hidden" id="EnterprisechanpinDetail_id" eleType='input'/>
+               <div class="title_content">
+                        <h3 id="EnterprisechanpinDetail_title"></h3>
+                        <h5 id="EnterprisechanpinDetail_etitle"></h5>
+                        <div class="sc start-size scstart-line scdiv" onclick="collectItem(this,'EnterprisechanpinDetail_id',10)">
+                        <!-- <img src="images/tong_btn_sc_n.png">   -->
+                        </div>
+                </div>
+                <div class="jszc_content">
+                           <div class="swiper-container" data-space-between='10' >
+                                      <div class="swiper-wrapper" id="EnterprisechanpinDetail_imgs_List"></div> 
+                                      <input type="hidden" id="EnterprisechanpinDetail_imgs" eleType='img'/>
+                                      <div class="swiper-pagination"></div>
+                           </div>
+                     <p class="p_words" id="EnterprisechanpinDetail_content"></p>
+                </div> 
+                <div class="jb start-size jbstart-line jubaodiv" onclick="reportItem(this,'EnterprisechanpinDetail_id',10)">
+                     <!--  <img src="images/tong_btn_jb_y.png"> -->
+                </div> 
+
+                 
+      </div>
+</div> 
+
+
+    <!--发布位置-->
+    <div class="page" id="pageMap">
+        <header class="bar bar-nav">
+            <h1 class="title">位置选择</h1>
+            <a class="icon icon-left pull-left back" href="#"></a>
+        </header>
+        <div class="content">
+            <input type="hidden" id="sheng">
+            <input type="hidden" id="shi">
+            <input type="hidden" id="qu">
+            <div class="banner-text banner-top" >
+                <div class="row ">
+                    <div class="col-33 line_quyu">
+                        <select  name="province"  class="banner-text1" id="select_province2" eleType="input">
+
+                        </select>
+                    </div>
+                    <div class="col-33 line_quyu">
+                        <select   name="city"  class="banner-text1" id="select_city2" eleType="input">
+
+                        </select>
+                    </div>
+                    <div class="col-33 line_quyu">
+                        <select   name="street"  class="banner-text1" id="select_area2" eleType="input">
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+           <div class=" select_block" >
+                      <ul>
+
+                          <li class="detail-li">
+                              <a class="item-content button_select"  >
+                                  <div class="item-inner">
+                                      <div class="item-text ">
+                                          <div class="row localplace" id="select-localpos">
+                                              <div class="dingtupian"><img src="images/u95.png"></div>
+                                              <button>当前位置</button>
+                                          </div>
+                                          <div class="row zidinyi" id="select-pos">
+                                              <button>重新自定义位置</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                          </li>
+
+                      </ul>
+               </div>
+            <input type="hidden" id="">
+            <div id="MyMap" style='width:100%; height:100%'></div>
+             
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+    <script type='text/javascript' src='js/zepto.js' ></script>
+    <script type='text/javascript' src='js/sm.min.js' ></script>
+    <script type='text/javascript' src='js/sm-extend.min.js'></script>
+    <script type="text/javascript" src="js/juicer.js"></script>
+   <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=FbzOyQ4YujPrZsxiQKoB07aB&services=&t=20160708193109"></script>
+    <script src="js/Common.js"></script>
+         <script type='text/javascript' src='js/address1.js'></script>
+    
+     <script type='text/javascript' src='js/Local_enterprise.js'></script>
+   <script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script>
+   <script>
+
+       var map = new BMap.Map('MyMap');
+       function GetQueryString(name) {
+           var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+           var r = window.location.search.substr(1).match(reg);
+           if (r != null)return unescape(decodeURI(r[2]));
+           return null;
+       }
+
+       function get(_region_p_default,_region_c_default,_region_d_default){
+
+           region_init("select_province1", "select_city1", "select_area1", _region_p_default,_region_c_default,_region_d_default);
+           region_initx("select_province", "select_city", "select_area",_region_p_default,_region_c_default,_region_d_default);
+           map_init("select_province2", "select_city2", "select_area2", _region_p_default,_region_c_default,_region_d_default);
+           $("#sheng").val(_region_p_default)
+           $("#shi").val(_region_c_default)
+           $("#qu").val(_region_d_default)
+       }
+
+       if($.device.os=="android"){
+           var province  = GetQueryString("province");
+           var city  = GetQueryString("city");
+           var district1  = GetQueryString("district");
+           _cityPosdata(province,city,district1);
+
+       }else if($.device.os=="ios") {
+           region_init("select_province1", "select_city1", "select_area1", getCookie("p_id"), getCookie("c_id"), getCookie("d_id"));
+           region_initx("select_province", "select_city", "select_area", getCookie("p_id"), getCookie("c_id"), getCookie("d_id"));
+           map_init("select_province2", "select_city2", "select_area2", getCookie("p_id"), getCookie("c_id"), getCookie("d_id"));
+           $("#sheng").val(getCookie("p_id"))
+           $("#shi").val(getCookie("c_id"))
+           $("#qu").val(getCookie("d_id"))
+       }
+
+
+function pubget(region_p_default,region_c_default,region_d_default){
+    if(region_p_default&&region_c_default&&region_d_default){
+
+region_initx("select_province","select_city","select_area",region_p_default,region_c_default,region_d_default);
+
+    }
+}
+  </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $(".bottom-line").click(function(){
+        $("#shaixuankuang").show();
+  
+    });
+});
+
+$(function(){
+  $(".tab ul li").click(function(){
+    $(this).addClass("select").siblings().removeClass("select");
+  });
+});
+
+
+
+
+
+
+
+var j=0;
+    function add2() {
+            j++;
+            jia2(j);
+        }
+  function jia2(iq) {
+   var html='<li class="detail-li ">'; 
+   html += '<div class="row sc-12">'; 
+   html += '<div class="col-33 inp-cert" id="pubNews_c_image'+iq+'" >'; 
+   html += '<div class="cert-upload"></div>'; 
+   html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'pubNews_c_image'+iq+'\'))"/>';
+   // html += '<div class="close-div hide"></div>'; 
+   html += '</div>'; 
+   html += '<textarea  id="pubNews_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60" placeholder="请添加图片说明"></textarea><div class="tuichu"><img src="images/tuichu.png"></div>'; 
+   html += '</div>';                 
+   html += '</li>'; 
+  $("#add_tuwen").append(html);
+  $(".file_up_").change(function(){
+    handleFiles(this,this.parentNode);
+});
+   $('.tuichu').click(function() {
+   
+        $(this).parent().parent().remove();
+    });
+ 
+}
+
+var s=0;
+    function add3() {
+           s++;
+            jia3(s);
+        }
+  function jia3(iq) {
+   var html='<li class="detail-li ">'; 
+   html += '<div class="row sc-13">'; 
+   html += '<div class="col-33 inp-cert" id="pubTechnicalSupport_c_image'+iq+'" >'; 
+   html += '<div class="cert-upload"></div>'; 
+   html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'pubTechnicalSupport_c_image'+iq+'\'))"/>';
+   // html += '<div class="close-div hide"></div>'; 
+   html += '</div>'; 
+   html += '<textarea  id="pubTechnicalSupport_c_context'+ iq +'" eleType="inputcontext1" class="inp-text col-60" placeholder="请添加图片说明"></textarea><div class="tuichu"><img src="images/tuichu.png"></div>'; 
+   html += '</div>';                 
+   html += '</li>'; 
+  $("#add_technical").append(html);
+  $(".file_up_").change(function(){
+    handleFiles(this,this.parentNode);
+});
+    $('.tuichu').click(function() {
+   
+         $(this).parent().parent().remove();
+    });
+}
+ //页面循环添加一组省市区 
+    var k=0;
+
+    function add() {
+            k++;
+            jia(k);
+        }
+  function jia(iq) {
+
+    
+  var html = '<div class="chen"><li class="detail-li ">';
+   html += '<div class="item-content ">'; 
+   html += '<div class="item-inner item-contact1">'; 
+   html += ' <div class="item-text text-content">'; 
+   html += '<div class="row">';
+   html += '<div class="col-33"> 称呼：</div>'; 
+   html += '<div class="col-65">'; 
+   html += '<div class="item-input sc-1">'; 
+   html += '<input id="contact_nikname'+ iq +'" eleType="inputnikname" class="inp-text" type="text" placeholder="">';                 
+   html += '</div></div></div></div></div></div></li>';
+   html += '<li class="detail-li ">';
+   html += '<div class="item-content ">';
+   html += '<div class="item-inner item-tel1">';
+   html += '<div class="item-text text-content">';
+   html += '<div class="row">';
+   html += '<div class="col-33">电话：</div>';
+   html += '<div class="col-65">';
+   html += '<div class="item-input">';
+   html += '<input id="contact_tel'+ iq +'" eleType="inputtel" class="inp-text" type="number" placeholder="139...">';
+   html += '</div></div>';
+   html += '</div></div></div></div></li>';
+   html += '<div class="tuichu tuichu2"><img src="images/postcontact.png"></div></div>';
+   
+    $("#add_contact").append(html);
+
+      $('.tuichu').click(function() {
+   
+        $(this).parent().remove();
+    });
+}
+
+// $("#closeadd").click(function () {         
+//       $("#form1").hide();
+//       document.getElementById("form1").reset();
+// });
+
+var i=0;
+    function add1() {
+            i++;
+            jia1(i);
+        }
+  function jia1(iq) {
+
+     var html='<div class="chen"><li class="detail-li timechoose_down" id="xuanzeriqi">';
+         html +='<div class="item-content item-content_select ">';
+         html +='<div class="item-inner item-inner_select">';
+         html +='<div class="item-text text-content">';
+         html +='<div class="row select-row">';
+         html += '<div class="col-40 ">';
+         html +='<div class="item-input select-content sc-11">';
+         html +='<select id="contact_startday'+ iq +'" eleType="inputstartday" class="inp-text">';
+         html +='<option>请选择日期</option>';
+         html +='<option>星期一</option>';
+         html +='<option>星期二</option>';
+         html +='<option>星期三</option>';
+         html +='<option>星期四</option>';
+         html +='<option>星期五</option>';
+         html +='<option>星期六</option>';
+         html +='<option>星期日</option>';
+         html +='</select>';
+         html +='</div></div>';
+         html += '<div class="col-40 ">';
+         html +='<div class="item-input select-content">';
+         html +='<select id="contact_endday'+ iq +'" eleType="inputendday" class="inp-text inp-text1">';  
+         html +='<option>请选择日期</option>';
+         html +='<option>星期一</option>';
+         html +='<option>星期二</option>';
+         html +='<option>星期三</option>';
+         html +='<option>星期四</option>';
+         html +='<option>星期五</option>';
+         html +='<option>星期六</option>';
+         html +='<option>星期日</option>'; 
+         html +='</select>';
+         html +='</div></div></div></div></div></div></li>';
+          html += '<li class="detail-li  timechoose_in1 linlei">';
+          html += '<input id="contact_starttime'+ iq +'" eleType="inputstarttime" type="time" value="09:00"  />';
+          html += '<input id="contact_endtime'+ iq +'" eleType="inputendtime"  type="time" value="18:00"  />';
+          html +='</li><div class="tuichu tuichu2 tuichu3"><img src="images/postcontact.png"></div></div>';
+  
+    $("#add_worktime").append(html);
+      $('.tuichu').click(function() {
+   
+         $(this).parent().remove();
+    });
+}
+
+
+
+// 举报的弹窗
+$(document).on('click','.confirm-ok', function () {
+      $.confirm('确定举报吗?', function () {
+      });
+  });
+
+
+
+$(function() {
+    "use strict";
+
+var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+        offset: new BMap.Size(0, 0),
+        imageOffset: new BMap.Size(0, 0)
+    });
+    var pt = new BMap.Point();
+//    $.showPreloader();
+    var geolocation = new BMap.Geolocation();
+    var geoc = new BMap.Geocoder();
+
+
+
+geolocation.getCurrentPosition(function(r){
+
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            pt = r.point;
+
+            geoc.getLocation(pt, function(rs){
+                var addComp = rs.addressComponents;
+                console.info(pt);
+
+                console.info(addComp.province + ", " + addComp.city+ ", " + addComp.district);
+
+                var address = addComp.street + addComp.streetNumber;
+                var xw = parseFloat(pt.lat).toFixed(6);
+                var yj = parseFloat(pt.lng).toFixed(6);
+
+                 $('#pubMyEnterprise_location_x').val(xw);
+                $("#pubMyEnterprise_location_y").val(yj);
+
+
+            });
+
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }
+    },{enableHighAccuracy: true});
+
+
+ });
+
+
+
+
+   function selectMyPos(wdId,jdId){
+      $('#select-pos').show();
+        
+        // $('#pageMap').attr('forData');
+        var wdStr=$('#'+wdId).val();
+        var jdStr=$('#'+jdId).val();
+        // if ($.trim(wdStr) == '' || $.trim(jdStr)=='') {
+        // $.alert('正在定位，请稍后！');
+        //     return;
+        // }
+        var wd;
+        var jd;
+        if (parseInt(jdStr) > 999) {
+            wd = parseInt(wdStr)/Math.pow(10,6);
+            jd = parseInt(jdStr)/Math.pow(10,6)
+        }else{
+            wd = parseFloat(wdStr).toFixed(6);
+            jd = parseFloat(jdStr).toFixed(6);
+        }
+        $.router.load("#pageMap"); 
+//        var map = new BMap.Map('MyMap');
+        var size = new BMap.Size(66, 40);
+         map.addControl(new BMap.CityListControl({
+          anchor: BMAP_ANCHOR_TOP_LEFT,
+          offset: size,
+          // 切换城市之间事件
+          // onChangeBefore: function(){
+          //    alert('before');
+          // },
+          // 切换城市之后事件
+          // onChangeAfter:function(){
+          //   alert('after');
+          // }
+        }));
+        var top_left_navigation = new BMap.NavigationControl();   
+        map.addControl(top_left_navigation);
+       
+        var point = new BMap.Point(jd,wd);
+
+        var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+            offset: new BMap.Size(0, 0), 
+            imageOffset: new BMap.Size(0, 0)  
+        });  
+        var marker=new BMap.Marker(point,{icon:myIcon}); 
+        map.addOverlay(marker); 
+        map.centerAndZoom(point, 15); 
+
+
+        $('#select-pos').click(function(){
+            map.clearOverlays();
+            map.addEventListener("click",selectPos); 
+        }); 
+        function selectPos(e){
+            selectPt = e.point;
+            drawPoints(e.point,myIcon);
+            position.latitudeP=e.point.lat;
+            position.longitudeP=e.point.lng;
+            map.removeEventListener("click",selectPos); 
+            var geoc = new BMap.Geocoder(); 
+            geoc.getLocation(selectPt, function(rs){
+                var addComp = rs.addressComponents; 
+                console.info(addComp);
+                console.info(addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                $(".showaddress").text(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber)
+
+                var address = addComp.street + addComp.streetNumber;
+                var city = addComp.city + "." +addComp.district;
+                console.info(city);
+                var wd = parseFloat(selectPt.lat).toFixed(6);
+                var jd = parseFloat(selectPt.lng).toFixed(6);
+
+                    $('#pubMyEnterprise_location_x').val(wd);
+                    $('#pubMyEnterprise_location_y').val(jd);
+        
+                
+
+              }); 
+        }
+        var drawPoints = function(point,myIcon){
+            var marker=new BMap.Marker(point,{icon:myIcon}); 
+            map.addOverlay(marker);
+            marker.addEventListener("click", function(e){
+                position.latitudeP=e.point.lat;
+                position.longitudeP=e.point.lng;
+                console.info(e.point.lng + ", " + e.point.lat); 
+            });
+        };
+
+       $('#select-localpos').click(function(){
+           map.clearOverlays();
+           var sheng = $("#sheng").val();
+           var shi = $("#shi").val();
+           var qu = $("#qu").val();
+           map_init("select_province4","select_city4","select_area4",sheng,shi,qu)
+       });
+
+
+   }
+
+
+
+</script>
+
+</body>
+</html>

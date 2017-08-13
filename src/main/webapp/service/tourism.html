@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/tourism.css">
+ 
+    
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+   <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=FbzOyQ4YujPrZsxiQKoB07aB&services=&t=20160708193109"></script>
+
+  </head>
+<body>
+<div class="page-group">
+   <input type="hidden" id="location_x"/>
+      <input type="hidden" id="location_y"/>
+      <input type="hidden" id="checkH" value="" />
+      <input type="hidden" id="pindexf" value="index"> 
+      <!--主界面-->
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav">
+             <h1 class="title">景区陪游</h1>
+             <a class="icon icon-left pull-left external" onclick="fanhui()"></a>
+             
+             <a class="button button-link button-nav pull-right" href="#pagePostChoose" data-transition='slide-out'>
+             <span class="icon pull-right"></span>
+             发布
+             </a>
+      </header> 
+      <div class="content" > 
+    
+      
+          <div class="swiper-container" data-space-between='10'>
+     <!--            <div class="banner-text banner-top"><span id="cityPos" ><a style="color:#fff;"  class="open-popup" data-popup=".popup-about">地区</a><img src="images/tong_banner_dw.png" height="14" style="margin:2px 0 0 5px; vertical-align:center;"></span></div> -->
+                <div class="banner-text banner-top" >
+                      <div class="row ">  
+                              <div class="col-33">
+                                  <select  name="province" class="banner-text1" id="select_province2" eleType="input"></select>
+                                  
+                               </div>  
+                                 <div class="col-33">
+                                 <select   name="city" class="banner-text1" id="select_city2" eleType="input"></select>
+                              </div> 
+                               <div class="col-33">
+                                 <select   name="street" class="banner-text1" id="select_area2" eleType="input">
+                                      
+                                 </select>
+                              </div> 
+                       </div>
+                </div>
+              <div class="swiper-wrapper" id="Tourism_img_List">
+               <!--    <div class="swiper-slide"><img src="images/car-banner-01.png" alt="" style='width: 100%'></div>
+                  <div class="swiper-slide"><img src="images/car-banner-02.png" alt="" style='width: 100%'></div>
+                  <div class="swiper-slide"><img src="images/car-banner-03.png" alt="" style='width: 100%'></div> -->
+              </div>
+              <div class="swiper-pagination"></div>
+              
+          </div>
+         
+                  
+<!--          <div class="search">
+             <input class="search_text" id="sell_param"  placeholder="通过店铺名/用户名/关键词搜索内容"/ >
+             <div class="search_img" id="btnQuery"><img src="images/tong_btn_search.png" /></div>
+              <div class="clear"></div>
+         </div> -->
+
+     <div class="searchbar">
+    <a class="searchbar-cancel" id="btnQuery">搜索</a>
+    <div class="search-input s_border">
+      <label class="icon icon-search ouye" for="search"></label>
+      <input type="search" id="sell_param" eleType="text"  placeholder='通过店铺名/用户名/关键词搜索内容'/>
+    </div>
+  </div>
+          
+          <div class="buttons-row buttons-row_content">
+                  <a href="#tab1" id="service_c" name="type" data-pub="1" class="tab-link active  button" check="true">找 景 区</a>
+                  <a href="#tab2" id="need_c" name="type" data-pub="2" class="tab-link button">找 陪 游</a>  
+          </div>
+
+                
+            <div class="tabs">
+              <div id="tab1" class="tab active  infinite-scroll " data-distance="100">
+                  <div class="infinite-scroll-bottom"  id="pageRentContent">
+                  <div class="card-content" >
+                    <ul class="sct-bd sct-bd-pd" id="queryList"> </ul> 
+                     </div>
+                          <input type="hidden" id="rent_pageNum" value="1" />
+                          <input type="hidden" id="rent_pageSize" value="10" />
+                          <div class="infinite-scroll-preloader">
+                          <div class="preloader"></div>
+                          </div>  
+                   
+                   </div>
+               </div>
+                <div id="tab2" class="tab infinite-scroll" data-distance="100">
+                       <div class="infinite-scroll-bottom "  id="pageSellContent">
+                      <div class="card-content" >
+                      <ul class="sct-bd sct-bd-pd" id="queryNeedList">
+                     </ul>
+                     </div>
+                          <input type="hidden" id="sell_pageNum" value="1" />
+                          <input type="hidden" id="sell_pageSize" value="10" />
+                          <div class="infinite-scroll-preloader">
+                          <div class="preloader"></div>
+                          </div>
+                    </div> 
+               </div>
+          </div> 
+
+
+     </div>
+</div> 
+
+<!--景区详情-->
+<div class="page" id="pageScenicDetail">
+        <header class="bar bar-nav">
+            <h1 class="title">景区详情</h1>
+            <a class="icon icon-left pull-left" onclick="self.location=document.referrer;"></a>
+             <a class="icon icon-share pull-right" ></a>
+        </header>
+
+        <div class="content">
+            <input type="hidden" id="ScenicDetail_id" eleType='input'/>
+            <input type="hidden" id="ScenicDetail_location_x" eleType='input' value="32163306"/>
+            <input type="hidden" id="ScenicDetail_location_y" eleType='input' value="118712513"/>
+             <div class="title_content">
+                        <h3 id="ScenicDetail_title" eleType='input'>
+                        </h3>
+                        <div class="title_content_time">
+                            
+                             <span id="ScenicDetail_address" eleType='input'>
+                               
+                             </span>
+                             <b class="icon-sel start-size back-icon" onclick="showMap('ScenicDetail_location_x','ScenicDetail_location_y',1)"></b>
+                        </div>
+                       
+                        <div class="icon-sel start-size start-fill scstart-line scdiv" onclick="collectItem(this,'ScenicDetail_id',1)">
+                           <!--   <img src="images/tong_btn_sc_n.png"> -->
+                      </div>
+                </div>
+                <div class="jszc_content">
+                      <p>
+                          <div class="zhutu" id="ScenicDetail_main_img_List" ></div> 
+                          <input type="hidden" id="ScenicDetail_main_img" eleType='img'/> 
+                      </p>
+
+                     <p class="p_images" id="ScenicDetail_c_imgage"></p>
+                </div>
+               
+                <div class="newsbottom icon-sel start-size start-fill1  jbstart-line jubaodiv" onclick="reportItem(this,'ScenicDetail_id',1)">
+                     <!--  <img src="images/tong_btn_jb_y.png"> -->
+                </div>
+
+                <div class="c_l_j">
+                        <p>本文链接</p>
+                        <ul id="ScenicDetail_url">
+                        </ul>
+                </div>
+        </div>
+</div>
+
+<!--陪游详情-->
+<div class="page" id="pageyoudetailes">
+        <header class="bar bar-nav">
+            <h1 class="title">陪游详情</h1>
+            <a class="icon icon-left pull-left" onclick="self.location=document.referrer;"></a>
+            <a class="icon icon-share pull-right alert-text" ></a>
+        </header>
+         <nav class="bar bar-tab under-bar">
+           <span class="" name="pageyoudetailes_username" id="pageyoudetailes_username1" eleType="text" ></span> 
+          <span class="bar-name button-danger" id="pageyoudetailes_telephone" eleType="telVew" ></span>  
+          <img class="contact" src="images/tong_btn_d_xslx.png">
+          <a href="" id="pageyoudetailes_tel" eleType='input'><img class="contact" src="images/tong_btn_d_dh.png"></a> 
+          </nav>
+        <div class="content">
+          <input type="hidden" id="pageyoudetailes_id" eleType='input'/>
+          <input type="hidden" id="pageyoudetailes_location_x" eleType='input' value=""/>
+          <input type="hidden" id="pageyoudetailes_location_y" eleType='input' value=""/>
+              <div class="swiper-container  " data-space-between='10'>
+                <div class="swiper-wrapper" id="pageyoudetailes_c_image_List" > 
+                </div>
+              <input type="hidden" id="pageyoudetailes_c_image" eleType='img'/>
+                  <div class="swiper-pagination"></div>
+                  <div class="banner-text banner-bottom" id="pageyoudetailes_content"></div>
+                  
+                            <div class="yuanlogo icon-sel1 start-size start-fill1 jbstart-line jubaodiv" id="dao_ju_tu"onclick="reportItem(this,'pageyoudetailes_id',2)">
+                     <!--  <img src="images/tong_btn_jb_y.png"> -->
+                </div>
+                  
+               
+                            <div class="yuanlogo1 icon-sel1 start-size start-fill scstart-line scdiv" id="dao_cang_tu"onclick="collectItem(this,'pageyoudetailes_id',2)">
+                           <!--   <img src="images/tong_btn_sc_n.png"> -->
+                    
+                  </div>
+            </div>
+         
+            <div class="clear"></div>
+            
+  <div class="list-block media-list mar-list" >
+                <ul>
+                    <li class="detail-li">
+                        <a class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                   <div class="row">
+                                      <div class="col-20"  name="pageyoudetailes_username" eleType='text'>
+                                      
+                                      </div> 
+                                       <div class="col-10" id="pageyoudetailes_sex" eleType='input'>
+                                       </div>
+                                        <div class="col-25" >
+                                           <span id="pageyoudetailes_age" eleType='input'></span>岁
+                                        </div>
+                                        <div class="col-50">
+                                    <div class="you_status" id="pageyoudetailes_user_status">
+                                      
+                                    </div>
+                                        </div>
+                                    </div>
+                             <div class="row">
+                                      <div class="col-20">
+                                         价格
+                                      </div> 
+                                       <div class="col-30 red" >
+                                        <span id="pageyoudetailes_price" eleType='input' ></span>
+                                            元/天
+                                        </div>
+                                        <div class="col-30 red" >
+                                          <span id="pageyoudetailes_hours" eleType='input'></span>
+                                            小时
+                                        </div>
+                                        <div class="col-10">
+                                       
+                                  <div class="newsbottom1 icon-sel1 start-size start-fill1 jbstart-line jubaodiv" 
+                                  id="dao_ju" onclick="reportItem(this,'pageyoudetailes_id',2)">
+                     <!--  <img src="images/tong_btn_jb_y.png"> -->
+                      </div>
+                                          </div>
+                                       
+                                         <div class="col-10">
+                                        
+                                       <div class="icon-sel1 start-size start-fill scstart-line scdiv" 
+                                      id="dao_cang" onclick="collectItem(this,'pageyoudetailes_id',2)">
+                           <!--   <img src="images/tong_btn_sc_n.png"> -->
+                      </div>
+                                          </div>
+                                      
+                                    </div>
+
+                                </div>
+                          </div>
+                      </a>
+                  </li>   
+
+
+                  <li class="detail-li">
+                        <a class="item-content quyu ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="equip-content" id="pageyoudetailes_configure" eleType="requireDanger">
+                                        <div class="row"> 
+                   
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                <div class="car_message">
+                    <li class="detail-li">
+                        <a class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                 
+                                   
+                                    <div class="row">
+                                        <div class="col-20">
+                                           车品牌
+                                        </div>
+                                        <div class="col-33">
+                                            <div  id="pageyoudetailes_car_brand" eleType='input'></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-20">
+                                           车型
+                                        </div>
+                                        <div class="col-33">
+                                            <div  id="pageyoudetailes_car_cate" eleType='input'></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-20">
+                                           价格
+                                        </div>
+                                        <div class="col-30 red">
+                                            <span id="pageyoudetailes_car_price"  eleType='input'></span>
+                                        </div>
+                                        <div class="col-30 red">
+                                            <span id="pageyoudetailes_car_hours"  eleType='input'></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                 <li class="detail-li row_line">
+                        <a class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                            <div class="row ">
+                                        <div class="col-20">
+                                           附言
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row ">
+                                      <div class="col-100" id="pageyoudetailes_message"  eleType='input'>
+                                       
+                                     </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </a>
+                    </li>
+            </div>
+           <div class="bg-div selectList-content showList" id="SelectDiv">
+                 <li class="detail-li row_line" >
+                        
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row" onclick="showList('SelectDiv')">
+                                        <div class="col-90 red">
+                                           <span>可陪同游玩地<span>
+                                            <a class="icon icon-right pull-right"></a>
+                                        </div>
+                                     
+                                        
+                                    </div>
+
+                                    </div>
+                               </div>
+                     </li>
+
+                   <li class="detail-li row_line">
+                        <a class="item-content ">
+                            <div class="item-inner">
+                               <div class="item-text text-content">
+                                    <div class="equip-content"  >
+                                   
+                                        <div class="row"> 
+                                         <div id="pageyoudetailes_place_s"></div>
+                                        </div>
+                                    </div>
+                                   </div>
+                               </div>
+                            
+                        </a>
+                    </li>
+                </div>
+                    <li class="detail-li row_back">
+                        <a class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                   <div class="row ">
+                                       <div class="col-100 grey">
+                                         *提示：平台只提供展示，不对其人员资质、财产、安全提供保障，请自行核实身份信息及辨别！
+                                        </div>
+                                     </div>
+                                   </div>
+                               </div>
+                            
+                        </a>
+                    </li>
+                </ul> 
+        </div>
+    </div>
+</div>
+
+
+
+<!--发布选择-->
+<div class="page" id="pagePostChoose">
+       <header class="bar bar-nav">
+          <h1 class="title">发布选择</h1>
+          <a class="icon icon-left pull-left " href="#pageIndex"></a>
+   <!--        <a class="button button-link button-nav pull-right external" href="../service/myfabu.html" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a> -->
+      </header>
+      <div class="content">
+        <div class='choose_type'>
+          <ul>
+            <li >
+               <a href="#" data-transition='slide-out' onclick="goPageList('pagepubScenic')"><img src="images/bmfw_fbxq.png" />发布景点</a>
+            </li>
+            <li>
+               <a href="#pagePostDemand" data-transition='slide-out'><img src="images/bmfw_fbfw.png"/>发布陪游</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+ </div>
+
+
+
+ <!--景区发布-->
+ <div class="page" id="pagepubScenic">
+      <header class="bar bar-nav">
+          <h1 class="title">发布景区</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+          <a class="button button-link button-nav pull-right external" href="../service/myfabu.html?id=1" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+      </header>
+       <div class="content">
+            <input type="hidden" id="pubScenic_id" >
+            <input type="hidden" id="pubScenic_location_x">
+            <input type="hidden" id="pubScenic_location_y">
+           <div class="list-block media-list mar-list">
+                <ul>
+                   <li class="detail-li">
+                        <div class="cert-content">
+        
+                            <div class="row textaera-row">
+                                <div class="col-33">
+                                    <div id="pubScenic_main_img"  class="inp-cert">
+                                        <div class="cert-upload"></div>
+                                        <input type="file" class="cert-upload fileInp-opacity" multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('pubScenic_main_img'))" value="">
+                                        <div class="close-div hide"></div>
+                                    </div>
+
+                                </div>
+                              </div>
+                              <br>
+                              
+                              <div class="right_check">
+                                    <input type="checkbox" id="pubScenic_show_status" value="2" name="add_type"/><span>显示在详情中</span>
+                              </div>
+                              
+                        </div>
+                    </li>
+                    <div class="clear"></div>
+
+                  <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                     <div class="row select_row">
+                                        <div class="col-50">
+                                             位置（默认当前位置）
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li" >
+                       <a href="#">
+                        <div class="item-content item-content_select">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row span-row"  onclick="selectMyPos('pubScenic_location_x','pubScenic_location_y',1)">
+                                          <div class="item-input span-content">
+                                                <span class="chooselocation">-请选择位置-</span>
+                                          </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                      <li class="detail-li">
+                              <a class="item-content ">
+                                  <div class="item-inner ">
+                                      <div class="item-text quyu-select"> 
+                                     选择显示区域（不选默认当前）
+                                          <div class="row xianshi-row">  
+                                              <div class="col-33 line_quyu">
+                                                  <select  name="province"  id="select_province" eleType="input">
+                                                        
+                                                  </select>
+                                               </div>  
+                                                 <div class="col-33 line_quyu">
+                                                 <select   name="city"  id="select_city" eleType="input">
+                                                        
+                                                 </select>
+                                              </div> 
+                                               <div class="col-33 line_quyu">
+                                                 <select   name="street"  id="select_area" eleType="input">
+                                                      
+                                                 </select>
+                                              </div> 
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                         </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                      <p>标题</p>
+                                       <div class="item-input textarea-content">
+                                           <textarea id="pubScenic_title" eleType="input"  maxlength="30" class="inp-text" placeholder="请用30字描述您发起的活动"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+             
+                  <li class="detail-li ">
+                    <div class="row">
+                           <div class="col-33">
+                              <div id="pubScenic_c_image"  class="inp-cert">
+                                  <div class="cert-upload"></div>
+                                  <input type="file" class="cert-upload fileInp-opacity"  multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('pubScenic_c_image'))" value="">
+                              </div>
+                          </div>
+                          <div class="col-50">
+                               <textarea id="pubScenic_c_context" eleType="input"  class="inp-text tianjiatupian col-100 img_border" placeholder="请添加图片说明"></textarea>
+                          </div>
+                    </div>
+                  </li>
+                  <div id="add_tuwen_pubScenic">
+                  </div>
+                <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="content-block content-block1">
+                                              <a href="#" class="button button-fill button-warning" onclick="add1()">+创建景区图片</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                   <div class="row addlianjie" >
+                          <div class="col-50"><a href="#" class=""><img src="images/lianjie_05.png"/></a></div>
+
+                   </div> 
+                   <div class="comment1"></div> 
+                   <div class="lianjie_bianji">
+                     <div class="right" onclick="closeWindow1()"><img src="images/tuichu.png" /></div>
+                    <div class="orange">添加链接</div><br />
+                    链接地址
+                    <input type="text" class="neirong_dizhi" />
+                    链接名称
+                    <input type="text" class="neirong_mingcheng" />
+                  <p class="queding_btn1">完成<p>
+                  </div>
+
+                   <div class="black_overlay fade"></div> 
+                        
+                         <input type="hidden" id="pubScenic_c_url" eleType="grounpurl"/>
+               
+                         
+                   
+                         <input type="hidden" id="pubScenic_url_content"  eleType="grounpurl"/>
+                         
+                
+         </ul>
+            </div> 
+            <div class="content-block">
+                  <div class="row">
+                      <div class="col-50 baocun"><a id="btnSaveScenic" class="button button-big button-fill button-danger">保存</a></div>
+                      <div class="col-50 fabu" ><a id="btnPubScenic" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+           </div>
+      </div>
+</div>
+
+
+ <!--陪游发布-->
+<div class="page" id="pagePostDemand">
+       <header class="bar bar-nav">
+          <h1 class="title">发布陪游</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+          <a class="button button-link button-nav pull-right external" href="../service/myfabu.html?id=2" data-transition='slide-out'>
+           <span class="icon pull-right"></span>
+             管理
+           </a>
+      </header>
+       <div class="content">
+      <input type="hidden" id="you_id" >
+      <input type="hidden" id="you_location_x">
+      <input type="hidden" id="you_location_y">
+        <div class="list-block media-list mar-list">
+                <ul>
+             
+                  <li class="detail-li ">
+                    <div class="row">
+                    <div class="col-33 inp-cert" id="tu_wen_c_image" >
+                    <div class="cert-upload"></div>
+                    <input type="file" class="cert-upload fileInp-opacity " eleType='img' multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('tu_wen_c_image'))" value="">
+                    <div class="close-div hide"></div>
+                    </div>
+                     <textarea  id="tu_wen_c_context" eleType='input' class="inp-text col-60 img_border" placeholder="请添加图片说明"></textarea>
+                   </div>
+                  </li>
+                  <div id="add_tuwen_you_shuoming">
+                  </div>
+               
+                <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="content-block content-block1">
+                                              <a href="#"  class="button button-fill button-warning"  onclick="add2()">+创建导游图片</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </li>
+                
+              <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact1">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33" >
+                                            姓名*
+                                        </div>
+                                        <div class="col-65 bor_bottom">
+                                            <div class="item-input">
+                                                <input id="you_username" eleType="input" class="inp-text" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact1">
+                                <div class="item-text text-content">
+                                  
+                                      <div class="row">
+                                      
+                                        <div class="col-33">
+                                            性别*
+                                        </div>
+                                        <div class="col-65" >                
+                                              <div class="item-input">
+                                            <select  class="inp-text" name="sex" eleType="input" id="you_sex">
+                                               <option value="1">男</option>
+                                               <option value="2">女</option>  
+                                            </select>
+                                              </div>                         
+                                        </div>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </li>   
+                   <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-tel2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            年龄*
+                                        </div>
+                                        <div class="col-65 bor_bottom">
+                                            <div class="item-input">
+                                                <input id="you_age" eleType="input" class="inp-text" type="number" placeholder="24">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+            <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact1">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33">
+                                            价格*
+                                        </div>
+                                        <div class="col-15 bor_bottom">
+                                                 <div class="item-input">
+                                                <input id="you_price" eleType="input" class="inp-text" type="number" >
+                                            </div>
+                                        </div>
+                                         <div class="col-20 red">
+                                          元/天
+                                         </div>
+                                         <div class="col-15 bor_bottom">
+                                            <div class="item-input">
+                                                <input id="you_hours" eleType="input" class="inp-text" type="number" >
+                                            </div>
+                                        </div>
+                                           <div class="col-15 red">
+                                         小时
+                                         </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                     <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-tel2">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            电话*
+                                        </div>
+                                        <div class="col-65 bor_bottom">
+                                            <div class="item-input">
+                                                <input id="you_telephone" eleType="input" class="inp-text" type="number" placeholder="139...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+
+                   <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                     <div class="row select_row">
+                                        <div class="col-50">
+                                             位置（默认当前位置）
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="detail-li" >
+                       <a href="#">
+                        <div class="item-content item-content_select">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row span-row"  onclick="selectMyPos('you_location_x','you_location_y',2)">
+                                          <div class="item-input span-content">
+                                                <span class="chooselocation">-请选择位置-</span>
+                                          </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+
+                  <li class="detail-li ">
+                           <div class="item-content  quyu ">
+                             <div class="item-inner">
+                               <div class="item-text text-content">
+                                <p>选择显示区域（不选默认当前）</p>
+
+                                  <div class="row">   
+                                     <div class="col-33" style="border:none;">
+                                            <div class="item-input line_quyu">
+                                     <select  name="province"  id="select_province3">
+                                     
+                                     </select>
+                                            </div>
+                                     </div>
+                                      <div class="col-33" >                
+                                              <div class="item-input line_quyu">
+                                            <select   name="city"  id="select_city3">
+                                          
+                                            </select>
+                                              </div>                         
+                                      </div>
+                                      <div class="col-33" >
+                                            <div class="item-input line_quyu">
+                                       <select   name="street"  id="select_area3">
+                                     
+                                       </select>
+                                            </div>
+                                      </div>
+                                 </div>
+                               </div>
+                             </div>
+                          </div>
+                       </li>
+
+                     <li class="detail-li">
+                        <div class="item-content quyu ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="equip-content" id="you_configure" eleType="requireDanger">
+                                        <div class="row"> 
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="1" class="button button-disable" check="false" onclick="selectOptions(this)">需出门票</span>
+                                            </div>
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="2" class="button button-danger" check="true" onclick="selectOptions(this)">过路停车费</span>
+                                            </div>
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="3" class="button button-disable" check="false" onclick="selectOptions(this)">需提供早餐</span>
+                                            </div>
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="4" class="button button-disable" check="false" onclick="selectOptions(this)">需提供中餐</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="5" class="button button-disable" check="false" onclick="selectOptions(this)">需提供晚餐</span>
+                                            </div>
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="6" class="button button-disable" check="false" onclick="selectOptions(this)">车内禁吸烟</span>
+                                            </div>
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="7" class="button button-danger" check="true" onclick="selectOptions(this)">禁止醉酒</span>
+                                            </div>
+                                            <div class="col-25">
+                                                <span name="you_configure" data-require="8" class="button button-disable" check="false" onclick="selectOptions(this)">无强制消耗</span>
+                                            </div>
+                                        </div>
+                          
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                 <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <p>可陪同游玩地</p>
+                                  
+                                    <div class="row ">
+                                    <div class="content-block content-block1 ">
+                                    <div class="col-40 button button-fill button-warning diming" id="" ><span>+&nbsp;添加地名</span></div>
+                                    </div>
+                                    </div>
+                                    <input id="you_citys_th" eleType="grounpurl1" type="hidden" />
+                                    <div class="comment">
+                                    </div>
+                           
+                                </div>
+
+                            </div>
+                        </div>
+                    </li> 
+
+                
+                  <li class="detail-li" >
+                    <div class="row">
+                   <div class="col-33 inp-cert" id="jing_img_c_image">
+                    <div class="cert-upload"></div>
+                    <input type="file" class="cert-upload fileInp-opacity" eleType='img' multiple accept="image/*"  onchange="handleFiles(this,document.getElementById('jing_img_c_image'))" value="">
+                    <div class="close-div hide"></div>
+                    </div>
+                     <textarea id="you_place_context" eleType='input'class="inp-text col-60 img_border" placeholder="请添加图片说明"></textarea>
+                   </div>
+                  </li>
+                  <div id="add_tuwen_you_place">
+                  </div>
+                <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="content-block content-block1">
+                                              <a href="#"  class="button button-fill button-warning" onclick="add3()">+创建景点图片</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                 <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row textaera-row">
+                                        <div class="col-56">
+                                             是否提供车辆：
+                                        </div>
+                                        <div class="col-60">
+                                            <div class=" item-input open-position">
+                                          
+                                                <label class="label-switch pull-right" >
+                                                <input type="checkbox"  id="you_car_c"    value="2">
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>  
+                  <div class="weizhixuanze" style="display: none;">
+                  
+                    <li class="detail-li" >
+                    <div class="row">
+                   <div class="col-33 inp-cert" id="car_img_c_image">
+                    <div class="cert-upload"></div>
+                    <input type="file" class="cert-upload fileInp-opacity" eleType='img' multiple accept="image/*"  onchange="javascript:handleFiles(this,document.getElementById('car_img_c_image'))" value="">
+                    <div class="close-div hide"></div>
+                    </div>
+                     <textarea  id="you_car_context" eleType='input' class="inp-text col-60 img_border" placeholder="请添加图片说明"></textarea>
+                   </div>
+                  </li>
+                  <div id="add_tuwen_you_car">
+                  </div>
+                <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="content-block content-block1">
+                                              <a href="#" class="button button-fill button-warning" onclick="add4()">+创建车辆图片</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact1">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33">
+                                            车品牌
+                                        </div>
+                                        <div class="col-65 bor_bottom">
+                                            <div class="item-input">
+                                                <input id="you_car_brand" eleType="input" class="inp-text" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact1">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33">
+                                            车型
+                                        </div>
+                                        <div class="col-65 bor_bottom">
+                                            <div class="item-input">
+                                                <input id="you_car_cate" eleType="input" class="inp-text" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                                <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner item-contact1">
+                                <div class="item-text text-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-33">
+                                            价格
+                                        </div>
+                                        <div class="col-15 bor_bottom">
+                                                 <div class="item-input">
+                                                <input id="you_car_price" eleType="input" class="inp-text" type="number" >
+                                            </div>
+                                        </div>
+                                         <div class="col-20 red">
+                                          元/天
+                                         </div>
+                                         <div class="col-15 bor_bottom">
+                                            <div class="item-input">
+                                                <input id="you_car_hours" eleType="input" class="inp-text" type="number" >
+                                            </div>
+                                        </div>
+                                           <div class="col-15 red">
+                                         小时
+                                         </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner ">
+                                <div class="item-text text-content">
+                                    <div class="row" >
+                                        <div class="col-33 ">
+                                            附言
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                          <div class="item-content item-content_select ">
+                              <div class="item-inner item-contact2">
+                                  <div class="item-text text-content">
+                                      <div class="row textaera-row ">
+                                         <div class="item-input textarea-content-title">
+                                             <textarea id="you_message" eleType="input" class="inp-text" ></textarea>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                    </li>
+       
+                  </div>
+                  </ul>
+            </div> 
+            <div class="content-block">
+                  <div class="row">
+                      <div id="btnyousave" class="col-50 baocun"><a href="#" class="button button-big button-fill button-danger">保存</a></div>
+                      <div  id="btnyoufabu" class="col-50 fabu" ><a href="#" class="button button-big button-fill button-success">发布</a></div>
+                 </div>
+           </div>
+     
+      </div>
+
+      <div class="queding">
+        请添加地名<br />
+      <div class="right" onclick="closeWindow()"><img src="images/tuichu.png" /></div>
+      <textarea class="neirong" ></textarea>
+      <p class="queding_btn">确定<p>
+      </div>
+   
+       <div class="black_overlay fade"></div> 
+</div>
+
+
+
+
+<!--我的收藏-->
+    <div class="page" id="pageMyCollection">
+        <header class="bar bar-nav">
+            <h1 class="title">我的收藏</h1>
+            <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+        <div class="content"> 
+            <div class="list-block media-list"><ul id="queryMyCollectionList"></ul></div>
+        </div>
+    </div>  
+
+
+
+    <!--发布位置-->
+    <div class="page" id="pageMap">
+        <header class="bar bar-nav">
+            <h1 class="title">位置选择</h1>
+            <a class="icon icon-left pull-left back" href="#"></a>
+            <a class="icon  pull-right back " href="#">确定</a>
+        </header>
+        <div class="content">
+            <input type="hidden" id="sheng">
+            <input type="hidden" id="shi">
+            <input type="hidden" id="qu">
+                <div class="banner-text banner-top" >
+                            <div class="row ">
+                                <div class="col-33 line_quyu">
+                                    <select  name="province"  class="banner-text1" id="select_province4" eleType="input">
+
+                                    </select>
+                                </div>
+                                <div class="col-33 line_quyu">
+                                    <select   name="city"  class="banner-text1" id="select_city4" eleType="input">
+
+                                    </select>
+                                </div>
+                                <div class="col-33 line_quyu">
+                                    <select   name="street"  class="banner-text1" id="select_area4" eleType="input">
+
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+
+
+
+           <div class=" select_block" >
+                      <ul>
+
+                           <li class="detail-li">
+                              <a class="item-content button_select"  >
+                                  <div class="item-inner">
+                                      <div class="item-text ">
+                                          <div class="row localplace" id="select-localpos">
+                                              <div class="dingtupian"><img src="images/u95.png"></div>
+                                              <button>当前位置</button>
+                                          </div>
+                                          <div class="row zidinyi" id="select-pos">
+                                              <button>重新自定义位置</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                          </li>
+  
+                      </ul>
+               </div>
+            <input type="hidden" id="">
+            <div id="MyMap" style='width:100%; height:100%'></div>
+             
+        </div>
+
+    </div>
+
+
+
+  <!--定位位置-->
+ <div class="page" id="pagedingMap">  
+        
+        <div class="content">
+
+         <div id="map"></div>
+          
+
+          <div id="l-map" style="display: none;"></div>
+          <div id="r-result" style="display: none;"></div>
+       
+        </div>
+        <!-- 页面按钮 -->
+        <div class="back-row">
+            <div class="row">
+                 <a  class="icon icon-left pull-left back "></a>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <div class="row" >
+                <div class="col-33">
+                    <a href="#" class="button button-big button-fill button-success walk">步行</a>
+                </div>
+                <div class="col-33">
+                    <a href="#" class="button button-big  button-fill button-success bus" external>公交</a>
+                </div>
+                <div class="col-33">
+                    <a href="#" class="button button-big button-fill button-success drive">驾车</a>
+                </div>
+            </div>
+        </div>
+</div>
+
+</div>
+    <script type='text/javascript' src='js/zepto.js' ></script>
+    <script src="js/Common.js"></script>
+    <script type='text/javascript' src='js/sm.min.js' ></script>
+    <script type='text/javascript' src='js/sm-extend.min.js'></script>
+    <script type="text/javascript" src="js/juicer.js"></script>
+    <script type="text/javascript" src="js/tourism.js"></script>
+
+     <script type='text/javascript' src='js/address1.js'></script>
+    
+  <script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script>
+   <script>
+
+       var map = new BMap.Map('MyMap');
+       //下拉城市
+     function GetQueryString(name) {
+         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if (r != null)return unescape(decodeURI(r[2]));
+         return null;
+     }
+
+       function get(_region_p_default,_region_c_default,_region_d_default){
+           region_init("select_province2","select_city2","select_area2",_region_p_default,_region_c_default,_region_d_default);
+           region_initx("select_province","select_city","select_area",_region_p_default,_region_c_default,_region_d_default);
+           region_initx("select_province3","select_city3","select_area3",_region_p_default,_region_c_default,_region_d_default);
+           map_init("select_province4","select_city4","select_area4",_region_p_default,_region_c_default,_region_d_default)
+           $("#sheng").val(_region_p_default)
+           $("#shi").val(_region_c_default)
+           $("#qu").val(_region_d_default)
+       }
+
+     if($.device.os=="android"){
+         var province1  = GetQueryString("province");
+         var city1  = GetQueryString("city");
+         var district1  = GetQueryString("district");
+          _cityPosdata(province1,city1,district1);
+
+     }else if($.device.os=="ios"){
+     region_init("select_province2","select_city2","select_area2",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+     region_initx("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+     region_initx("select_province3","select_city3","select_area3",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+     map_init("select_province4","select_city4","select_area4",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"))
+         $("#sheng").val(getCookie("p_id"))
+         $("#shi").val(getCookie("c_id"))
+         $("#qu").val(getCookie("d_id"))
+     }
+
+
+
+
+function pubget(region_p_default,region_c_default,region_d_default){
+    if(region_p_default&&region_c_default&&region_d_default){
+
+region_initx("select_province","select_city","select_area",region_p_default,region_c_default,region_d_default);
+region_initx("select_province3","select_city3","select_area3",region_p_default,region_c_default,region_d_default);
+    }
+}
+
+  </script>
+ 
+    <script>
+    var j=0;
+    function add1() {
+            j++;
+            jia1(j);
+        }
+  function jia1(iq) {
+   var html='<li class="detail-li ">'; 
+   html += '<div class="row sc-10">'; 
+   html += '<div class="col-33 inp-cert" id="pubScenic_c_image'+iq+'" >'; 
+   html += '<div class="cert-upload"></div>'; 
+   html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'pubScenic_c_image'+iq+'\'))"/>';
+   // html += '<div class="close-div hide"></div>'; 
+   html += '</div>'; 
+   html += '<textarea  id="pubScenic_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60 img_border" placeholder="请添加图片说明"></textarea>'; 
+   html += '</div >';      
+   html += "<img class='delete_img' src='images/tuichu.png' onclick='removeAddLable(this)'/>" ;      
+   html += '</li>'; 
+  $("#add_tuwen_pubScenic").append(html);
+}  
+
+    var x=0;
+    function add2() {
+            x++;
+            jia2(x);
+        }
+  function jia2(iq) {
+   var html='<li class="detail-li ">'; 
+   html += '<div class="row sc-11">'; 
+   html += '<div class="col-33 inp-cert" id="tu_wen_c_image'+iq+'" >'; 
+   html += '<div class="cert-upload"></div>'; 
+   html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'tu_wen_c_image'+iq+'\'))"/>';
+   // html += '<div class="close-div hide"></div>'; 
+   html += '</div>'; 
+   html += '<textarea  id="tu_wen_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60 img_border"  placeholder="请添加图片说明"></textarea>'; 
+   html += '</div>';     
+   html += "<img class='delete_img' src='images/tuichu.png' onclick='removeAddLable(this)'/>" ;             
+   html += '</li>'; 
+  $("#add_tuwen_you_shuoming").append(html);
+}  
+
+    var y=0;
+    function add3() {
+            y++;
+            jia3(y);
+        }
+  function jia3(iq) {
+   var html='<li class="detail-li ">'; 
+   html += '<div class="row sc-12">'; 
+   html += '<div class="col-33 inp-cert" id="jing_img_c_image'+iq+'" >'; 
+   html += '<div class="cert-upload"></div>'; 
+   html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'jing_img_c_image'+iq+'\'))"/>';
+   // html += '<div class="close-div hide"></div>'; 
+   html += '</div>'; 
+   html += '<textarea  id="you_place_context'+ iq +'" eleType="inputcontext" class="inp-text col-60 img_border" placeholder="请添加图片说明"></textarea>'; 
+   html += '</div>';  
+   html += "<img class='delete_img' src='images/tuichu.png' onclick='removeAddLable(this)'/>" ;                
+   html += '</li>'; 
+  $("#add_tuwen_you_place").append(html);
+}  
+
+    var z=0;
+    function add4() {
+            z++;
+            jia4(z);
+        }
+    function jia4(iq) {
+   var html='<li class="detail-li">'; 
+   html += '<div class="row sc-13">'; 
+   html += '<div class="col-33 inp-cert" id="car_img_c_image'+iq+'" >'; 
+   html += '<div class="cert-upload"></div>'; 
+   html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'car_img_c_image'+iq+'\'))"/>';
+   // html += '<div class="close-div hide"></div>'; 
+   html += '</div>'; 
+   html += '<textarea  id="you_car_context'+ iq +'" eleType="inputcontext" class="inp-text col-60 img_border" placeholder="请添加图片说明"></textarea>'; 
+   html += '</div>';      
+  html += "<img class='delete_img' src='images/tuichu.png' onclick='removeAddLable(this)'/>" ;            
+   html += '</li>'; 
+  $("#add_tuwen_you_car").append(html);
+ }  
+
+</script>
+
+    <script>
+$(function(){
+     var $cr = document.getElementById('you_car_c');
+
+     $(".open-position").click(function(){
+       if($cr.checked === false){
+          $("#you_car_c").val("1");
+       $(".weizhixuanze").show();
+       }else{
+         $("#you_car_c").val("2");
+      $(".weizhixuanze").hide();
+      }
+
+       
+     });
+     });
+
+
+    function selectOptions(span) {
+        var $but = $(span);
+        var $selectBtn = $but.parents('.equip-content').find('.button-danger');
+        if ($but.attr('check') == 'false') {
+            $but.attr('check', true).removeClass('button-disable').addClass('button-danger');
+        } else if ($selectBtn.length != 1) {
+          $but.attr('check', false).removeClass('button-danger').addClass('button-disable');
+        }
+    }
+
+
+
+
+$("input[name=add_type]").click(function(){
+   if($(this).attr("checked")==true){
+           $(this).val(1);
+   }else{
+           $(this).val(2);
+   }
+
+})
+
+
+function back(id){
+        $("#"+id).val('');
+        $.router.back();
+    } 
+
+
+
+//页面跳转方法
+function goPageList(id){
+    $.router.load("#"+id);
+}
+
+var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+        offset: new BMap.Size(0, 0),
+        imageOffset: new BMap.Size(0, 0)
+    });
+    var pt = new BMap.Point(); 
+    var geolocation = new BMap.Geolocation();
+    var geoc = new BMap.Geocoder();
+    geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            pt = r.point; 
+            geoc.getLocation(pt, function(rs){
+                var addComp = rs.addressComponents;
+                console.info(pt);
+                console.info(addComp.street + ", " + addComp.streetNumber);
+
+            
+                var address = addComp.street + addComp.streetNumber;
+                var xw = parseFloat(pt.lat).toFixed(6);
+                var yj = parseFloat(pt.lng).toFixed(6);
+                $('#pubScenic_location_x').val(xw);
+                $('#pubScenic_location_y').val(yj);
+                $('#you_location_x').val(xw);
+                $('#you_location_y').val(yj);
+            
+            });
+
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }
+    },{enableHighAccuracy: true});
+    
+    function selectMyPos(wdId,jdId,info_type){
+
+        $('#pageMap').attr('forData',info_type);
+        var wdStr=$('#'+wdId).val();
+        var jdStr=$('#'+jdId).val();
+        if ($.trim(wdStr) == '' || $.trim(jdStr)=='') {
+        $.alert('正在定位，请稍后！');
+            return;
+        }
+        var wd;
+        var jd;
+        if (parseInt(jdStr) > 999) {
+            wd = parseInt(wdStr)/Math.pow(10,6);
+            jd = parseInt(jdStr)/Math.pow(10,6)
+        }else{
+            wd = parseFloat(wdStr).toFixed(6);
+            jd = parseFloat(jdStr).toFixed(6);
+        }
+        $.router.load("#pageMap"); 
+
+        var top_left_navigation = new BMap.NavigationControl();   
+        map.addControl(top_left_navigation);
+        var point = new BMap.Point(jd,wd);
+        var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+            offset: new BMap.Size(0, 0), 
+            imageOffset: new BMap.Size(0, 0)  
+        });  
+        var marker=new BMap.Marker(point,{icon:myIcon}); 
+        map.addOverlay(marker); 
+        map.centerAndZoom(point, 15); 
+        $('#select-pos').click(function(){
+            map.clearOverlays();
+            map.addEventListener("click",selectPos); 
+        }); 
+        function selectPos(e){
+            selectPt = e.point;
+            drawPoints(e.point,myIcon);
+            position.latitudeP=e.point.lat;
+            position.longitudeP=e.point.lng;
+            map.removeEventListener("click",selectPos); 
+            var geoc = new BMap.Geocoder(); 
+            geoc.getLocation(selectPt, function(rs){
+                var addComp = rs.addressComponents; 
+                console.info(addComp);
+                console.info(addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                $(".chooselocation").text(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                var address = addComp.street + addComp.streetNumber;
+                var city = addComp.city + "." +addComp.district;
+                console.info(city);
+                var wd = parseFloat(selectPt.lat).toFixed(6);
+                var jd = parseFloat(selectPt.lng).toFixed(6);
+                if (1==info_type) {
+ 
+                    $('#pubScenic_location_x').val(wd);
+                    $('#pubScenic_location_y').val(jd);
+                }
+                 else if (2==info_type) {
+          
+                 $('#you_location_x').val(wd);
+                 $('#you_location_y').val(jd);}
+
+            }); 
+        }
+        var drawPoints = function(point,myIcon){
+            var marker=new BMap.Marker(point,{icon:myIcon}); 
+            map.addOverlay(marker);
+            marker.addEventListener("click", function(e){
+                position.latitudeP=e.point.lat;
+                position.longitudeP=e.point.lng;
+                console.info(e.point.lng + ", " + e.point.lat); 
+            });
+        };
+        $('#select-localpos').click(function(){
+            map.clearOverlays();
+            var sheng = $("#sheng").val();
+            var shi = $("#shi").val();
+            var qu = $("#qu").val();
+            map_init("select_province4","select_city4","select_area4",sheng,shi,qu)
+        });
+    }
+
+
+
+</script>
+</body>
+</html>

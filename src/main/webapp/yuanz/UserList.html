@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/UserList.css">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+
+<style>
+    #tanchuang{
+        z-index: 9999;
+        width: 240px;
+        height: 165px;
+        background-color: #f4f4f4;
+        position: absolute;
+        margin: 20px;
+        border-radius: 5px;
+        left: 23px;
+        top: 10%;
+        overflow: scroll;
+    }
+    #tanchuang p{
+        font-size: 16px;
+        font-family: "微软雅黑";
+        padding-top: 10px;
+        padding-left: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid#222;
+        margin: 0 30px;
+    }
+    #userMore{
+      font-size: 14px;
+      margin-left:150px 
+    }
+</style>
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <script type="tpl/text" id="tpl2">
+        <% for(var i=0;i<list.length;i++){%>
+        <li>
+           <p><%=list[i].storename%></p>
+        </li>
+        <%}%>
+    </script>
+    <script type="tpl/text" id="tpl1">
+     <% for(var i=0;i<list.length;i++){%>
+        <%if(list[i].type==2){%>
+           <li class="detail-li" type="2" id="<%=list[i].id%>">
+                                  <div class="item-content">
+
+                                      <div class="item-inner UserList_item-content">
+                                              <div class="row message_row">
+                                                 <div class="col-50 nametel-col">
+                                                     <span><%=list[i].title%></span>
+                                                                                                    </div>
+
+                                                  <div class="col-50 time-col">
+                                                      <label>注册时间:</label>
+                                                      <time><%=list[i].create_time%></time>
+                                                  </div>
+
+                                             </div>
+                                             <div class="row caozuobutton_row">
+                                                 <span class="button management_button" >进店管理</span>
+                                                  <span class="button shieldingmerchant_button alert-text">屏蔽商家</span>
+                                             </div>
+                                      </div>
+                                  </div>
+                              </li>
+                              <%}%>
+          <%if(list[i].type==1){%>
+                              <li class="detail-li" type="1" id="<%=list[i].id%>">
+                                  <div class="item-content">
+                                      <div class="item-inner UserList_item-content">
+                                              <div class="row message_row">
+                                                 <div class="col-50 nametel-col">
+                                                     <span><%=list[i].title%></span>
+                                                      
+                                                 </div>
+
+                                                  <div class="col-50 time-col">
+                                                      <label>注册时间:</label>
+                                                      <time><%=list[i].create_time%></time>
+                                                  </div>
+
+                                             </div>
+                                             <div class="row caozuobutton_row">
+                                                 <span class="button shieldingmerchant_button alert-text">屏蔽会员</span>
+                                             </div>
+                                      </div>
+                                  </div>
+                              </li>
+                  <%}%>
+               <%}%>
+    </script>
+  </head>
+<body>
+<div style="width: 100%;height: 100%;background-color: #b0b3b3;opacity: 0.5;z-index: 9998;display: none;position: fixed" id="mask" ></div>
+<div class="page-group">
+    
+      <!--主界面-->
+
+<div class="page page-current" id="pageIndex">
+      <header class="bar bar-nav">
+             <h1 class="title">用户列表</h1>
+             <a class="icon home-icon  pull-left back" href="WebmasterHomepage.html">
+               <img src="images/dhl_btn_home.png">
+             </a>
+      </header> 
+      <div class="content" > 
+               <div class="content-padded">
+                    <div class="searchbar searchbar-textstyle">
+                        <div class="search-input">
+                            <label class="icon icon-search" for="search"></label>
+                            <input type="search" id='search' placeholder='输入关键字...'/>
+                        </div>
+                    </div>
+
+                    <div class="button_block">
+                       <div class="row ">
+                             <div class="col-33">
+                                 <a href="#" class="button button-fill" id="all" type="0">全部 </a>
+                             </div>
+                            <div class="col-33">
+                                 <a href="#" class="button button-fill disabled" id="shangjia" type="2">商家用户</a>
+                            </div>
+                            
+                            <div class="col-33">
+                                <a href="#" class="button button-fill disabled" id="putong" type="3">普通用户</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                 <div class="list-block media-list mar-list UserList_block">
+                         <ul>
+
+                         </ul>
+                     <a id="userMore">查看更多>></a>
+                 </div> 
+      </div>
+</div>
+<script src="js/UserList.js"></script>
+
+<div id="tanchuang" style="display: none;margin-right: 13px;float: right">
+    <a href="#" style="position: fixed">X</a>
+    <ul>
+    </ul>
+</div>
+
+    <div id="pingbidays" style="display: none;margin-right: 13px;">
+        <input type="hidden" id="pingbi_infoid">
+        <p class="pingbi_title">请选择屏蔽天数</p>
+        <!--<a href="#" style="position: fixed">X</a>-->
+        <div class="xuanzekuang">
+                <select class="pingbi_day">
+                    <option>-请选择-</option>
+                    <option value="3">3天</option>
+                    <option value="5">5天</option>
+                     <option value="7">7天</option>
+                    <option value="10">10天</option>
+                    <option value="30">30天</option>
+                    <!--<option><input type="number">天</option>-->
+                </select>
+        </div>
+        <div class="caozuobutton">
+             <a href="#" class="sure_pingbi">确定</a>
+             <a href="#" class="cancel_pingbi">取消</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

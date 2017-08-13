@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/SettingManagement.css">
+
+    <style>
+        .dqxz{
+            color: #f60!important;
+            padding-bottom: 15px!important;
+            padding-left: 10px!important;
+        }
+        .xxxxx{
+            width: 300px;
+            height: 150px;
+            z-index: 99999;
+            position: absolute;
+            background-color: #f4f4f4;
+            overflow: scroll;
+            margin-left: 50px;
+            margin-top: 62px;
+            border-radius: 10px;
+        }
+        .xxxxx span{
+            display: block;
+            font-size: 18px;
+            margin: 0 auto;
+            line-height: 20px;
+            height: 20px;
+            margin-left: 90px;
+            color: #9c9c9c;
+            margin-top: 15px;
+        }
+        .xxxxx a{
+            background-color: #f60;
+            font-size: 18px;
+            padding: 5px 15px;
+            margin-left: 40px;
+            border-radius: 5px;
+            color: #f4f4f4;
+            text-decoration: none;
+        }
+
+    </style>
+    <script type="tpl/text" id="msatInfo">
+        <div class="list-block media-list mar-list" id="<%=list.id%>">
+                  <ul>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-33 col33-color">
+                                               <span>管辖区域</span>
+                                          </div>
+                                          <div class="col-60">
+                                             <%= list.province_name%>-<%= list.city_name%>-<%= list.county_name%>
+                                          </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-33 col33-color">
+                                               <span>站长名称</span>
+                                          </div>
+                                          <div class="col-66">
+                                               <%= list.name%>
+                                          </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-33 col33-color">
+                                               <span>站长身份证号</span>
+                                          </div>
+                                          <div class="col-66">
+                                               <%= list.idcard%>
+                                          </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+
+                                    <div class="row ftpimg_row" >
+                                          <div class="col-50 col33-color">
+                                               <span>站长身份证照</span>
+                                          </div>
+                                    </div>
+                                    <div class="row pic_row" >
+
+                                          <div id="pubCarFindPeople_show_img_List" class="fileList" style="width:100%">
+                                               <img src="<%= list.sign_imgs[0] %>" style="width:100%; height:8rem">
+                                               <img src="<%= list.sign_imgs[0] %>" style="width:100%; height:8rem">
+                                          </div>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                  <div class="row ftpimg_row" >
+                                        <div class="col-50 col33-color">
+                                             <span>站长签约扫描件</span>
+                                        </div>
+                                  </div>
+                                  <div class="row pic_row" >
+
+                                        <div id="" class="fileList" style="width:100%">
+                                            <img src="<%= list.sign_imgs[0]%>" style="width:100%; height:8rem">
+                                            <img src="<%= list.sign_imgs[0]%>" style="width:100%; height:8rem">
+                                        </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-33 col33-color">
+                                               <span>手机号</span>
+                                          </div>
+                                          <div class="col-33">
+                                               <%= list.tel%>
+                                          </div>
+                                         <div class=" telephone_pic">
+                                               <img src="images/u9.png">
+                                          </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <p><a href="#pageWebmasterList" class="button button-fill  delete">删除站长 </a></p>
+            </div>
+    </script>
+    <script type="tpl/text" id="glyList">
+
+     <% for(var i=0;i<list.length;i++){%>
+           <li class="detail-li confirm-ok" type="<%= list[i].id%>">
+           <div class="xxxxx" style="display: none">
+                <span>是否要删除</span><br>
+                <span style="margin-left: 61px;margin-top: -10px;">管理员-<%= list[i].name%>-<%= list[i].tel%></span><br>
+                <a class="adminDel_1">删&nbsp;&nbsp;&nbsp;除</a>
+                <a class="adminDel_2">取&nbsp;&nbsp;&nbsp;消</a>
+        </div>
+                        <div class="item-content adminmessage_content">
+                            <div class="item-inner ">
+                                    <div class="row" >
+                                          <div class="col-100">
+                                                <span><%= list[i].name %></span>
+                                          </div>
+                                    </div>
+                                    <div class="row" >
+                                          <div class="col-100">
+                                                <span><%= list[i].tel%></span>
+                                          </div>
+                                    </div>
+                                    <div  class="telephone_pic">
+                                          <img src="images/u9.png">
+                                    </div>
+                            </div>
+                        </div>
+                    </li>
+                    <%}%>
+    </script>
+
+
+    <script src="js/lodash.min.js"></script>
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    <script src='http://api.map.baidu.com/api?v=2.0&ak=7F2tzD5GiZ5Q3O0bFiGgwGGG' type='text/javascript'></script>
+    <script type="tpl/text" id="zzList">
+                     <% for(var i=0;i<list.length;i++){%>
+                      <li class="detail-li" id="<%= list[i].id %>">
+                          <div class="item-content adminmessage_content">
+
+                              <div class="item-inner ">
+                                      <div class="row name_row">
+                                         <div class="col-85">
+                                             <%= list[i].province_name %>-<%= list[i].city_name %>-<%= list[i].county_name %>
+                                         </div>
+                                          <div class="col-15">
+                                              <a href="#pageWebmasterInformation"> 查看</a>
+                                          </div>
+                                     </div>
+                                      <div class="row" >
+                                            <div class="col-100">
+                                                  <span><%= list[i].name %></span>
+                                            </div>
+                                      </div>
+                                      <div class="row" >
+                                            <div class="col-100">
+                                                  <span><%= list[i].tel%></span>
+                                            </div>
+                                      </div>
+                                      <div  class="telephone_pic">
+                                          选择 <input type="checkbox" value="<%= list[i].id %>" data='<%= list[i].name %>' class="zhanzhangid" />
+                                      </div>
+                              </div>
+                          </div>
+                      </li>
+          <%}%>
+    </script>
+  </head>
+<body>
+<div class="page-group">
+    
+
+
+
+<!-- 生成站长 -->
+<div class="page" id="pageGenerationMaster">
+      <header class="bar bar-nav">
+             <h1 class="title">生成站长</h1>
+             <a class="icon icon-left pull-left" href="SettingManagement.html"></a>
+      </header>
+      <div class="content" >
+            <div class="list-block media-list mar-list">
+                  <ul>
+                    <li class="detail-li ">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div first_li" id="">
+                                    <div class="row" >
+                                          <div class="col-100">
+                                                <span >选择站长区域*</span>
+                                          </div>
+                                    </div>
+                                       <div class="row area_row" >
+                                           <div class="row ">
+                                               <div class="col-33">
+                                                   <select  name="province"  class="banner-text1 dqxz" id="select_province" eleType='text' ></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_city" eleType='text'></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_area" eleType='text'></select>
+                                               </div>
+                                           </div>
+                                       </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-66">
+                                               <span>站长名称</span>
+                                          </div>
+                                          <div class="col-33">
+                                               <input class="inp-text" placeholder="请输入名称" id="MasterName">
+                                          </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-66">
+                                               <span>站长身份证号</span>
+                                          </div>
+                                          <div class="col-33">
+                                               <input class="inp-text" placeholder="请输入证件号" id="idcard">
+                                          </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li" id="loadsfz">
+                        <div class="item-content ">
+                            <div class="item-inner">
+
+                                    <div class="row ftpimg_row" >
+                                          <div class="col-66">
+                                               <span>站长身份证照</span>
+                                          </div>
+                                    </div>
+                                <form id="uploadForm1" method="post" enctype="multipart/form-data" name="up">
+                                    <div class="row pic_row"  >
+                                        <div class="fileElem-photo" id="imgupload1" imgList="pubCarFindPeople_show_img_List" pubImg="pubCarFindPeople_show_img">
+                                            <input type="file" name="up_file" id="chooseFile1" onchange="setImagePreview(this,'chooseFile1','preview')" style="width:0;height: 0"/>
+                                        </div>
+                                        <img id="preview"  style="display: block;margin: 0 auto"  />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                  <div class="row ftpimg_row" >
+                                        <div class="col-66">
+                                             <span>站长签约扫描件</span>
+                                        </div>
+                                  </div>
+                                <form id="uploadForm2" method="post" enctype="multipart/form-data" name="up2">
+                                    <div class="row pic_row"  >
+                                        <div class="fileElem-photo" id="imgupload2" imgList="pubCarFindPeople_show_img_List" pubImg="pubCarFindPeople_show_img">
+                                            <input type="file" name="up_file" id="chooseFile2" onchange="setImagePreview(this,'chooseFile2','preview1')" style="width:0;height: 0"/>
+                                        </div>
+                                        <img id="preview1"  style="display: block;margin: 0 auto"  />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-66">
+                                               <span>站长手机号</span>
+                                          </div>
+                                          <div class="col-33">
+                                               <input class="inp-text" placeholder="手机号将作为账号密码" id="tel">
+                                          </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <p><a href="#pageWebmasterList" class="button button-fill button-warning" id="MasterProduction">确定生成 </a></p>
+            </div>
+      </div>
+</div> 
+
+
+
+
+<!-- 站长列表 -->
+<div class="page" id="pageWebmasterList" style="display:block">
+      <header class="bar bar-nav">
+             <h1 class="title">站长列表</h1>
+             <a class="icon icon-left pull-left" href="infofabu.html"></a>
+             <a class="button button-link button-nav pull-right" href="#" data-transition='slide-out' id="pageWebmasterListAdd">
+             添加
+           </a>
+      </header> 
+      <div class="content" > 
+        <div class="content-padded">
+            <div class="row area_row" >
+                <div class="row">
+                    <div class="col-33">
+                        <select  name="province"  class=" " id="select_province1" eleType='text' ></select>
+                    </div>
+                    <div class="col-33">
+                        <select   name="city" class="" id="select_city1" eleType='text'></select>
+                    </div>
+                    <div class="col-33">
+                        <select   name="city" class=" " id="select_area1" eleType='text'></select>
+                    </div>
+                </div>
+            </div>
+              <a href="" class="idchooose" style="display:block;margin:10px auto;width:120px;text-align:center;background:#ccc;;border-radius:5px;line-height:24px">选择站长</a>
+            <div class="searchbar searchbar-textstyle">
+                <div class="search-input">
+                    <label class="icon icon-search" for="search" id="dosearch"></label>
+                    <input type="search" id='search' placeholder='输入关键字...'/>
+                </div>
+            </div>
+            <div class="button_block">
+               <div class="row">
+                     <div class="col-33">
+                         <a href="#" class="button button-fill  fir">省级 </a>
+                     </div>
+                    <div class="col-33">
+                         <a href="#" class="button button-fill disabled sec">市级</a>
+                    </div>
+
+                    <div class="col-33">
+                        <a href="#" class="button button-fill  disabled thr">县／区级</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-block media-list mar-list">
+                  <ul>
+                </ul>   
+            </div>
+
+            <a href="" class="readmorelist" style="display:block;margin:10px auto;width:120px;text-align:center">查看更多</a>
+          
+        </div>     
+      </div>
+</div> 
+
+
+
+
+<!-- 站长信息 -->
+<div class="page" id="pageWebmasterInformation">
+      <header class="bar bar-nav">
+             <h1 class="title">站长信息</h1>
+             <a class="icon icon-left pull-left" href="SettingManagement.html"></a>
+      </header> 
+      <div class="content" >
+
+      </div>
+</div>
+
+
+
+
+
+<!-- 管理员列表 -->
+<div class="page" id="pageListAdministrator">
+
+    <header class="bar bar-nav">
+             <h1 class="title">添加管理员列表</h1>
+             <a class="icon icon-left pull-left" href="SettingManagement.html"></a>
+             <a class="button button-link button-nav pull-right" href="#pageAddListAdministrator" data-transition='slide-out' id="adminAdd">
+             添加
+           </a>
+      </header> 
+      <div class="content" >
+            <div class="list-block media-list mar-list">
+                  <ul>
+
+                </ul>   
+            </div>     
+      </div>
+</div> 
+
+
+<!-- 添加本站管理员 -->
+<div class="page" id="pageAddListAdministrator">
+      <header class="bar bar-nav">
+             <h1 class="title">添加本站管理员</h1>
+             <a class="icon icon-left pull-left" href="SettingManagement.html"></a>
+      </header> 
+      <div class="content" >
+            <div class="list-block media-list mar-list">
+                  <ul>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-66">
+                                               <span>管理员名称</span>
+                                          </div>
+                                          <div class="col-33">
+                                               <input class="inp-text" placeholder="请输入名称" id="adminName">
+                                          </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row" >
+                                          <div class="col-66">
+                                               <span>管理员手机号</span>
+                                          </div>
+                                          <div class="col-33">
+                                               <input class="inp-text" placeholder="手机号将作为账号密码" id="adminTel">
+                                          </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                    </li>
+                </ul>   
+            </div>
+            <div class="content-block">
+                <p><a href="#pagePermissionAssignment" class="button button-fill button-warning" id="adminNext">下一步 </a></p>
+            </div>       
+      </div>
+</div> 
+
+
+
+
+<!-- 权限分配-->
+<div class="page" id="pagePermissionAssignment">
+      <header class="bar bar-nav">
+             <h1 class="title">权限分配</h1>
+             <a class="icon icon-left pull-left back" >
+                 </a>
+      </header> 
+      
+      <div class="content" >
+            <div class="list-block media-list mar-list">
+                  <ul>
+                      <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div">
+                                    <div class="row ">
+                                          <div class="col-50 "> 资金管理</div>
+                                          <div class="col-50">
+                                            <div class="item-input">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox">
+                                                    <div class="checkbox funds1"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row">
+                                          <div class="col-50">广告管理</div>
+                                          <div class="col-50 ">
+                                            <div class=" item-input">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox">
+                                                    <div class="checkbox funds2"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row">
+                                          <div class="col-50">审核举报管理</div>
+                                          <div class="col-50 ">
+                                            <div class=" item-input">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox">
+                                                    <div class="checkbox funds3"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row">
+                                          <div class="col-50">讯息管理</div>
+                                          <div class="col-50 ">
+                                            <div class=" item-input">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox">
+                                                    <div class="checkbox funds4"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                    </li>
+                    <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="bg-div" id="">
+                                    <div class="row">
+                                          <div class="col-50">站长和管理员管理</div>
+                                          <div class="col-50 ">
+                                            <div class=" item-input">
+                                                <label class="label-switch pull-right">
+                                                    <input type="checkbox">
+                                                    <div class="checkbox funds5"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                    </li>
+                </ul>   
+            </div>
+            <div class="content-block">
+                <p><a href="#" class="button button-fill button-warning" id="competenceOK">完成 </a></p>
+            </div>       
+      </div>
+</div> 
+
+<div>
+   <div class="row area_row" >
+                                           <div class="row ">
+                                               <div class="col-33">
+                                                   <select  name="province"  class="banner-text1 dqxz" id="select_province" eleType='text' ></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_city" eleType='text'></select>
+                                               </div>
+                                               <div class="col-33">
+                                                   <select   name="city" class="banner-text1 dqxz" id="select_area" eleType='text'></select>
+                                               </div>
+                                           </div>
+                                       </div>
+</div>
+
+
+
+</div>
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/adminMask.js"></script>
+    <script src="js/position.js"></script>
+    <script type="text/javascript" src="js/SettingManagement.js"></script>
+
+<script src="js/address.js"></script>
+<script>
+    $.post("/user/manager/MasterList",{type:0}).then(function(data){
+        console.log(data)
+        if (data.data == 'ERROR') {
+            data.data = []
+        }
+        var html1= _.template($("#zzList").html())
+        $("#pageWebmasterList ul").html(html1({list: data.data}))
+
+        $("#pageWebmasterList").show()
+    })
+    region_init("select_province","select_city","select_area");
+    region_init("select_province1","select_city1","select_area1");
+    region_init("select_province2","select_city2","select_area2");
+
+ 
+</script>
+<script>
+
+</script>
+</body>
+</html>

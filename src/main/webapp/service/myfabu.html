@@ -1,0 +1,823 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=yes">
+      <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+   <link rel="stylesheet" href="css/myfabu.css">
+
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-114x114.png">
+    
+
+  </head>
+<body>
+ <!--我的发布-->
+ <div class="page-group">
+   <div class="page page-current" id="pageIndex">  
+       <header class="bar bar-nav">
+          <h1 class="title">我的发布</h1> 
+          <a class="icon icon-left pull-left " href="../service/Center.html" external></a>
+
+       </header>
+      <div class="content ">
+           <div class="tab_title">
+              <input type="hidden" id="type" eleType="input" >
+   
+              <ul>
+                  
+                  <li class="selected" >
+                      <a href="#" title="1">景区</a>
+                  </li>
+                  <li>
+                      <a href="#" title="2">陪游</a>
+
+                  </li>
+                  <li>
+                      <a href="#" title="3">便民服务</a>
+                  </li>
+                  <li>
+                      <a href="#" title="4">便民需求</a>
+                  </li>
+                  <li>
+                      <a href="#" title="5">征婚</a>
+                  </li>
+                  <li>
+                      <a href="#" title="6">找工作</a>
+                  </li>
+                  <li>
+                      <a href="#" title="7">招聘</a>
+                  </li>
+                  
+                  <li>
+                      <a href="#" title="8">农林渔牧</a>
+                  </li>
+                  <li>
+                      <a href="#" title="9">众筹爱心</a>
+                  </li>
+                  <li>
+                      <a href="#" title="10">本地企业</a>
+                  </li>
+
+                  
+                   <li>
+                      <a href="" title="12">通知</a>
+                  </li>
+                   <li>
+                      <a href="" title="13">报名</a>
+                  </li>
+                   <li>
+                      <a href="" title="14">管闲事</a>
+                  </li>
+                   <li>
+                      <a href="" title="15">真的吗</a>
+                  </li>
+                   <li>
+                      <a href="" title="16">征求</a>
+                  </li>
+              </ul>
+           </div>
+
+  <div class="list-block media-list list-block1 mobanlist  infinite-scroll " data-distance="100" >
+    <ul >
+     
+         <div id="jingquList"  title="1"></div>
+         <div id="peiyouList"  title="2"></div>
+         <div id="bianminfuwuList"  title="3"></div>
+         <div id="bianminxuqiuList"  title="4"></div>
+    
+         <div id="zhenghuiList"  title="5"></div>
+         <div id="zhaogongzuoList"  title="6"></div>
+         <div id="zhaopingList"  title="7"></div>
+         <div id="nonginyumuList"  title="8"></div>
+         <div id="aixinList"  title="9"></div>
+        
+         <div id="bendiqiyeList"  title="10"></div>
+         <div id="tongzhiList"  title="12"></div>
+         <div id="baominList"  title="13"></div>
+         <div id="fanguiList"  title="14"></div>
+         <div id="qiuzhengList"  title="15"></div>
+         <div id="zhengqiuList"  title="16"></div>
+         <input type="hidden" id="rent_pageNum" eleType="input" value="1">
+         <input type="hidden" id="rent_pageSize" eleType="input" value="10">
+         <div class="infinite-scroll-preloader">
+            <!-- <div class="preloader"></div> -->
+         </div>
+    </ul>
+    </div>
+          <div class="white_content light">
+        <div class="orange left">报名列表</div>
+        <div class="right"onclick="closeWindow()"><img src="images/tuichu.png" /></div>
+        <div class="clear"></div>
+           
+             <ul class="top_line" id="baominliebiaoList">
+              <!--  <li >
+                <a href="#" class="item-link item-content">
+                <div class="item-inner">
+                <div class="item-title-row">
+                <div class="item-title">称呼：王先生</div>
+                </div>
+                <div class="item-title ">性别：男</div>
+                <div class="item-title">电话： 13823243343</div>
+                <div class="item-title">留言：违法和我符合热䦹不变</div>
+                </div>
+                </a>
+                <div class="zantong" >
+                <dl>
+                <dt style="border:none"><div class="orange">同意</div></dt>
+                <dt><div class="orange">拒绝</div></dt>
+                <dt style="border:none"><div class="orange dian"><img src="images/dianhua.png" />电话联系</div></dt>
+                <div class="clear"></div>
+                </dl> 
+                </div>
+                <div class="clear"></div>
+                </li>
+                <li >
+                <a href="#" class="item-link item-content">
+                <div class="item-inner">
+                <div class="item-title-row">
+                <div class="item-title">称呼：王先生</div>
+                <div class="item-text right grey">已同意</div>
+                </div>
+                <div class="item-title ">性别：男</div>
+                <div class="item-title">电话： 13823243343</div>
+                <div class="item-title">留言：违法和我符合热䦹不变</div>
+                </div>
+                </a>
+                <div class="zantong" >
+                <dl>
+           
+                <dt style="border:none"><div class="orange dian" ><img src="images/dianhua.png" />电话联系</div></dt>
+                <div class="clear"></div>
+                </dl> 
+                </div>
+                <div class="clear"></div>
+                </li>
+
+                <li >
+                <a href="#" class="item-link item-content">
+                <div class="item-inner">
+                <div class="item-title-row">
+                <div class="item-title">称呼：王先生</div>
+                <div class="item-text right grey">已拒绝</div>
+                </div>
+                <div class="item-title ">性别：男</div>
+                <div class="item-title">电话： 13823243343</div>
+                <div class="item-title">留言：违法和我符合热䦹不变</div>
+                </div>
+                </a>
+                <div class="zantong" >
+                <dl>
+               
+                <dt style="border:none"><div class="orange dian"><img src="images/dianhua.png" />电话联系</div></dt>
+                <div class="clear"></div>
+                </dl> 
+                </div>
+                <div class="clear"></div>
+                </li> -->
+            </ul>
+       
+        </div>
+<div  class="black_overlay fade"></div> 
+   </div>
+</div>
+
+<!-- 红十字认证 -->
+    <div class="page" id="pagehongshizi">
+        <header class="bar bar-nav">
+          <h1 class="title">红十字会认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+
+       </header>
+    <div class="content">
+          <input type="hidden" id="addCrowdHongshizi_id" eleType="input" >
+          <div class="list-block media-list mar-list">
+                <ul>
+                   <li class="detail-li ">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                          <div class="col-33">
+                                            联系人
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="addCrowdHongshizi_link_name" eleType="input" class="inp-text1" type="text" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> <li class="detail-li ">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                           <div class="col-33">
+                                            联系方式
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="addCrowdHongshizi_link_tel" eleType="input" class="inp-text1" type="number" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li ">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                           <div class="col-60 grey_back1">
+                                            请上传红十字会相关证明图片
+                                        </div> 
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                      <div class="fileElem-photo" imgList="addCrowdHongshizi_imgs_List" pubImg="addCrowdHongshizi_imgs"></div>
+                        <input type="hidden" id="addCrowdHongshizi_imgs" eleType='img'/>
+                        <div id="addCrowdHongshizi_imgs_List" class="fileList" style="width:100%"></div>
+                  </li>
+                </ul>
+              </div>
+                           <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a id="btnaddCrowdHongshizi" class="button button-fill button-success">提交</a></div>
+                 </div>
+            </div>
+         </div>
+      </div>
+
+
+
+      <!-- 身份认证 -->
+    <div class="page" id="pageshenfen">
+        <header class="bar bar-nav">
+          <h1 class="title">身份认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+
+       </header>
+    <div class="content">
+           <input type="hidden" id="addShenfen_id" >
+          <div class="list-block media-list mar-list">
+                <ul>
+                   <li class="detail-li">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                 
+                                          <div class="col-80 grey_back1">
+                                            请填写和上传捐助人身份证信息和图片
+                                        </div> 
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            姓名
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="addShenfen_truename" eleType="input" class="inp-text1" type="text" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+                     <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            身份证号
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="addShenfen_idnumber" eleType="input" class="inp-text1" type="number" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                 <li class="detail-li">
+                      <div class="fileElem-photo" imgList="addShenfen_imgs_List" pubImg="addShenfen_imgs"></div>
+                        <input type="hidden" id="addShenfen_imgs" eleType='img'/>
+                        <div id="addShenfen_imgs_List" class="fileList" style="width:100%"></div>
+                  </li>
+                </ul>
+              </div>
+               <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a id="btnaddShenfen" class="button button-fill button-success">提交</a></div>
+                 </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- 医院认证 -->
+    <div class="page" id="pageyiyuan">
+        <header class="bar bar-nav">
+          <h1 class="title">医院认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+
+       </header>
+    <div class="content">
+          <input type="hidden" id="addCrowdYiyuan_id" >
+          <div class="list-block media-list mar-list">
+                <ul>
+                  <li class="detail-li ">
+                        <div class="item-content">
+                            <div class="item-inner gzqy">
+                                <div class="item-text text-content">
+                                    <div class="row ">
+                                           <div class="col-60 grey_back1">
+                                            请上传医院相关证明图片
+                                        </div> 
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  <li class="detail-li">
+   
+
+                    <div class="fileElem-photo" imgList="addCrowdYiyuan_imgs_List" pubImg="addCrowdYiyuan_imgs"></div>
+                        <input type="hidden" id="addCrowdYiyuan_imgs" eleType='img'/>
+                        <div id="addCrowdYiyuan_imgs_List" class="fileList" style="width:100%"></div>
+                      
+                  </li>
+                </ul>
+              </div>
+                           <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a  id="btnaddCrowdYiyuan" class="button button-fill button-success">提交</a></div>
+                 </div>
+            </div>
+         </div>
+      </div>
+
+
+            <!-- 账号认证 -->
+    <div class="page" id="pagezhanghao">
+        <header class="bar bar-nav">
+          <h1 class="title">账号认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+
+       </header>
+    <div class="content">
+         <input type="hidden" id="addZhanghao_id" >
+          <div class="list-block media-list mar-list">
+                <ul>
+  
+                  <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            持卡人
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="addZhanghao_owner" eleType="input" class="inp-text1" type="text" placeholder="与身份认证姓名一致不可更改">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+                     <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            卡号
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="addZhanghao_cardnum" eleType="input" class="inp-text1" type="number" placeholder="请输入与持卡人相对应的卡号">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+            <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            我的银行*
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input yinghang">
+                                                <select id="addZhanghao_bank" eleType="input">
+                                                   <option value=""> --请选择银行-- </option>
+                                                   <option>中国工商银行</option>
+                                                    <option> 招商银行</option>
+                                                    <option> 中国农业银行</option>
+                                                    <option> 中国建设银行</option>
+                                                    <option> 中国银行</option>
+                                                    <option> 中国民生银行</option>
+                                                    <option> 中国光大银行</option>
+                                                    <option> 中信银行 </option>
+                                                    <option> 交通银行</option>
+                                                    <option> 兴业银行 </option>
+                                                    <option> 上海浦东发展银行</option>
+                                                    <option> 中国人民银行</option>
+                                                    <option> 华夏银行</option>
+                                                    <option> 深圳发展银行</option>
+                                                    <option> 广东发展银行</option>
+                                                    <option> 国家开发银行 </option>
+                                                    <option> 中国邮政储蓄银行</option>
+                                                    <option> 中国进出口银行</option>
+                                                    <option> 中国农业发展银行</option>
+                                                    <option> 人民币存/贷款利率</option>
+                                                    <option> 中国银行香港分行</option>
+                                                    <option> 北京银行</option>
+                                                    <option> 北京农村商业银行</option>
+                                                    <option> 天津银行 </option>
+                                                    <option> 上海银行</option>
+                                                    <option> 上海农村商业银行</option>
+                                                    <option> 宁波银行</option>
+                                                    <option> 杭州市商业银行</option>
+                                                    <option> 深圳平安银行</option>
+                                                    <option> 深圳农村商业银行</option>
+                                                    <option> 温州银行</option>
+                                                    <option> 厦门国际银行</option>
+                                                    <option> 济南市商业银行</option>
+                                                    <option> 哈尔滨银行</option>
+                                                    <option> 成都市商业银行</option>
+                                                    <option>  包头市商业银行</option>
+                                                    <option> 南昌市商业银行</option>
+                                                    <option>  贵阳商业银行</option>
+                                                    <option> 兰州市商业银行</option>
+                                                    <option> 常熟农村商业银行</option>
+                                                    <option> 青岛市商业银行</option>
+                                                    <option> 徽商银行</option>
+                                                    <option> 花旗中国银行</option>
+                                                    <option>  汇丰中国银行</option>
+                                                    <option> 渣打中国银行</option>
+                                                    <option> 香港汇丰银行 </option>
+                                                    <option> 渣打(香港)银行</option>
+                                                    <option> 中国建设银行(亚洲)</option>
+                                                    <option> 东亚银行中国网站</option>
+                                                    <option> 花旗(台湾)银行</option>
+                                                    <option> 欧力士银行</option>
+                                                    <option> 巴黎银行</option>
+                                                    <option> 美国运通银行</option>
+                                                    <option>  蒙特利尔银行</option>
+                                                    <option> 满地可银行</option>
+                                                    <option> 瑞士银行</option>
+                                                    <option> 德意志银行</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <li class="detail-li">
+                        <div class="item-content ">
+                            <div class="item-inner">
+                                <div class="item-text text-content">
+                                    <div class="row">
+                                        <div class="col-33">
+                                            绑定手机号
+                                        </div>
+                                        <div class="col-65">
+                                            <div class="item-input">
+                                                <input id="addZhanghao_bindtel" eleType="input" class="inp-text1" type="number" placeholder="请输入与办卡时所绑定的手机号">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+        
+                </ul>
+              </div>
+                           <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a id="btnaddZhanghao" class="button button-fill button-success">提交</a></div>
+                 </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- 未通过审核 -->
+    <div class="page" id="redcrossfailedpass">
+        <header class="bar bar-nav">
+          <h1 class="title">红十字会认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             审核未通过<br />请重新提交
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a href="#pagehongshizi" class="button button-fill button-success">重新提交</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+    <!-- 审核中 -->
+    <div class="page" id="redcrossBeingAudited">
+
+        <header class="bar bar-nav">
+          <h1 class="title">红十字会认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             正在审核中...<br />请您耐心等待
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+          <!-- 已通过审核-->
+    <div class="page" id="redcrossAlreadyPass">
+
+        <header class="bar bar-nav">
+          <h1 class="title">红十字会认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             您已通过审核
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- 未通过审核 -->
+    <div class="page" id="hospitalfailedpass">
+        <header class="bar bar-nav">
+          <h1 class="title">医院认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             审核未通过<br />请重新提交
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a href="#pageyiyuan" class="button button-fill button-success">重新提交</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+    <!-- 审核中 -->
+    <div class="page" id="hospitalBeingAudited">
+
+        <header class="bar bar-nav">
+          <h1 class="title">医院认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             正在审核中...<br />请您耐心等待
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+          <!-- 已通过审核-->
+    <div class="page" id="hospitalAlreadyPass">
+
+        <header class="bar bar-nav">
+          <h1 class="title">医院认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             您已通过审核
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+         <!-- 未通过审核 -->
+    <div class="page" id="bankcardfailedpass">
+        <header class="bar bar-nav">
+          <h1 class="title">账号认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             审核未通过<br />请重新提交
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a href="#pagezhanghao" class="button button-fill button-success">重新提交</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+    <!-- 审核中 -->
+    <div class="page" id="bankcardBeingAudited">
+        <header class="bar bar-nav">
+          <h1 class="title">账号认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+        <div class="content">
+           <div class="sh_tlt">
+             正在审核中...<br />请您耐心等待
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+          <!-- 已通过审核-->
+    <div class="page" id="bankcardAlreadyPass">
+        <header class="bar bar-nav">
+          <h1 class="title">红十字会认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             您已通过审核
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+         <!-- 未通过审核 -->
+    <div class="page" id="authenticationfailedpass">
+        <header class="bar bar-nav">
+          <h1 class="title">身份认证</h1>
+          <a class="icon icon-left pull-left back" href="#"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             审核未通过<br />请重新提交
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu" ><a href="#pageshenfen" class="button button-fill button-success">重新提交</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+    <!-- 审核中 -->
+    <div class="page" id="authenticationBeingAudited">
+
+        <header class="bar bar-nav">
+          <h1 class="title">身份认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             正在审核中...<br />请您耐心等待
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+
+          <!-- 已通过审核-->
+    <div class="page" id="authenticationAlreadyPass">
+
+        <header class="bar bar-nav">
+          <h1 class="title"身份认证</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+        </header>
+      <div class="content">
+           <div class="sh_tlt">
+             您已通过审核
+           </div>
+                 <div class="content-block">
+                  <div class="row">
+                    <div class="fabu " ><a href="#pageIndex" class="button button-fill button-success">确 定</a></div>
+                 </div>
+            </div>
+        </div>
+      </div>
+       <!--捐款记录-->
+ <div class="page" id="pagejuankuanjilu">
+       <header class="bar bar-nav">
+          <h1 class="title">捐款记录</h1>
+          <a class="icon icon-left pull-left" href="#pageIndex"></a>
+      </header>
+<div class="content">
+<input type="hidden" id="juankuanDetaile_id" eleType='text'/>
+      <div class="card jingqu_jingqu" id="juanzengrecordList">
+               <!-- <a href="../service/tourism.html#pageScenicTour" external>
+                  <div class="card-content">
+                    <div class="list-block media-list">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-media">
+                             <img src="images/melbourne.jpg" >
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">用户名</div>
+                              <div class="item-after" >捐款金额:<span class="juanzengnum">¥999</span></div>
+                            </div>
+                            <div class="item-subtitle">联系方式：234234</div>
+                            <div class="item-subtitle">联系地址：微风二分区日微风二分区</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </a>
+                <div class="card-footer">
+                     <span>留言：事实</span> 
+                </div> -->
+   
+         </div>
+     </div>  
+  </div>   
+
+</div>
+
+   <script type='text/javascript' src='js/zepto.js' ></script>
+    <script type='text/javascript' src='js/sm.min.js' ></script>
+    <script type='text/javascript' src='js/sm-extend.min.js'></script>
+    <script type="text/javascript" src="js/juicer.js"></script>
+ <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=FbzOyQ4YujPrZsxiQKoB07aB&services=&t=20160708193109"></script>
+           <script src="js/Common.js"></script>
+    <script type="text/javascript" src="js/myfabu.js"></script>
+     
+
+  <script>
+
+
+
+
+
+
+  </script>
+  </body>
+</html>

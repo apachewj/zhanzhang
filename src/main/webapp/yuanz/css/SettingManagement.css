@@ -1,0 +1,242 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+    font-size:.7em;
+
+}
+.page{
+  background-color: #fafafa;
+}
+ul {
+  list-style:none;
+}
+img {
+  border:none;
+}
+a:link,a:visited, a:hover,a:active{
+  color:#000;
+  text-decoration:none;
+}
+.du{color:#0894ec}
+.clear{clear:both;}
+
+.bar_color{
+  background-color:#f96f0c;
+          }
+         .bar_color .icon-left,.bar_color .button,.bar_color .title{
+          color: #fff;
+
+          }
+          .bar_color .button-nav.pull-right {
+          margin-right:0rem;
+          }
+.tab-item img{
+  width: 100%;
+}
+.bar .home-icon img{
+  width:1.5rem;
+}
+
+.list-block{
+   margin:0;
+}
+.list-block .item-inner:after{
+    height: 0;
+}
+.item-inner {
+   height: auto;
+  
+    border-bottom: 1px solid #E8E8E8;
+}
+.bg-div{
+   height: 1.5rem;
+   line-height: 1.5rem;
+}
+.bg-div .row{
+  height: 1.5rem;
+  line-height: 1.5rem;
+  color:#4C4C4C;  
+  font-size: .75rem;
+}
+.bg-div .row a{
+   color:#4C4C4C;
+   font-size: .75rem;
+}
+
+.selectList-content{
+  overflow: hidden;
+  transition: height .3s;
+  -moz-transition: height .3s;
+  -webkit-transition: height .3s;
+  -o-transition: height .3s;
+  -ms-transition: height .3s;
+}
+.showList{
+  height:1.5rem;
+  line-height: 1.5rem;
+  
+}
+.hideList{
+  height:5rem;
+}
+.hidelist_row{
+  height: 1.8rem!important;
+  margin-left: .5rem;
+
+}
+.label-switch .checkbox {
+  margin-top: .5rem;
+}
+
+
+
+
+/*生成站长*/
+#pageGenerationMaster  .first_li{
+   height: auto;
+}
+#pageGenerationMaster .area_row{
+  text-align: center;
+  color:#ff5722; 
+  margin-left: 0;
+  background-color: #fff;
+  padding:0;
+}
+
+.inp-text{
+font-size: .7rem!important;
+float: right;
+text-align: right;
+padding-top: .2rem;
+}
+.fileElem-photo{
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top:.4rem;
+  display: inherit;
+  background-image: url("../images/addpic.png");
+  background-size: 100%;
+}
+.fileInp {
+    border: 1px solid;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; 
+}
+.fileInp-opacity {
+    opacity: 0;
+}
+.files-wrap img {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+}
+.ftpimg_row{
+  font-size: .75rem!important;
+}
+.pic_row{
+  margin-left: 0;
+}
+
+
+
+
+
+
+/*管理员列表*/
+#pageListAdministrator .button-link{
+  color: #f96f0c;
+  margin-right:1%;
+}
+.adminmessage_content{
+  font-size: .75rem;
+  color: #999;
+  position: relative;
+}
+.telephone_pic{
+   position: absolute;
+   top:25%;
+   right: 4%;
+}
+.telephone_pic img{
+    width: 100%;
+}
+
+
+
+
+/*站长列表*/
+#pageWebmasterList .button-link{
+  color: #f96f0c;
+  margin-right:1%;
+}
+.button_block{
+  margin: .2rem 0  .7rem;
+}
+.button_block .button{
+  border-radius: 2rem; 
+
+}
+.area_row{
+  text-align: center;
+  color:#ff5722; 
+  margin-left: 0;
+  background-color: #fff;
+  padding:.5rem 0;
+
+}
+.area_row .col-33 .icon-down{
+   padding-left: .2rem;
+}
+.area_row .col-33{
+
+  font-size: .65rem;
+}
+.area_row .col-33:last-child{
+  border:none;
+}
+.name_row{
+  color: #333333;
+  padding-bottom: .3rem;
+}
+.name_row .col-15 a{
+    color:#f96f0c;  text-align: right;
+}
+#pageWebmasterList .telephone_pic{
+   position: absolute;
+   top:50%;
+   right:4%;
+}
+.searchbar-textstyle  .search-input .icon{
+   left:92%;
+   color: #f96f0c; 
+}
+
+
+
+/*站长信息*/
+.col33-color{
+  color:#999;
+}
+
+
+.master_pic{
+    position: relative;
+    height:6rem;
+    width:100%;
+}
+
+.master_pic img{
+
+    height:6rem;
+    width:45%;
+    float:left;
+    margin-right:5%;
+
+}

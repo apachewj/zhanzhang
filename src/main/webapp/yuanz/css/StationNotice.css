@@ -1,0 +1,158 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+    font-size:.7em;
+
+}
+
+ul {
+  list-style:none;
+}
+img {
+  border:none;
+}
+a:link {
+  color:#000;
+  text-decoration:none;
+}
+a:visited {
+  color:#000;
+  text-decoration:none;
+}
+a:hover {
+  color:#000;
+  text-decoration:none;
+}
+a:active {
+  color:#000;
+  text-decoration:none;
+}
+
+
+.clear{clear:both;}
+
+.pull-right{
+  margin-right: 10px;
+    color:#f96f0c !important;
+}
+.bar .home-icon img{
+  width:1.5rem;
+}
+
+
+
+.sct-bd{
+  height: auto;
+    margin: .75rem 3.125%;
+}
+
+.situation-box{
+  height: auto;
+}
+.situation-box-item {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.situation-box-item h3 {
+    display: inline-block;
+   width: 100%;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 100%;
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.situation-box-item p {
+    margin-top: 11px;
+    font-size: 13px;
+    line-height: 22px;
+    color: #999;
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+
+/*站内通知详情*/
+.title_content{
+  margin: 5px 10px 0px;
+  font-size: 14px;
+  overflow: hidden;
+  text-align: center;
+  border-bottom: 2px dashed #FF8000;padding-bottom: 10px;
+}
+.title_content h5{
+  color: #999999;
+  margin-top: 10px;
+}
+.jszc_content .p_words{
+  text-indent:2em;
+}
+
+.jszc_content{
+  margin: 0px 10px 10px 10px;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+
+
+/*发送消息*/
+.list-block{
+   margin:0;
+}
+.item-inner .text-content{
+  height: auto;   
+}
+.list-block .item-inner:after{
+    height: 0;
+}
+.textaera-row {
+    overflow: initial;
+    margin-left: .1rem;
+    margin-top: .4rem;
+    margin-bottom:1rem;
+}
+.textarea-content{
+  position: relative;
+  border-radius: .2rem;
+  height: 12rem;
+  border: 1px solid #999999; 
+}
+
+.inp-text{
+    font-size: .7rem!important;
+}
+.input-row{
+  overflow: initial;
+  margin: .4rem 0 .4rem 0;
+}
+.input-content{
+  position: relative;
+  border-radius: .2rem;  
+ height: 2rem;
+  border: 1px solid #999999;
+}
+.input-content input[type=text]{
+  padding: 0 0 .6rem .25rem;
+}
+.row .col-40{
+  width: 43%;
+}
+.textarea-content-title{
+  position: relative;
+  border-radius: .2rem;
+  height: 4rem;
+  border: 1px solid #999999; 
+}
