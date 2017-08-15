@@ -168,8 +168,6 @@
      </div>  
         
    </div>  
-<div >
-
 
 <!-- 搜索 -->
   <div class="page" id="pagesearch">
@@ -303,126 +301,106 @@
          <div id="qiuzhengList"  title="15"></div>
          <div id="zhengqiuList"  title="16"></div>
     </ul>
-    </div>
+  </div>
 
 </div>
 </div>
 
     
- </div>       
-   <script type='text/javascript' src='js/zepto.js' ></script>
-    <script type='text/javascript' src='js/sm.min.js' ></script>
-    <script type='text/javascript' src='js/sm-extend.min.js'></script>
-    <script type="text/javascript" src="js/juicer.js"></script>
- <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=FbzOyQ4YujPrZsxiQKoB07aB&services=&t=20160708193109"></script>
-           <script src="js/Common.js"></script>
-       <script type='text/javascript' src='js/address1.js'></script>
-<script type='text/javascript' src='js/homepage.js'></script>
-<script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script>
+ </div>
+  <script type='text/javascript' src='js/zepto.js'></script>
+  <script type='text/javascript' src='js/sm.min.js'></script>
+  <script type='text/javascript' src='js/sm-extend.min.js'></script>
+  <script type="text/javascript" src="js/juicer.js"></script>
+  <script type="text/javascript"
+          src="http://api.map.baidu.com/getscript?v=2.0&ak=FbzOyQ4YujPrZsxiQKoB07aB&services=&t=20160708193109"></script>
+  <script src="js/Common.js"></script>
+  <script type='text/javascript' src='js/address1.js'></script>
+  <script type='text/javascript' src='js/homepage.js'></script>
+  <script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script>
+  <script type="text/javascript">
+      function get (region_p_default, region_c_default, region_d_default) {
+          region_init("select_province", "select_city", "select_area", region_p_default, region_c_default, region_d_default);
+          homepage.index.initfirst('01');
+          homepage.index.initsecond('02');
+          homepage.index.notice(1);
+      }
+
+      $(function () {
+          $(".tab_title ul li").click(function () {
+              $(this).addClass("selected").siblings().removeClass("selected");
+              var title = $(this).children("a").attr("title");
+              document.getElementById('type').value = title;
+              homepage.index.query();
+
+          });
+      });
+
+      +function ($) {
+
+          $(document).on("pageInit", function (e, pageId, $page) {
+              document.cookie = "id" + "=;expires=" + (new Date(0)).toGMTString();
+          });
+          $.init()
+      }(Zepto);
+
+      $(function () {
+          //"use strict";
+          var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+              offset: new BMap.Size(0, 0),
+              imageOffset: new BMap.Size(0, 0)
+          });
+          var pt = new BMap.Point();
+
+          var geolocation = new BMap.Geolocation();
+          var geoc = new BMap.Geocoder();
+
+          geolocation.getCurrentPosition(function (r) {
+              if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                  pt = r.point;
+                  geoc.getLocation(pt, function (rs) {
+                      var addComp = rs.addressComponents;
+                      console.info(pt);
+                      console.info(addComp.province + ", " + addComp.city + ", " + addComp.district);
+                      _cityPosdata(addComp.province, addComp.city, addComp.district);
+                      var address = addComp.street + addComp.streetNumber;
+                      var xw = parseFloat(pt.lat).toFixed(6);
+                      var yj = parseFloat(pt.lng).toFixed(6);
+                      $('#pubZPeopleService_location_x').val(xw);
+                      $('#pubZPeopleService_location_y').val(yj);
+                  });
+              }
+              else {
+                  alert('failed' + this.getStatus());
+              }
+          }, {enableHighAccuracy: true});
+      });
+      //
+      //if(document.getElementById("jsfoot01")){
+      //  var scrollup = new ScrollText("jsfoot01");
+      //  scrollup.LineHeight = 22;        //单排文字滚动的高度
+      //  scrollup.Amount = 1;            //注意:子模块(LineHeight)一定要能整除Amount.
+      //  scrollup.Delay = 20;           //延时
+      //  scrollup.Start();             //文字自动滚动
+      //  scrollup.Direction = "down"; //文字向下滚动
+      //}
+
+      function getCookie(name) {
+          var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+          if (arr = document.cookie.match(reg))
+              return unescape(arr[2]);
+          else
+              return null;
+      }
+
+      $(function () {
+          var uid = getCookie("user_id");
+          if (uid != null && uid != 0) {
+              document.getElementById("StoreList").href = "http://ysyisu.cn/Store/StoreList?userid=" + uid;
+              document.getElementById("MyIndex").href = "http://ysyisu.cn/StoreManage/MyIndex?userid=" + uid;
+          }
+      })
+  </script>
 
 </body>
-
-
-<script>
-function get(region_p_default,region_c_default,region_d_default){
-    region_init("select_province", "select_city", "select_area", region_p_default,region_c_default,region_d_default);
-    homepage.index.initfirst('01');
-    homepage.index.initsecond('02');
-    homepage.index.notice(1);
-}
-$(function(){
-     $(".tab_title ul li").click(function() {
-           $(this).addClass("selected").siblings().removeClass("selected");
-           var title = $(this).children("a").attr("title");
-           document.getElementById('type').value=title;
-           homepage.index.query();
-
-     });
-});
-
-
-+ function($) {
-
-$(document).on("pageInit", function(e, pageId, $page) {
-     document.cookie = "id"+"=;expires="+(new Date(0)).toGMTString();
-  });
-$.init()
-  }(Zepto);
-
-
-
-  $(function() {
-    "use strict";
-
-var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
-        offset: new BMap.Size(0, 0),
-        imageOffset: new BMap.Size(0, 0)
-    });
-    var pt = new BMap.Point();
-
-    var geolocation = new BMap.Geolocation();
-    var geoc = new BMap.Geocoder();
-
-
-
-geolocation.getCurrentPosition(function(r){
-        if(this.getStatus() == BMAP_STATUS_SUCCESS){
-            pt = r.point;
-
-            geoc.getLocation(pt, function(rs){
-                var addComp = rs.addressComponents;
-                console.info(pt);
-
-                console.info(addComp.province + ", " + addComp.city+ ", " + addComp.district);
-
-                _cityPosdata(addComp.province,addComp.city,addComp.district);
-
-
-                var address = addComp.street + addComp.streetNumber;
-                var xw = parseFloat(pt.lat).toFixed(6);
-                var yj = parseFloat(pt.lng).toFixed(6);
-                $('#pubZPeopleService_location_x').val(xw);
-                $('#pubZPeopleService_location_y').val(yj);
-
-            });
-           
-        }
-        else {
-            alert('failed'+this.getStatus());
-        }
-    },{enableHighAccuracy: true});
-
-
- });
-//
-//if(document.getElementById("jsfoot01")){
-//  var scrollup = new ScrollText("jsfoot01");
-//  scrollup.LineHeight = 22;        //单排文字滚动的高度
-//  scrollup.Amount = 1;            //注意:子模块(LineHeight)一定要能整除Amount.
-//  scrollup.Delay = 20;           //延时
-//  scrollup.Start();             //文字自动滚动
-//  scrollup.Direction = "down"; //文字向下滚动
-//}
-
-function getCookie(name)
-{
-var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-if(arr=document.cookie.match(reg))
-return unescape(arr[2]);
-else
-return null;
-}
-$(function(){
-	var uid=getCookie("user_id");
-	if(uid!=null&&uid!=0)
-	{
-		document.getElementById("StoreList").href="http://ysyisu.cn/Store/StoreList?userid="+uid;
-		document.getElementById("MyIndex").href="http://ysyisu.cn/StoreManage/MyIndex?userid="+uid;
-	}
-})
-</script>
-
-
-
-
 </html>
