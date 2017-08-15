@@ -828,9 +828,9 @@ public class NoticeController extends BaseController {
             sb.append(" order by ((convert(decimal,a.location_x)-" + location_x + ")*(convert(decimal,a.location_y)-" + location_x + ")) desc");
         }else if(locationorder!=null&&locationorder ==2){
         	sb.append(" order by ((convert(decimal,a.location_x)-" + location_x + ")*(convert(decimal,a.location_y)-" + location_x + ")) asc");
-        }else if(wartchorder!=null&&timeorder ==1) {
+        }else if(wartchorder!=null&&wartchorder ==1) {
             sb.append(" order by b.wartchs asc");
-        }else if(wartchorder!=null&&timeorder ==2){
+        }else if(wartchorder!=null&&wartchorder ==2){
         	sb.append(" order by b.wartchs desc");
         }else{
         	sb.append(" order by a.create_time desc");
