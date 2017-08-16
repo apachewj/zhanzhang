@@ -74,9 +74,9 @@
          </div>
           <div class="clear"></div>
          <div class="sort">
-          <input type="hidden" id="notice_locationorder" value="2" eletType="text">
+          <input type="hidden" id="notice_locationorder" value="0" eletType="text">
           <input type="hidden" id="notice_timeorder"  value="2" eletType="text">
-          <input type="hidden" id="notice_wartchorder"  value="2" eletType="text">
+          <input type="hidden" id="notice_wartchorder"  value="0" eletType="text">
             <ul>
           <!--   <li  id="notice_locationorder1"  onclick="mylocation()">按距离<li> -->
             <li class="selected2" id="notice_timeorder1" onclick="mytime()">按时间<li>
@@ -1603,7 +1603,15 @@
      var city1  = GetQueryString("city");
      var district1  = GetQueryString("district");
      _cityPosdata(province1,city1,district1);
-
+       region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+       region_initx("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+       region_initx("select_province2","select_city2","select_area2",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+       region_initx("select_province3","select_city3","select_area3",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+       region_initx("select_province4","select_city4","select_area4",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+       region_initx("select_province5","select_city5","select_area5",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+       $("#sheng").val(getCookie("p_id"))
+       $("#shi").val(getCookie("p_id"))
+       $("#qu").val(getCookie("p_id"))
    }else if($.device.os=="ios"){
     region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
     region_initx("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
@@ -1620,7 +1628,7 @@
        var district1  = GetQueryString("district");
        _cityPosdata(province1,city1,district1);
 
-/*       region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
+       region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
        region_initx("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
        region_initx("select_province2","select_city2","select_area2",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
        region_initx("select_province3","select_city3","select_area3",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
@@ -1628,7 +1636,7 @@
        region_initx("select_province5","select_city5","select_area5",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
        $("#sheng").val(getCookie("p_id"))
        $("#shi").val(getCookie("p_id"))
-       $("#qu").val(getCookie("p_id"))*/
+       $("#qu").val(getCookie("p_id"))
    }
 
 
@@ -1850,29 +1858,27 @@ $(function(){
 
     
 // }
-
+// modified by wangji at 170816
 function mytime() {
-    
   var tm=document.getElementById("notice_timeorder").value;
   if (2==tm) {
      document.getElementById("notice_timeorder").value=1;
-  }else if (1==tm) {
+  }else if (2!==tm) {
      document.getElementById("notice_timeorder").value=2;
   }
-
-    
+    document.getElementById("notice_locationorder").value=0;
+    document.getElementById("notice_wartchorder").value=0;
 }
-
+// modified by wangji at 170816
 function mywartch() {
-    
   var tm=document.getElementById("notice_wartchorder").value;
   if (2==tm) {
      document.getElementById("notice_wartchorder").value=1;
-  }else if (1==tm) {
+  }else if (2!=tm) {
      document.getElementById("notice_wartchorder").value=2;
   }
-
-    
+    document.getElementById("notice_locationorder").value=0;
+    document.getElementById("notice_timeorder").value=0;
 }
 
 
@@ -1899,8 +1905,15 @@ geolocation.getCurrentPosition(function(r){
                 console.info(pt);
 
                 console.info(addComp.province + ", " + addComp.city);
-     
 
+                var c_pid = getCookie("p_id");
+                var c_cid = getCookie("c_id");
+                var c_did = getCookie("d_id");
+                if (c_pid && c_cid && c_did) {
+
+                } else {
+                    _cityPosdata(addComp.province, addComp.city, addComp.district);
+                }
 
                 var address = addComp.street + addComp.streetNumber;
                 var xw = parseFloat(pt.lat).toFixed(6);

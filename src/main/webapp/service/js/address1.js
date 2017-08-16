@@ -32,16 +32,10 @@ function _cityPosdata(obj,obj2,obj3){
         }
 
     }
-
     var p_id=provincePosdatas[0];
     var c_id=cityPosdatas[0];
     var d_id=district[0];
-    if (p_id && c_id && d_id) {
-        get(p_id,c_id,d_id);
-        document.cookie="p_id="+p_id;
-        document.cookie="c_id="+c_id;
-        document.cookie="d_id="+d_id;
-    }
+    get(p_id,c_id,d_id);
 }
 
 var pubcityPosdatas=[];
@@ -305,13 +299,9 @@ var region_inity = function (_region_p, _region_c, _region_d, _region_p_default,
 
 var region_init = function (_region_p, _region_c, _region_d,  _region_p_default, _region_c_default, _region_d_default) {
 
-
-
     var region_p = document.getElementById(_region_p);
     var region_c = document.getElementById(_region_c);
-     var region_d = document.getElementById(_region_d);
-
-    
+    var region_d = document.getElementById(_region_d);
 
     function option_items_select(cmb, value) {
         for (var i = 0; i < cmb.options.length; i++) {
@@ -369,7 +359,12 @@ var region_init = function (_region_p, _region_c, _region_d,  _region_p_default,
         //}
 
     //}
-
+    // added by wangji at 170815
+    function region_d_change() {
+        document.cookie="p_id="+region_p.options[region_p.selectedIndex].value;
+        document.cookie="c_id="+region_c.options[region_c.selectedIndex].value;
+        document.cookie="d_id="+region_d.value;
+    }
 
     function region_c_change() {
          
@@ -383,14 +378,9 @@ var region_init = function (_region_p, _region_c, _region_d,  _region_p_default,
             option_items_add(region_d, item.district[i].id, item.district[i].name, null, i);
         }
              option_items_select(region_d, _region_d_default);
-             //region_d_change();
-             //region_d.onchange = region_d_change;
+             region_d_change();
+             region_d.onchange = region_d_change;
         }
-        
-    
-
-       
-
         
         // var map = new BMap.Map('MyMap');
         // map.centerAndZoom(region_p.options[region_p.options.selected].text, 12);
@@ -403,9 +393,7 @@ var region_init = function (_region_p, _region_c, _region_d,  _region_p_default,
         //  var map = new BMap.Map('MyMap');
         //  map.centerAndZoom(region_c.options[region_c.options.selectedIndex].text, 12);
         //  // alert(region_c.options[region_c.options.selectedIndex].text);
-
         // }
-
 
     }
 
@@ -420,7 +408,6 @@ var region_init = function (_region_p, _region_c, _region_d,  _region_p_default,
         option_items_select(region_c, _region_c_default);
         region_c_change();
         region_c.onchange = region_c_change;
-        
 
     }
 
@@ -432,14 +419,6 @@ var region_init = function (_region_p, _region_c, _region_d,  _region_p_default,
     region_p.onchange = region_p_change;
 
 };
-
-
-
-
-
-
-
-
 
 var province_enum = [
                     // {

@@ -1,6 +1,13 @@
 window.homepage = window.homepage || {};
 var baseUrl = 'http://localhost:8080';
-
+var urlProtocl = window.document.location.protocol;
+var urlHostname = window.document.location.hostname;
+var urlPort = window.document.location.port;
+if (urlPort=='80') {
+    baseUrl = urlProtocl + '//' + urlHostname;
+} else {
+    baseUrl = urlProtocl + '//' + urlHostname + ':'+urlPort;
+}
 var filedate=homepage;
 
 var uploaddebug = true;
@@ -16,7 +23,14 @@ var debug = false;
     window.homepage = window.homepage || {};
 
     var baseUrl = 'http://localhost:8080';
-
+    var urlProtocl = window.document.location.protocol;
+    var urlHostname = window.document.location.hostname;
+    var urlPort = window.document.location.port;
+    if (urlPort=='80') {
+        baseUrl = urlProtocl + '//' + urlHostname;
+    } else {
+        baseUrl = urlProtocl + '//' + urlHostname + ':'+urlPort;
+    }
     var filedata = homepage;
 
     homepage.config = {
@@ -908,6 +922,14 @@ $(function () {
                             javascript:login.nologin();
                         }else if($.device.os=="ios"){
                             location.href = homepage.config.loginUrl;
+                        }else {
+                            try {
+                                javascript:login.nologin();
+                                location.href = homepage.config.loginUrl;
+                            }catch(e) {
+                                console.log(e);
+                            }
+
                         }
                     } else {
                         delegate(d);

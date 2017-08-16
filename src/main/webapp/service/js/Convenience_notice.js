@@ -171,7 +171,7 @@ var position = {
     accuracyP: 67.8021001352539
 };
 
-var debug = false;
+var debug = true;
 
 $(function () {
     "use strict";
@@ -1209,6 +1209,12 @@ var viewInit = function(_m, data) {
                             javascript:login.nologin();
                         }else if($.device.os=="ios"){
                             location.href = notice.config.loginUrl;
+                        } else {
+                            try {
+                                javascript:login.nologin();
+                            } catch (e) {
+                                location.href = notice.config.loginUrl;
+                            }
                         }
                     } else {
                         delegate(d);
