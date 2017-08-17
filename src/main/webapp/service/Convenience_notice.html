@@ -338,7 +338,7 @@
                               </div>
                            
                               <div class="col-50">
-                                   <textarea id="Tongzhi_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明" ></textarea>
+                                   <textarea id="Tongzhi_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明"  maxlength="500"></textarea>
                               </div>
                           </div>
                   </li>
@@ -485,7 +485,7 @@
                               </div>
                            
                               <div class="col-50">
-                                   <textarea id="Zhengqiu_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明" ></textarea>
+                                   <textarea id="Zhengqiu_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" maxlength="500" placeholder="请添加图片说明" ></textarea>
                               </div>
                           </div>
                   </li>
@@ -981,6 +981,7 @@
                                      <input type="radio" class="col-20" name="sex"  data-pub="1" id="yessex" /><label>限制性别</label>
                                       </div>
 
+
                                    </div>
                                       <div class="num_show row">
                               
@@ -992,6 +993,11 @@
                                         <div class="col-15 red">
                                             人
                                         </div>
+                                          <p>是否需要审核*</p>
+                                          <div class="col-100">
+                                              <input type="radio" class="col-15" name="shenhe"  data-pub="0" id="noshenhe" check="true" checked="true" /><label>不需要审核</label>
+                                              <input type="radio" class="col-20" name="shenhe"  data-pub="1" id="yesshenhe" /><label>需要审核</label>
+                                          </div>
                                        </div>
 
                                        <div class="num_hide row">
@@ -1035,7 +1041,7 @@
                               </div>
                            
                               <div class="col-50">
-                                   <textarea id="Baoming_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" placeholder="请添加图片说明" ></textarea>
+                                   <textarea id="Baoming_c_context" eleType="inputcontext"  class="inp-text tianjiatupian col-100" maxlength="500" placeholder="请添加图片说明" ></textarea>
                               </div>
                           </div>
                   </li>
@@ -1205,7 +1211,7 @@
       <div class="content">
       <input type="hidden" id="mpid"/>
       <input type="hidden" id="Donate_info_id"/>
-      <input type="hidden" id="Donate_type"/ value="5">
+      <input type="hidden" id="Donate_type" value="5">
       <input type="hidden" id="seekdetails_id" eleType='input'/>
       <input type="hidden" id="seekdetails_location_x" eleType='input' value=""/>
       <input type="hidden" id="seekdetails_location_y" eleType='input' value=""/>
@@ -1750,7 +1756,7 @@ $(function(){
    html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'Zhengqiu_c_image'+iq+'\'))"/>';
    // html += '<div class="close-div hide"></div>'; 
    html += '</div>'; 
-   html += '<textarea  id="Zhengqiu_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60" placeholder="请添加图片说明"></textarea>'; 
+   html += '<textarea  id="Zhengqiu_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60" maxlength="500" placeholder="请添加图片说明"></textarea>';
    html += '</div>';     
     html += "<img class='delete_img' src='images/tuichu.png' onclick='removeAddLable(this)'/>" ;               
    html += '</li>'; 
@@ -1773,7 +1779,7 @@ $(function(){
    html+='<input type="file" class="cert-upload fileInp-opacity"  onchange="handleFiles(this,document.getElementById(\'Qiuzheng_c_image'+iq+'\'))"/>';
    // html += '<div class="close-div hide"></div>'; 
    html += '</div>'; 
-   html += '<textarea  id="Qiuzheng_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60" placeholder="请添加图片说明"></textarea>'; 
+   html += '<textarea  id="Qiuzheng_c_context'+ iq +'" eleType="inputcontext" class="inp-text col-60" maxlength="500" placeholder="请添加图片说明"></textarea>';
    html += '</div>';   
     html += "<img class='delete_img' src='images/tuichu.png' onclick='removeAddLable(this)'/>" ;                 
    html += '</li>'; 
