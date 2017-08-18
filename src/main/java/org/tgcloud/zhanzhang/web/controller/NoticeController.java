@@ -22,6 +22,9 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
+/**
+ * @author
+ */
 public class NoticeController extends BaseController {
 	
 	private NoticeService noticeService = Enhancer.enhance(NoticeService.class);
