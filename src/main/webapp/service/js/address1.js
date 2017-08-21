@@ -35,7 +35,12 @@ function _cityPosdata(obj,obj2,obj3){
     var p_id=provincePosdatas[0];
     var c_id=cityPosdatas[0];
     var d_id=district[0];
-    get(p_id,c_id,d_id);
+    if (c_id && p_id && d_id) {
+        get(p_id,c_id,d_id);
+        document.cookie="p_id="+p_id;
+        document.cookie="c_id="+c_id;
+        document.cookie="d_id="+d_id;
+    }
 }
 
 var pubcityPosdatas=[];
