@@ -1605,46 +1605,41 @@
   }
 
    if($.device.os=="android"){
-    var province1  = GetQueryString("province");
+     var province1  = GetQueryString("province");
      var city1  = GetQueryString("city");
      var district1  = GetQueryString("district");
-     _cityPosdata(province1,city1,district1);
-       region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province2","select_city2","select_area2",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province3","select_city3","select_area3",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province4","select_city4","select_area4",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province5","select_city5","select_area5",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       $("#sheng").val(getCookie("p_id"))
-       $("#shi").val(getCookie("p_id"))
-       $("#qu").val(getCookie("p_id"))
+     if (province1 && city1 & district1) {
+         _cityPosdata(province1,city1,district1);
+     } else {
+         var p_id = getCookie("p_id");
+         var c_id = getCookie("c_id");
+         var d_id = getCookie("d_id");
+         if (p_id && c_id && d_id) {
+             get(p_id,c_id,d_id);
+         }
+     }
    }else if($.device.os=="ios"){
-    region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-    region_initx("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-    region_initx("select_province2","select_city2","select_area2",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-    region_initx("select_province3","select_city3","select_area3",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-    region_initx("select_province4","select_city4","select_area4",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-    region_initx("select_province5","select_city5","select_area5",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-    $("#sheng").val(getCookie("p_id"))
-    $("#shi").val(getCookie("p_id"))
-    $("#qu").val(getCookie("p_id"))
+       var p_id = getCookie("p_id");
+       var c_id = getCookie("c_id");
+       var d_id = getCookie("d_id");
+       if (p_id && c_id &&d_id) {
+           get(p_id,c_id,d_id);
+       }
      } else {
        var province1  = GetQueryString("province");
        var city1  = GetQueryString("city");
        var district1  = GetQueryString("district");
-       _cityPosdata(province1,city1,district1);
-
-       region_init("select_province","select_city","select_area",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province1","select_city1","select_area1",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province2","select_city2","select_area2",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province3","select_city3","select_area3",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province4","select_city4","select_area4",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       region_initx("select_province5","select_city5","select_area5",getCookie("p_id"),getCookie("c_id"),getCookie("d_id"));
-       $("#sheng").val(getCookie("p_id"))
-       $("#shi").val(getCookie("p_id"))
-       $("#qu").val(getCookie("p_id"))
+       if (province1 && city1 & district1) {
+           _cityPosdata(province1,city1,district1);
+       } else {
+           var p_id = getCookie("p_id");
+           var c_id = getCookie("c_id");
+           var d_id = getCookie("d_id");
+           if (p_id && c_id && d_id) {
+               get(p_id,c_id,d_id);
+           }
+       }
    }
-
 
   function pubget(region_p_default, region_c_default, region_d_default) {
       if (region_p_default && region_c_default && region_d_default) {
@@ -1719,7 +1714,6 @@ $(document).ready(function(){
 $(document).on('click','.open-services', function () {
   $.popup('.popup-services');
 });
-
 
 
 $("input[name=add_type]").click(function(){
@@ -1851,8 +1845,6 @@ $(function(){
   $("#add_tuwen_Tongzhi").append(html);
 }
 
-
-
 // function mylocation() {
     
 //   var tm=document.getElementById("notice_locationorder").value;
@@ -1887,10 +1879,6 @@ function mywartch() {
     document.getElementById("notice_timeorder").value=0;
 }
 
-
-
-
-
 var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
         offset: new BMap.Size(0, 0),
         imageOffset: new BMap.Size(0, 0)
@@ -1900,8 +1888,6 @@ var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
     var geolocation = new BMap.Geolocation();
     var geoc = new BMap.Geocoder();
 
-
-
 geolocation.getCurrentPosition(function(r){
         if(this.getStatus() == BMAP_STATUS_SUCCESS){
             pt = r.point;
@@ -1909,18 +1895,17 @@ geolocation.getCurrentPosition(function(r){
             geoc.getLocation(pt, function(rs){
                 var addComp = rs.addressComponents;
                 console.info(pt);
-
-                console.info(addComp.province + ", " + addComp.city);
-
+                console.info(addComp.province, addComp.city, addComp.district);
                 var c_pid = getCookie("p_id");
                 var c_cid = getCookie("c_id");
                 var c_did = getCookie("d_id");
                 if (c_pid && c_cid && c_did) {
 
                 } else {
-                    _cityPosdata(addComp.province, addComp.city, addComp.district);
+                    if (addComp) {
+                        _cityPosdata(addComp.province, addComp.city, addComp.district);
+                    }
                 }
-
                 var address = addComp.street + addComp.streetNumber;
                 var xw = parseFloat(pt.lat).toFixed(6);
                 var yj = parseFloat(pt.lng).toFixed(6);
