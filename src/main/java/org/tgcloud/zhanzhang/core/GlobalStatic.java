@@ -72,10 +72,10 @@ public class GlobalStatic {
     public static int store_praise_scenic = 1;//景区
     public static int store_praise_guide = 1;//景区陪游
     
-    public static String imgpath1="http://localhost:8080/images/guanggao1.png";
-    public static String imgpath2="http://localhost:8080/images/guanggao2.png";
-    public static String imgpath3="http://localhost:8080/images/guanggao3.png";
-    public static String imgpath4="http://localhost:8080/images/guanggao4.png";
+    public static String imgpath1="/images/guanggao1.png";
+    public static String imgpath2="/images/guanggao2.png";
+    public static String imgpath3="/images/guanggao3.png";
+    public static String imgpath4="/images/guanggao4.png";
     
     public static String imgcontent1="内蒙古欢迎您！";
     public static String imgcontent2="烤全羊最好吃";
