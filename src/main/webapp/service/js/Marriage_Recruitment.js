@@ -1226,7 +1226,7 @@ var viewInit = function(_m, data) {
                 cache: false,
                 success: function(d) {
                     if (d && d.data && d.data == 'no login') {
-                        //location.href = marriage.config.loginUrl;
+                        location.href = marriage.config.loginUrl;
                         if($.device.os=="android"){
                             javascript:login.nologin();
                         }else if($.device.os=="ios"){

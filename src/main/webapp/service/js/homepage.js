@@ -917,7 +917,7 @@ $(function () {
                 cache: false,
                 success: function(d) {
                     if (d && d.data && d.data == 'no login') {
-                        // location.href = homepage.config.loginUrl;
+                        location.href = homepage.config.loginUrl;
                         if($.device.os=="android"){
                             javascript:login.nologin();
                         }else if($.device.os=="ios"){
@@ -925,11 +925,9 @@ $(function () {
                         }else {
                             try {
                                 javascript:login.nologin();
-                                location.href = homepage.config.loginUrl;
                             }catch(e) {
-                                console.log(e);
+                                location.href = homepage.config.loginUrl;
                             }
-
                         }
                     } else {
                         delegate(d);

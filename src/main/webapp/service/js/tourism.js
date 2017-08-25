@@ -1222,7 +1222,7 @@ $(function () {
                 cache: false,
                 success: function (d) {
                     if (d && d.data && d.data == 'no login') {
-                        //location.href = tourism.config.loginUrl;
+                        location.href = tourism.config.loginUrl;
                         if($.device.os=="android"){
                             javascript:login.nologin();
                         }else if($.device.os=="ios"){

@@ -619,7 +619,7 @@ $(function () {
                 cache: false,
                 success: function(d) {
                     if (d && d.data && d.data == 'no login') {
-                        //location.href = speciality.config.loginUrl;
+                        location.href = speciality.config.loginUrl;
                         if($.device.os=="android"){
                             javascript:login.nologin();
                         }else if($.device.os=="ios"){

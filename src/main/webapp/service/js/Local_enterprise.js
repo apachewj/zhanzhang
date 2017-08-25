@@ -945,7 +945,7 @@
                     cache: false,
                     success: function(d) {
                         if (d && d.data && d.data == 'no login') {
-                            //location.href = enterprise.config.loginUrl;
+                            location.href = enterprise.config.loginUrl;
                             if($.device.os=="android"){
                                 javascript:login.nologin();
                             }else if($.device.os=="ios"){
