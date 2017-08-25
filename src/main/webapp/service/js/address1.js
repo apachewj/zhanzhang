@@ -16,6 +16,9 @@ function _cityPosdata(obj,obj2,obj3){
         }
         for(var j = 0; j < province_enum[i].city.length; j++) {
 
+            if (obj==obj2) { //  市辖区有可能叫 北京市或天津市等
+                obj2="市辖区";
+            }
             if ( province_enum[i].city[j].name === obj2){
                 cityPosdatas[0]=province_enum[i].city[j].id;
                 cityPosdatas[1]=province_enum[i].city[j].name;
@@ -35,8 +38,11 @@ function _cityPosdata(obj,obj2,obj3){
     var p_id=provincePosdatas[0];
     var c_id=cityPosdatas[0];
     var d_id=district[0];
+    p_id = p_id ? p_id : "";
+    c_id = c_id ? c_id : "";
+    d_id = d_id ? d_id : "";
+    get(p_id,c_id,d_id);
     if (c_id && p_id && d_id) {
-        get(p_id,c_id,d_id);
         document.cookie="p_id="+p_id;
         document.cookie="c_id="+c_id;
         document.cookie="d_id="+d_id;
@@ -47,14 +53,11 @@ var pubcityPosdatas=[];
 var pubprovincePosdatas=[];
 var district=[]
 
-
-
 function fanhui(){
     if($.device.os=="android"){
         javascript:android.goBackAndroid();
     }else if($.device.os=="ios"){
         location.href = "../service/homepage.html";
-
     }
 
 }
@@ -265,7 +268,12 @@ var region_inity = function (_region_p, _region_c, _region_d, _region_p_default,
         option.value = value+","+text;
         option.obj = obj;
     }
-
+    // added by wangji at 170815
+    // function region_d_change() {
+    //     document.cookie="p_id="+region_p.options[region_p.selectedIndex].value;
+    //     document.cookie="c_id="+region_c.options[region_c.selectedIndex].value;
+    //     document.cookie="d_id="+region_d.value;
+    // }
     function region_c_change() {
         region_d.options.length = 0;
         if (region_c.selectedIndex == -1)return;
@@ -274,6 +282,8 @@ var region_inity = function (_region_p, _region_c, _region_d, _region_p_default,
             option_items_add(region_d, item.district[i].id, item.district[i].name, null, i);
         }
         option_items_select(region_d, _region_d_default);
+        //region_d_change();
+        //region_d.onchange = region_d_change();
     }
 
     function region_p_change() {
@@ -364,12 +374,6 @@ var region_init = function (_region_p, _region_c, _region_d,  _region_p_default,
         //}
 
     //}
-    // added by wangji at 170815
-    function region_d_change() {
-        document.cookie="p_id="+region_p.options[region_p.selectedIndex].value;
-        document.cookie="c_id="+region_c.options[region_c.selectedIndex].value;
-        document.cookie="d_id="+region_d.value;
-    }
 
     function region_c_change() {
          
@@ -383,10 +387,7 @@ var region_init = function (_region_p, _region_c, _region_d,  _region_p_default,
             option_items_add(region_d, item.district[i].id, item.district[i].name, null, i);
         }
              option_items_select(region_d, _region_d_default);
-             region_d_change();
-             region_d.onchange = region_d_change;
         }
-        
         // var map = new BMap.Map('MyMap');
         // map.centerAndZoom(region_p.options[region_p.options.selected].text, 12);
 

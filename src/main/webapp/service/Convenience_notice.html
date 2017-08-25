@@ -95,8 +95,8 @@
   </div>
 
    <div class="tabs">
-            <input type="hidden" id="notice_location_x" eleType='value' value="32163306"/>
-            <input type="hidden" id="notice_location_y" eleType='value' value="118712513"/>
+            <input type="hidden" id="notice_location_x" eleType='value' value="0"/>
+            <input type="hidden" id="notice_location_y" eleType='value' value="0"/>
      <div id="tab1" class="tab active infinite-scroll " data-distance="100">
         <div class="list-block media-list media-list1">
           <div class="infinite-scroll-bottom"  id="fenTongzhi">
@@ -1581,7 +1581,7 @@
         <script type="text/javascript" src="js/jiathis_m.js" charset="utf-8"></script> 
    <script>
 
-  //下拉城市
+  //url传递城市
   function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
@@ -1599,9 +1599,17 @@
       region_initx("select_province3","select_city3","select_area3",_region_p_default,_region_c_default,_region_d_default);
       region_initx("select_province4","select_city4","select_area4",_region_p_default,_region_c_default,_region_d_default);
       region_initx("select_province5","select_city5","select_area5",_region_p_default,_region_c_default,_region_d_default);
-      $("#sheng").val(_region_p_default)
-      $("#shi").val(_region_c_default)
-      $("#qu").val(_region_d_default)
+      $("#sheng").val(_region_p_default);
+      $("#shi").val(_region_c_default);
+      $("#qu").val(_region_d_default);
+      $("#select_area").change();
+  }
+
+  // added by wangji at 170815
+  function region_d_change() {
+      document.cookie="p_id="+region_p.options[region_p.selectedIndex].value;
+      document.cookie="c_id="+region_c.options[region_c.selectedIndex].value;
+      document.cookie="d_id="+region_d.value;
   }
 
    if($.device.os=="android"){
@@ -1651,10 +1659,56 @@
           region_initx("select_province5", "select_city5", "select_area5", region_p_default, region_c_default, region_d_default);
       }
   }
+
+  var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
+      offset: new BMap.Size(0, 0),
+      imageOffset: new BMap.Size(0, 0)
+  });
+  var pt = new BMap.Point();
+
+  var geolocation = new BMap.Geolocation();
+  var geoc = new BMap.Geocoder();
+
+  geolocation.getCurrentPosition(function(r){
+      if(this.getStatus() == BMAP_STATUS_SUCCESS){
+          pt = r.point;
+
+          geoc.getLocation(pt, function(rs){
+              var addComp = rs.addressComponents;
+              console.info(pt);
+              console.info(addComp.province, addComp.city, addComp.district);
+              var c_pid = getCookie("p_id");
+              var c_cid = getCookie("c_id");
+              var c_did = getCookie("d_id");
+              if (c_pid && c_cid && c_did) {
+
+              } else {
+                  if (addComp) {
+                      _cityPosdata(addComp.province, addComp.city, addComp.district);
+                      notice.index.query();
+                  }
+              }
+              var address = addComp.street + addComp.streetNumber;
+              var xw = parseFloat(pt.lat).toFixed(6);
+              var yj = parseFloat(pt.lng).toFixed(6);
+              $('#pubZPeopleService_location_x').val(xw);
+              $('#pubZPeopleService_location_y').val(yj);
+              $('#pubZPeopleNeed_location_x').val(xw);
+              $('#pubZPeopleNeed_location_y').val(yj);
+              $('#peopleServiceDetail_location_x').val(xw);
+              $('#peopleServiceDetail_location_y').val(yj);
+              $('#notice_location_x').val(xw);
+              $('#notice_location_y').val(yj);
+          });
+
+      }
+      else {
+          alert('failed'+this.getStatus());
+      }
+  },{enableHighAccuracy: true});
+
    </script>
   <script>
-
-
 
 $(document).ready(function(){
     $("#nosex").click(function(){
@@ -1879,49 +1933,6 @@ function mywartch() {
     document.getElementById("notice_timeorder").value=0;
 }
 
-var myIcon = new BMap.Icon("images/icon/this-pos.gif", new BMap.Size(66, 40), {
-        offset: new BMap.Size(0, 0),
-        imageOffset: new BMap.Size(0, 0)
-    });
-    var pt = new BMap.Point();
-
-    var geolocation = new BMap.Geolocation();
-    var geoc = new BMap.Geocoder();
-
-geolocation.getCurrentPosition(function(r){
-        if(this.getStatus() == BMAP_STATUS_SUCCESS){
-            pt = r.point;
-
-            geoc.getLocation(pt, function(rs){
-                var addComp = rs.addressComponents;
-                console.info(pt);
-                console.info(addComp.province, addComp.city, addComp.district);
-                var c_pid = getCookie("p_id");
-                var c_cid = getCookie("c_id");
-                var c_did = getCookie("d_id");
-                if (c_pid && c_cid && c_did) {
-
-                } else {
-                    if (addComp) {
-                        _cityPosdata(addComp.province, addComp.city, addComp.district);
-                    }
-                }
-                var address = addComp.street + addComp.streetNumber;
-                var xw = parseFloat(pt.lat).toFixed(6);
-                var yj = parseFloat(pt.lng).toFixed(6);
-                $('#pubZPeopleService_location_x').val(xw);
-                $('#pubZPeopleService_location_y').val(yj);
-                $('#pubZPeopleNeed_location_x').val(xw);
-                $('#pubZPeopleNeed_location_y').val(yj);
-                $('#peopleServiceDetail_location_x').val(xw);
-                $('#peopleServiceDetail_location_y').val(yj);
-            });
-           
-        }
-        else {
-            alert('failed'+this.getStatus());
-        }
-    },{enableHighAccuracy: true});
 </script>
  </body>
 
